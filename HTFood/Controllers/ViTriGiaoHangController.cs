@@ -17,7 +17,7 @@ namespace HTFood.Controllers
 {
     public class ViTriGiaoHangController : Controller
     {
-        string url = "http://localhost/hutechfoodserver/api/";
+        string url = Constants.url;
         HttpClient client;
         public static List<ViTriGiaoHang> listViTri = new List<ViTriGiaoHang>();
         public ViTriGiaoHangController()

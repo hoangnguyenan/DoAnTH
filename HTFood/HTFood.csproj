@@ -150,10 +150,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\NhanVienGiaoHangController.cs" />
+    <Compile Include="Controllers\ViTienController.cs" />
     <Compile Include="Controllers\ViTriGiaoHangController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\HutechFood.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

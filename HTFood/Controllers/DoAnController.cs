@@ -17,7 +17,7 @@ namespace HTFood.Controllers
 {
     public class DoAnController : Controller
     {
-        string url = "http://localhost/hutechfoodserver/api/";
+        string url = Constants.url;
         HttpClient client;
         public static List<DoAn> listda = new List<DoAn>();
         public DoAnController()

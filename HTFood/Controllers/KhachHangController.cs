@@ -17,7 +17,7 @@ namespace HTFood.Controllers
 {
     public class KhachHangController : Controller
     {
-        string url = "http://localhost/hutechfoodserver/api/";
+        string url = Constants.url;
         //string url = "http://localhost:50205/api/khachhang";
 
         HttpClient client;
@@ -34,8 +34,8 @@ namespace HTFood.Controllers
         public async Task<ActionResult> Index(int? page)
         {
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"khachhang/");
-            List<KhachHang> khachHangs =  getAllCustomerAsync(responseMessage);
-            if(khachHangs != null)
+            List<KhachHang> khachHangs = getAllCustomerAsync(responseMessage);
+            if (khachHangs != null)
             {
                 int pageSize = 8;//so san pham moi trang
                 int pageNum = (page ?? 1);//tao so trang            
@@ -55,7 +55,7 @@ namespace HTFood.Controllers
                     NullValueHandling = NullValueHandling.Ignore,
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
-                List<KhachHang> khachHangs = JsonConvert.DeserializeObject<List<KhachHang>>(responseData, settings);        
+                List<KhachHang> khachHangs = JsonConvert.DeserializeObject<List<KhachHang>>(responseData, settings);
                 var list = khachHangs.ToList();
                 return list;
             }
@@ -71,30 +71,12 @@ namespace HTFood.Controllers
             {
                 khachHangs = await response.Content.ReadAsAsync<KhachHang>();
 
+                HttpResponseMessage responseMessage = await client.GetAsync(url + @"vitien/");
+                //List<ViTien> viTiens = getAllViTien(responseMessage);
+                //ViTien vi = viTiens.SingleOrDefault(n => n.MaViTien == id);
             }
             return View(khachHangs);
         }
-        public async Task<ActionResult> LichSuGD(int? id)
-        {
-            HttpResponseMessage response = await client.GetAsync(url + @"lichsugd/" + id);
-            if (response.IsSuccessStatusCode)
-            {
-                var responseData = response.Content.ReadAsStringAsync().Result;
-                var settings = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                };
-                var lichSuGDs = JsonConvert.DeserializeObject<List<LichSuGD>>(responseData, settings);
-                List<LichSuGD> ls = lichSuGDs.ToList();
-                ViewBag.Mgd = id;
-
-
-                return View(lichSuGDs.ToList());
-            }
-            return View();
-        }
-
         // GET: KhachHang/Create
         public ActionResult Create()
         {

@@ -17,7 +17,7 @@ namespace HTFood.Controllers
 {
     public class DonDatHangController : Controller
     {
-        string url = "http://localhost/hutechfoodserver/api/";
+        string url = Constants.url;
         HttpClient client;
         public DonDatHangController()
         {

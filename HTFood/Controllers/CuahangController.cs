@@ -17,7 +17,7 @@ namespace HTFood.Controllers
 {
     public class CuahangController : Controller
     {
-        string url = "http://localhost/hutechfoodserver/api/";
+        string url = Constants.url;
         HttpClient client;
         public static List<Cuahang> listch = new List<Cuahang>();
         public CuahangController()

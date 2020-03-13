@@ -15,13 +15,12 @@ using PagedList;
 
 namespace HTFood.Controllers
 {
-
-    public class NhanVienGiaoHangController : Controller
+    public class ViTienController : Controller
     {
         string url = Constants.url;
         HttpClient client;
-        public static List<NhanVienGiaoHang> listnvgh = new List<NhanVienGiaoHang>();
-        public NhanVienGiaoHangController()
+        public static List<ViTien> listvi= new List<ViTien>();
+        public ViTienController()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri(url);
@@ -30,21 +29,21 @@ namespace HTFood.Controllers
         }
         private dbHutechfoodContext db = new dbHutechfoodContext();
 
-        // GET: NhanVienGiaoHang
+        // GET: ViTien
         public async Task<ActionResult> Index(int? page)
         {
-            HttpResponseMessage responseMessage = await client.GetAsync(url + @"nhanviengiaohang/");
-            List<NhanVienGiaoHang> nvgh = getAllNhanVienGH(responseMessage);
-            if (nvgh != null)
+            HttpResponseMessage responseMessage = await client.GetAsync(url + @"vitien/");
+            List<ViTien> vi = getAllViTien(responseMessage);
+            if (vi != null)
             {
                 int pageSize = 8;//so san pham moi trang
                 int pageNum = (page ?? 1);//tao so trang      
-                var list = nvgh.ToList();
+                var list = vi.ToList();
                 return View(list.ToPagedList(pageNum, pageSize));
             }
             return View("Error");
         }
-        public static List<NhanVienGiaoHang> getAllNhanVienGH(HttpResponseMessage responseMessage)
+        public static List<ViTien> getAllViTien(HttpResponseMessage responseMessage)
         {
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -54,37 +53,38 @@ namespace HTFood.Controllers
                     NullValueHandling = NullValueHandling.Ignore,
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
-                List<NhanVienGiaoHang> nhanVienGiaoHangs = JsonConvert.DeserializeObject<List<NhanVienGiaoHang>>(responseData, settings);
-                var listnv = nhanVienGiaoHangs.ToList();
-                return listnv;
+                List<ViTien> viTiens = JsonConvert.DeserializeObject<List<ViTien>>(responseData, settings);
+                var listvi = viTiens.ToList();
+                return listvi;
             }
             return null;
         }
-        // GET: NhanVienGiaoHang/Details/5      
+        // GET: ViTien/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            NhanVienGiaoHang nhanVienGiaoHang = null;
-            HttpResponseMessage response = await client.GetAsync(url + @"nhanviengiaohang/" + id);
+            ViTien viTien = null;
+            HttpResponseMessage response = await client.GetAsync(url + @"vitien/" + id);
             if (response.IsSuccessStatusCode)
             {
-                nhanVienGiaoHang = await response.Content.ReadAsAsync<NhanVienGiaoHang>();
+                viTien = await response.Content.ReadAsAsync<ViTien>();
             }
-            return View(nhanVienGiaoHang);
+            return View(viTien);
         }
-        // GET: NhanVienGiaoHang/Create
+
+        // GET: ViTien/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: NhanVienGiaoHang/Create
+        // POST: ViTien/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.        
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(NhanVienGiaoHang nhanVienGiaoHang)
+        public ActionResult Create(ViTien viTien)
         {
-            HttpResponseMessage response = client.PostAsJsonAsync(url + @"nhanviengiaohang/", nhanVienGiaoHang).Result;
+            HttpResponseMessage response = client.PostAsJsonAsync(url + @"vitien/", viTien).Result;
             response.EnsureSuccessStatusCode();
             if (response.IsSuccessStatusCode)
             {
@@ -93,36 +93,36 @@ namespace HTFood.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: NhanVienGiaoHang/Edit/5        
+        // GET: ViTien/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            NhanVienGiaoHang nhanVienGiaoHang = null;
-            HttpResponseMessage response = await client.GetAsync(url + @"nhanviengiaohang/" + id);
+            ViTien viTien = null;
+            HttpResponseMessage response = await client.GetAsync(url + @"vitien/" + id);
             if (response.IsSuccessStatusCode)
             {
-                nhanVienGiaoHang = await response.Content.ReadAsAsync<NhanVienGiaoHang>();
+                viTien = await response.Content.ReadAsAsync<ViTien>();
             }
-            return View(nhanVienGiaoHang);
+            return View(viTien);
         }
 
-        // POST: NhanVienGiaoHang/Edit/5
+        // POST: ViTien/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.        
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(NhanVienGiaoHang nhanVienGiaoHang)
+        public ActionResult Edit( ViTien viTien)
         {
-            HttpResponseMessage response = client.PutAsJsonAsync(url + @"nhanviengiaohang/" + nhanVienGiaoHang.MaNV, nhanVienGiaoHang).Result;
+            HttpResponseMessage response = client.PutAsJsonAsync(url + @"vitien/" + viTien.MaViTien, viTien).Result;
             response.EnsureSuccessStatusCode();
 
             return RedirectToAction("Index");
         }
 
-        // GET: NhanVienGiaoHang/Delete/5
+        // GET: ViTien/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            HttpResponseMessage response = await client.DeleteAsync(url + @"nhanviengiaohang/" + id);
-            return RedirectToAction("Index", "NhanVienGiaoHang");
+            HttpResponseMessage response = await client.DeleteAsync(url + @"vitien/" + id);
+            return RedirectToAction("Index", "ViTien");
         }
 
         protected override void Dispose(bool disposing)

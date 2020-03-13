@@ -17,7 +17,7 @@ namespace HTFood.Controllers
 {
     public class DanhMucDoAnController : Controller
     {
-        string url = "http://localhost/hutechfoodserver/api/";
+        string url = Constants.url;
         HttpClient client;
         public static List<DanhMucDoAn> listdm = new List<DanhMucDoAn>();
         public DanhMucDoAnController()
