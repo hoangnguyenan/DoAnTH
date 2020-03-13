@@ -159,6 +159,7 @@
     </Compile>
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\HutechFood.cs" />
+    <Compile Include="Models\MessageContants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,5 +8,12 @@ namespace HTFood.Models
     public class Constants
     {
         public static string url = "http://192.168.1.63:3000/api/";
+        public static int timeShiper = 5;
+
+        // STATUS
+        public static int STATUS_SHIP_SUCCESSFUL = 1;
+        public static int STATUS_SHIP_IN_PROCCESING = 2;
+        public static int STATUS_SHIP_BOOM = 3;
+        public static int STATUS_SHIP_FAIL = 4;
     }
 }

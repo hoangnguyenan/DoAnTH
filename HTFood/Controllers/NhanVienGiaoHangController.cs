@@ -68,6 +68,10 @@ namespace HTFood.Controllers
             if (response.IsSuccessStatusCode)
             {
                 nhanVienGiaoHang = await response.Content.ReadAsAsync<NhanVienGiaoHang>();
+
+                response = await client.GetAsync(url + @"lichsunvgh/");
+                List<LichSuNVGH> ls = LichSuNVGHController.getAllLichSuGD(response).Where(n=>n.MaNV == id).ToList();
+                ViewBag.lsnvgh = ls;
             }
             return View(nhanVienGiaoHang);
         }
