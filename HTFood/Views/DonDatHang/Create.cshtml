@@ -1,0 +1,131 @@
+﻿@model HTFood.Models.DonDatHang
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@ViewBag.Detail;
+<title>Thêm mới đơn đặt hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Thêm mới đơn hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","DonDatHang")">Đơn đặt hàng</a></li>
+                        <li class="breadcrumb-item active">Thêm mới đơn hàng</li>
+                    </ul>
+
+                </div>
+            </div>
+            <!--/Header-->
+            <!--content-->
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="header">
+                                <h2>Thêm mới </h2>
+                                <ul class="header-dropdown m-r--5">
+                                    <li class="dropdown">
+                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="javascript:void(0);">Action</a></li>
+                                            <li><a href="javascript:void(0);">Another action</a></li>
+                                            <li><a href="javascript:void(0);">Something else</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                <h2 class="card-inside-title">Nhập thông tin đơn hàng mới</h2>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="row clearfix">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.TinhTrangDonHang, new { htmlAttributes = new { @class = "form-control", placeholder = "Tình trạng đơn hàng" } })
+                                                @Html.ValidationMessageFor(model => model.TinhTrangDonHang, "", new { @class = "text-danger" })
+                                                <div class="help-info">Tình trạng đơn hàng</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control", placeholder = "Ngày đặt" } })
+                                                @Html.ValidationMessageFor(model => model.NgayDat, "", new { @class = "text-danger" })
+                                                <div class="help-info">Ngày đặt (mm/dd/yyyy)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control", placeholder = "Ngày giao" } })
+                                                @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
+                                                <div class="help-info">Ngày giao (mm/dd/yyyy)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.TgGiao, new { htmlAttributes = new { @class = "form-control", placeholder = "Thời gian giao" } })
+                                                @Html.ValidationMessageFor(model => model.TgGiao, "", new { @class = "text-danger" })
+                                                <div class="help-info">Thời gian giao</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.MaKH, new { htmlAttributes = new { @class = "form-control", placeholder = "Mã khách hàng" } })
+                                                @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
+                                                <div class="help-info">Mã khách hàng</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <input class="btn btn-raised btn-primary waves-effect" type="submit" value="Create" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.MaNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Mã nhân viên" } })
+                                                @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
+                                                <div class="help-info">Mã nhân viên</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.MaVT, new { htmlAttributes = new { @class = "form-control", placeholder = "Mã vị trí" } })
+                                                @Html.ValidationMessageFor(model => model.MaVT, "", new { @class = "text-danger" })
+                                                <div class="help-info">Mã vị trí</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!--/content-->
+        </div>
+    </div>
+</section>

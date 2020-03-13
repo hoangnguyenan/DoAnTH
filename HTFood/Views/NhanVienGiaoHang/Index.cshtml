@@ -1,0 +1,111 @@
+﻿
+@using PagedList.Mvc;
+@model PagedList.PagedList<HTFood.Models.NhanVienGiaoHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<title>Danh sách nhân viên giao hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Nhân viên giao hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Nhân viên</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--HHH-->
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2> Danh sách nhân viên giao hàng </h2>  <br>
+                            <h7>
+                                @Html.ActionLink("Thêm mới nhân viên", "Create")
+                            </h7>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                    <ul class="dropdown-menu pull-right" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Họ tên</th>
+                                        <th>Tài khoản</th>
+                                        <th>Email</th>
+                                        <th>Điện thoại</th>
+                                        <th>Giới tính</th>
+                                        <th>Trạng thái</th>
+                                        <th><i class="material-icons">pin_drop</i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int i = 1;}
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>
+                                                @Html.ActionLink(item.HoTenNV, "Details", new { id = item.MaNV })
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TaiKhoanNV)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EmailNV)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DienThoaiNV)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.GioiTinh)
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-green">
+                                                    @Html.DisplayFor(modelItem => item.TrangThaiNV)
+                                                </span>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ViTriHienTai)
+                                            </td>
+                                        </tr>
+                                        i++;
+                                    }
+                                </tbody>
+                            </table>
+                            @* Tao menu trang  *@
+                            <div class="MenuTrang" style="text-align:center">
+                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                            </div>
+                            <style>
+                                .MenuTrang li {
+                                    display: inline;
+                                }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--HH-->
+        </div>
+    </div>
+</section>

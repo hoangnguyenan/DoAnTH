@@ -1,0 +1,116 @@
+﻿@using PagedList.Mvc;
+@model PagedList.PagedList<HTFood.Models.DoAn>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<title>Danh sách sản phẩm</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Sản phẩm</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Sản phẩm</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--HHH-->
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2> Tất cả sản phẩm <small>Lọc sản phẩm...tìm kiếm</small> </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                    <ul class="dropdown-menu pull-right" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive">
+                            <div>
+                                <h7>
+                                    @Html.ActionLink("Thêm mới đồ ăn", "Create")
+                                </h7>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Danh mục</th>
+                                        <th>Tồn kho</th>
+                                        <th>Đơn giá</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày cập nhật (m/d/y)</th>
+                                        @*<th>Mô tả</th>*@
+                                        <th>Đánh giá</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int i = 1;}
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>
+                                                @Html.ActionLink(item.TenDA, "Details", new { id = item.MaDA })
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MaDM)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SoLuongTon)
+                                            </td>
+                                            <td>
+                                                @String.Format("{0:N}", item.DonGia)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TrangThaiDA)
+                                            </td>
+                                            <td>
+                                                @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayCapNhat).ToString()).ToShortDateString()
+                                            </td>                                            
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DanhGiaDoAn)
+                                            </td>
+                                            <td>
+                                                a
+                                            </td>
+                                        </tr>
+                                        i++;
+                                    }
+                                </tbody>
+                            </table>
+                            @* Tao menu trang  *@
+                            <div class="MenuTrang" style="text-align:center">
+                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                            </div>
+                            <style>
+                                .MenuTrang li {
+                                    display: inline;
+                                }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--HH-->
+        </div>
+    </div>
+</section>

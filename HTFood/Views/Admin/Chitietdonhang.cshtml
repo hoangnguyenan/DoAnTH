@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Chitietdonhang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<title>Chi tiết đơn hàng</title>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6 col-sm-7">
+                        <h2>Chi tiết đơn hàng</h2>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Dondathang","Admin")">Extra</a></li>
+                            <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Chi tiết đơn hàng</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Print Invoices</a></li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li><a href="javascript:void(0);">Export to XLS</a></li>
+                                        <li><a href="javascript:void(0);">Export to CSV</a></li>
+                                        <li><a href="javascript:void(0);">Export to XML</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-md-2 col-sm-4">
+                                    <h4>
+                                        Mã đơn hàng <br>
+                                        #SA12
+                                    </h4>
+                                </div>
+                               
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <address>
+                                        <strong>Tên khách hàng</strong><br>
+                                        <a href="@Url.Action("ChitietKH","Admin")">Trần Văn A</a><br>
+                                        Khu A Phòng 03-05 <br>
+                                        <abbr title="Phone">P:</abbr> 0909999000
+                                    </address>
+                                </div>
+                                <div class="col-md-4 col-sm-4 text-left">
+                                    <address>
+                                        <strong>Nhân viên giao hàng</strong><br>
+                                        <a href="@Url.Action("ChitietNV","Admin")">Trần Văn Dần</a><br>                                      
+                                        <abbr title="Phone">P:</abbr> 091233322
+                                    </address>
+                                </div>
+                                <div class="col-md-4 col-sm-4 text-right">
+                                    <p><strong>Ngày đặt: </strong>12:30 12/12/2019</p>
+                                    <p class="m-t-10"><strong>Trạng thái: </strong> <span class="badge bg-orange">Đang giao hàng</span></p>
+                                    
+                                </div>
+                            </div>
+                            <div class="mt-40"></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table id="mainTable" class="table table-striped" style="cursor: pointer;">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên sản phẩm</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Đơn giá</th>
+                                                    <th>Thành tiền</th>
+                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>LCD</td>                                                    
+                                                    <td>1</td>
+                                                    <td>380,000 vnđ</td>
+                                                    <td>380,000 vnđ</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Mobile</td>
+                                                    <td>5</td>
+                                                    <td>10,000 vnđ</td>
+                                                    <td>50,000 vnđ</td>
+                                                </tr>
+                                              
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row" style="border-radius: 0px;">
+                                <div class="col-md-12 text-right">
+                                    <p class="text-right"><b>Tổng cộng:</b> 390,000 vnđ</p>
+                                    <p class="text-right">Phí giao: 0đ</p>
+                                    <p class="text-right">KM: 0%</p>
+                                    <hr>
+                                    <h5 class="text-right">Khách phải trả</h5>
+                                    <p class="text-right"><b>390,000 vnđ</b></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="hidden-print col-md-12 text-right">
+                                <a href="javascript:window.print()" class="btn btn-raised btn-success"><i class="zmdi zmdi-print"></i></a>
+                                <a href="#" class="btn btn-raised btn-default">Submit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

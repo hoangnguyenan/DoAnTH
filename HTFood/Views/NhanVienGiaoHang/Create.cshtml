@@ -1,0 +1,155 @@
+﻿@model HTFood.Models.NhanVienGiaoHang
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@ViewBag.Detail;
+<title>Thêm thông tin nhân viên giao hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Thêm mới nhân viên giao hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","NhanVienGiaoHang")">TNhân viên giao hàng</a></li>
+
+                    </ul>
+
+                </div>
+            </div>
+            <!--/Header-->
+            <!--content-->
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="header">
+                                <ul class="header-dropdown m-r--5">
+                                    <li class="dropdown">
+                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="javascript:void(0);">Action</a></li>
+                                            <li><a href="javascript:void(0);">Another action</a></li>
+                                            <li><a href="javascript:void(0);">Something else</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <h2 class="card-inside-title">Nhập thông tin nhân viên giao hàng mới</h2>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.HoTenNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Họ và tên" } })
+                                                @Html.ValidationMessageFor(model => model.HoTenNV, "", new { @class = "text-danger" })
+                                                <div class="help-info">Họ tên</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.TaiKhoanNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Tài khoản" } })
+                                                @Html.ValidationMessageFor(model => model.TaiKhoanNV, "", new { @class = "text-danger" })
+                                                <div class="help-info">Tài khoản</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.NgaySinhNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Ngày sinh" } })
+                                                @Html.ValidationMessageFor(model => model.NgaySinhNV, "", new { @class = "text-danger" })
+                                                <div class="help-info">Ngày sinh (mm/dd/yyyy)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.MatKhauNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Mật khẩu" } })
+                                                @Html.ValidationMessageFor(model => model.MatKhauNV, "", new { @class = "text-danger" })
+                                                <div class="help-info">Mật khẩu</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.EmailNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                                                @Html.ValidationMessageFor(model => model.EmailNV, "", new { @class = "text-danger" })
+                                                <div class="help-info">Email</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-sm-4">
+                                            <b class="card-inside-title">Avatar</b>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupFileAddon01">Tải lên</span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                           aria-describedby="inputGroupFileAddon01">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="col-sm-4">
+                                        <h2 class="card-inside-title">Giới tính</h2>
+                                        <div class="form-group">
+                                            <div class="demo-radio-button">
+                                                <input name="group1" type="radio" id="radio_1" checked="">
+                                                <label for="radio_1"><span class="badge bg-light-blue">Nam</span></label>
+                                                <input name="group1" type="radio" id="radio_2">
+                                                <label for="radio_2"><span class="badge bg-pink">Nữ</span></label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.DiaChiNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Địa chỉ" } })
+                                                @Html.ValidationMessageFor(model => model.DiaChiNV, "", new { @class = "text-danger" })
+                                                <div class="help-info">Địa chỉ</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.DienThoaiNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Số điện thoại" } })
+                                                @Html.ValidationMessageFor(model => model.DienThoaiNV, "", new { @class = "text-danger" })
+                                                <div class="help-info">Điện thoại</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <input class="btn btn-raised btn-primary waves-effect" type="submit" value="Create" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!--/content-->
+        </div>
+    </div>
+</section>

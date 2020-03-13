@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewBag.Title = "ChitietKH";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<title>Chi tiết khách hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Khách hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Khachhang","Admin")">Khách hàng</a></li>
+                        <li class="breadcrumb-item active">Trần Văn Dần</li>
+
+                    </ul>
+                   
+                </div>
+            </div>
+            <!--/Header-->
+            <!--content-->
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            
+                            <address class="col-12">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <strong class="col-4">Họ Tên</strong>
+                                            <p class="col-8">: Trần Văn Dần </p>
+                                            <strong class="col-4">Email</strong>
+                                            <p class="col-8">: trandan@gmail.com</p>
+                                            <strong class="col-4">Phone</strong>
+                                            <p class="col-8">: 0201491241</p>
+                                            <strong class="col-4">Địa chỉ</strong>
+                                            <p class="col-8">: TP.HCM</p>
+                                      
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <strong class="col-5">#ID</strong>
+                                            <p class="col-7">: 0012 </p>
+                                            <strong class="col-5">Giới tính:</strong>
+                                            <p class="col-7">: Nam</p>
+                                            <strong class="col-5">Mô tả</strong>
+                                            <p class="col-7">: 0201491241</p>
+                                            <strong class="col-5">Ngày đăng ký</strong>
+                                            <p class="col-7">: 12/09/2019</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <strong class="col-5">Trạng thái</strong>
+                                            <p class="col-7"><span class="badge bg-green">Hoạt động</span> </p>
+                                            <strong class="col-5">Ví điểm</strong>
+                                            <p class="col-7">: 32,000 đ <a href="javascript:void(0);"> <i class="zmdi zmdi-help-outline" title="Điểm được sử dụng để mua sản phẩm"></i> </a> </p>
+                                            <strong class="col-5"></strong>
+                                            <p class="col-7">
+                                               
+                                                    <a href="" class="btn btn-raised g-bg-blush2 pull-right">
+                                                        Thay đổi
+                                                    </a>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </address>
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#home_animation_1">Lịch sử giao dịch</a></li>                                            
+                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_1">Ghi chú</a></li>
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane animated flipInX active show" id="home_animation_1">
+
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Mã đơn hàng</th>
+                                                            <th>Trạng thái</th>
+                                                            <th>Thanh toán</th>
+                                                            <th>Giá trị</th>
+                                                            <th>Điểm thưởng</th>
+                                                            <th>Nơi nhận </th>
+                                                            <th>Ngày nhận</th>
+                                                            <th>Thao tác</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">SA121</a></th>
+
+                                                            <td><span class="badge bg-orange">Đang giao dịch</span></td>
+                                                            <td><span class="badge bg-grey">Chưa thanh toán</span></td>
+                                                            <td>320,000 đ</td>
+                                                            <td><span class="badge bg-pink">+0</span></td>
+                                                            <td>Khu A 03-07</td>
+                                                            <td>12:30 12/12/2019</td>
+                                                            <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">SA125</a></th>
+
+                                                            <td><span class="badge bg-green">Hoàn thành</span></td>
+                                                            <td><span class="badge g-bg-gy">Đã thanh toán</span></td>
+                                                            <td>320,000 đ</td>
+                                                            <td><span class="badge bg-pink">+1000</span></td>
+                                                            <td>Khu A 03-07</td>
+                                                            <td>12:30 12/12/2019</td>
+                                                            <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">SA126</a></th>
+
+                                                            <td><span class="badge bg-green">Hoàn thành</span></td>
+                                                            <td><span class="badge g-bg-gy">Đã thanh toán</span></td>
+                                                            <td>320,000 đ</td>
+                                                            <td><span class="badge bg-pink">+1000</span></td>
+                                                            <td>Khu A 03-07</td>
+                                                            <td>12:30 12/12/2019</td>
+                                                            <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">SA169</a></th>
+
+                                                            <td><span class="badge bg-green">Hoàn thành</span></td>
+                                                            <td><span class="badge g-bg-gy">Đã thanh toán</span></td>
+                                                            <td>320,000 đ</td>
+                                                            <td><span class="badge bg-pink">+1000</span></td>
+                                                            <td>Khu A 03-07</td>
+                                                            <td>12:30 12/12/2019</td>
+                                                            <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+
+
+                                                <ul class="pagination" style="padding-left:700px">
+                                                    <li class="page-item"><a class="page-link" href="#"><<</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">>></a></li>
+                                                </ul>
+
+
+
+                                            </div>
+                                            
+                                            <div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_1">
+                                                <b>Message Content</b>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
+                                                    Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent
+                                                    aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere
+                                                    gubergren sadipscing mel.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    </div>   
+                        <!--/content-->
+                    </div>
+                </div>
+</section>
+

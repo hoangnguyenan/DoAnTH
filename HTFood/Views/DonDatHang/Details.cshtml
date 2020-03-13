@@ -1,0 +1,140 @@
+﻿@model List<HTFood.Models.ChiTietDonHang>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<title>Chi tiết đơn hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Chi tiết đơn hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "DonDatHang")">Đơn đặt hàng</a></li>
+                        <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Chi tiết đơn hàng</h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Print Invoices</a></li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li><a href="javascript:void(0);">Export to XLS</a></li>
+                                    <li><a href="javascript:void(0);">Export to CSV</a></li>
+                                    <li><a href="javascript:void(0);">Export to XML</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-md-2 col-sm-4">
+                                <h4>
+                                    Mã đơn hàng <br>
+                                    <a>@ViewBag.MDH</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                                <address>
+                                    <strong>Thông tin khách hàng</strong><br>
+                                    <a href="@Url.Action("Details","KhachHang",new { id = ViewBag.id})">@ViewBag.name</a><br>
+                                    @ViewBag.vitri  <br>
+                                    <abbr title="Phone"></abbr>(+84) @ViewBag.dtkh
+                                </address>
+                            </div>
+                            <div class="col-md-4 col-sm-4 text-left">
+                                <address>
+                                    <strong>Thông tin nhân viên giao hàng</strong><br>
+                                    <a href="@Url.Action("Details","NhanVienGiaoHang", new {id = ViewBag.idnv})">@ViewBag.namenv</a><br>
+                                    <abbr title="Phone"></abbr> @ViewBag.dtnv
+                                </address>
+                            </div>
+                            <div class="col-md-4 col-sm-4 text-sm-right"   >
+                                <p><strong>Ngày đặt: </strong>@(((DateTime)ViewBag.ngaydat).ToString("dd-MMM-yyyy HH:mm"))</p>
+                                <p class="m-t-10"><strong>Trạng thái: </strong> <span class="badge bg-orange">@ViewBag.tinhtrang</span></p>
+
+                            </div>
+                        </div>
+                        <div class="mt-40"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table id="mainTable" class="table table-striped" style="cursor: pointer;">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Số lượng</th>
+                                                <th>Đơn giá</th>
+                                                <th>Thành tiền</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                int i = 1;
+                                                List<string> name = ViewBag.nameDa;
+                                            }
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>@i</td>
+                                                    <td>
+                                                        @*@Html.DisplayFor(modelItem => item.MaDA)*@ 
+                                                        @*@ViewBag.nameDa.*@
+                                                        @name[i-1]
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.SoLuong)
+                                                    </td>
+                                                    <td>
+                                                        @String.Format("{0:N}", item.DonGia)
+                                                    </td>
+                                                    <td>
+                                                        @String.Format("{0:N}", item.ThanhTien)
+                                                    </td>
+                                                </tr>
+                                                i++;
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="border-radius: 0px;">
+                            <div class="col-md-12 text-right">
+                                <p class="text-right"><b>Tổng cộng: </b>@String.Format("{0:0,0}", ViewBag.total) VNĐ</p>
+                                <p class="text-right">Phí giao: 0đ</p>
+                                <p class="text-right">KM: 0%</p>
+                                <hr>
+                                <h5 class="text-right">Khách phải trả</h5>
+                                <p class="text-right"><b>@String.Format("{0:0,0}", ViewBag.total) VNĐ</b></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="hidden-print col-md-12 text-right">
+                            <a href="javascript:window.print()" class="btn btn-raised btn-success"><i class="zmdi zmdi-print"></i></a>
+                            <a href="#" class="btn btn-raised btn-default">Submit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

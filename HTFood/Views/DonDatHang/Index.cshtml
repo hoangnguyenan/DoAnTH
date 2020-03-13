@@ -1,0 +1,156 @@
+﻿
+@using PagedList.Mvc;
+@model PagedList.PagedList<HTFood.Models.DonDatHang>
+
+@{
+    ViewBag.Title = "Dondathang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<title>Danh sách đơn hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Đơn hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Đơn đặt hàng</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--HHH-->
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#home_animation_1">Tất cả đơn hàng</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_1">Đang giao dịch</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane animated flipInX active show" id="home_animation_1">
+                                <h7>
+                                    @Html.ActionLink("Thêm mới khách hàng", "Create")
+                                </h7>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Mã đơn</th>
+                                            <th>Tình trạng đơn</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Ngày giao</th>
+                                            <th>Thời gian giao</th>
+                                            <th>Mã khách hàng </th>
+                                            <th>Mã nhân viên</th>
+                                            <th>Mã vị trí</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{int i = 1;}
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@i</td>
+                                                <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
+                                                <td>
+                                                    <span class="badge bg-orange">
+                                                        @Html.ActionLink(item.TinhTrangDonHang, "Details", new { id = item.MaDonHang, maKH = item.MaKH })
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayDat).ToString())
+                                                </td>
+                                                <td>
+                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayGiao).ToString())
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TgGiao)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.MaKH)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.MaNV)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.MaVT)
+                                                </td>
+                                            </tr>
+                                            i++;
+                                        }
+                                    </tbody>
+                                </table>
+
+                                @* Tao menu trang  *@
+                                <div class="MenuTrang" style="text-align:center">
+                                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                                </div>
+                                <style>
+                                    .MenuTrang li {
+                                        display: inline;
+                                    }
+                                </style>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_1">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn hàng</th>
+                                            <th>Ngày tạo</th>
+                                            <th>Khách hàng</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thanh toán</th>
+                                            <th>Khách phải trả </th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">SA121</a></th>
+
+                                            <td>12:30 12/09/2019</td>
+                                            <td><a href="@Url.Action("ChitietKH","Admin")">Trần Văn Dần</a></td>
+                                            <td><span class="badge bg-orange">Đang giao dịch</span></td>
+                                            <td><span class="badge bg-grey">Chưa thanh toán</span></td>
+                                            <td>320,000 vnđ</td>
+                                            <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                        </tr>
+
+
+
+
+                                    </tbody>
+                                </table>
+                                @* Tao menu trang  *@
+                                <div class="MenuTrang" style="text-align:center">
+                                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                                </div>
+                                <style>
+                                    .MenuTrang li {
+                                        display: inline;
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--HH-->
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "Adminstrator";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<title>Quản trị viên</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Danh sách quản trị viên</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Adminstrator</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--content-->
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="body">
+                            <div class="member-card-2 ">
+                                <div class=" member-thumb">
+                                    <img src="~/Anhtam/random-avatar1.jpg" class="img-thumbnail" alt="profile-image">
+
+                                </div>
+
+                                <div class="">
+                                    <span> <a href="@Url.Action("InfoAdmin","Admin")" class="text-pink">#01</a> </span>
+                                    <h4 class="m-b-5">Nguyễn Văn A</h4>
+                                    <p class="text-muted">Trandan123</p>
+                                </div>                      
+                                <a href="@Url.Action("InfoAdmin","Admin")" class="btn btn-raised btn-primary waves-effect">Xem thông tin</a>
+                                <ul class="social-links list-inline m-t-10">
+                                    <li><a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
+                                    <li><a title="instagram" href="3.html"><i class="zmdi zmdi-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="body">
+                            <div class="member-card-2 ">
+                                <div class=" member-thumb">
+                                    <img src="~/Anhtam/random-avatar3.jpg" class="img-thumbnail" alt="profile-image">
+
+                                </div>
+
+                                <div class="">
+                                    <span> <a href="#" class="text-pink">#07</a> </span>
+                                    <h4 class="m-b-5">Nguyễn Văn A</h4>
+                                    <p class="text-muted">Trandan123</p>
+                                </div>
+                                <a href="@Url.Action("InfoAdmin","Admin")" class="btn btn-raised btn-primary waves-effect">Xem thông tin</a>
+                                <ul class="social-links list-inline m-t-10">
+                                    <li><a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
+                                    <li><a title="instagram" href="3.html"><i class="zmdi zmdi-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="body">
+                            <div class="member-card-2 ">
+                                <div class=" member-thumb">
+                                    <img src="~/Anhtam/random-avatar5.jpg" class="img-thumbnail" alt="profile-image">
+
+                                </div>
+
+                                <div class="">
+                                    <span> <a href="#" class="text-pink">#12</a> </span>
+                                    <h4 class="m-b-5">Nguyễn Văn A</h4>
+                                    <p class="text-muted">Trandan123</p>
+                                </div>
+                                <a href="profile.html" class="btn btn-raised btn-primary waves-effect">Xem thông tin</a>
+                                <ul class="social-links list-inline m-t-10">
+                                    <li><a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
+                                    <li><a title="instagram" href="3.html"><i class="zmdi zmdi-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="body">
+                            <div class="member-card-2 ">
+                                <div class=" member-thumb">
+                                    <img src="~/Anhtam/random-avatar2.jpg" class="img-thumbnail" alt="profile-image">
+
+                                </div>
+
+                                <div class="">
+                                    <span> <a href="#" class="text-pink">#13</a> </span>
+                                    <h4 class="m-b-5">Nguyễn Văn A</h4>
+                                    <p class="text-muted">Trandan123<span> #12</span></p>
+                                </div>
+                                <a href="profile.html" class="btn btn-raised btn-primary waves-effect">Xem thông tin</a>
+                                <ul class="social-links list-inline m-t-10">
+                                    <li><a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
+                                    <li><a title="instagram" href="3.html"><i class="zmdi zmdi-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <ul class="pagination" style="padding-left:700px">
+                <li class="page-item"><a class="page-link" href="#">Quay lại</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Tiếp theo</a></li>
+            </ul>
+            <!--/content-->
+        </div>
+    </div>
+</section>
+
+

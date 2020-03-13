@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Diadiem";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<title>Vị trí giao hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Địa điểm giao,nhận</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Vị trí</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--HHH-->
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2> Vị trí giao hàng <small>Lọc sản phẩm...tìm kiếm</small> </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="" class="btn  btn-raised g-bg-gy waves-effect">Thêm mới</a>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Khu vực</th>
+                                        <th>Vị trí</th>
+                                        <th>Tầng</th>                                       
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><a href="">01</a></th>
+                                        <td>A</td>
+                                        <td>Phòng 02</td>
+                                        <td>05</td>
+                                        <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><a href="">02</a></th>
+                                        <td>A</td>
+                                        <td>Phòng 02</td>
+                                        <td>06</td>
+                                        <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><a href="">03</a></th>
+                                        <td>A</td>
+                                        <td>Cầu thang</td>
+                                        <td>07</td>
+                                        <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <ul class="pagination" style="padding-left:700px">
+                                <li class="page-item"><a class="page-link" href="#">Quay lại</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Tiếp theo</a></li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--HH-->
+        </div>
+    </div>
+</section>
+
+
+

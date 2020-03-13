@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Sanpham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+    <title>Danh sách sản phẩm</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Sản phẩm</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Sản phẩm</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--HHH-->
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2> Tất cả sản phẩm <small>Lọc sản phẩm...tìm kiếm</small> </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="" class="btn  btn-raised g-bg-gy waves-effect">Thêm mới</a>
+                                   
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Images</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Danh mục</th>
+                                        <th>Tồn kho</th>
+                                        <th>Đơn giá</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày cập nhật</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>
+                                            <img src="~/Anhtam/slider2.jpg" width="80" />
+                                        </td>
+                                        <td>Cơm bò</td>
+                                        <td>Cơm</td>
+                                        <td>20</td>
+                                        <td>35,000 đ</td>
+                                        <td><span class="badge bg-green">Đang bán</span></td>
+                                        <td>12/12/2019</td>
+                                        <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>
+                                            <img src="~/Anhtam/slider2.jpg" width="80" />
+                                        </td>
+                                        <td>Nước B</td>
+                                        <td>Nước</td>
+                                        <td>20</td>
+                                        <td>35,000 đ</td>
+                                        <td><span class="badge bg-green">Đang bán</span></td>
+                                        <td>12/12/2019</td>
+                                        <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>
+                                            <img src="~/Anhtam/slider2.jpg" width="80" />
+                                        </td>
+                                        <td>Cơm gà</td>
+                                        <td>Cơm</td>
+                                        <td>20</td>
+                                        <td>35,000 đ</td>
+                                        <td><span class="badge bg-green">Đang bán</span></td>
+                                        <td>12/12/2019</td>
+                                        <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>
+                                            <img src="~/Anhtam/slider2.jpg" width="80" />
+                                        </td>
+                                        <td>Bánh A</td>
+                                        <td>Bánh kẹo</td>
+                                        <td>20</td>
+                                        <td>35,000 đ</td>
+                                        <td><span class="badge bg-grey">Ngừng bán</span></td>
+                                        <td>12/12/2019</td>
+                                        <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            
+                            
+                                <ul class="pagination" style="padding-left:700px">
+                                    <li class="page-item"><a class="page-link" href="#">Quay lại</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Tiếp theo</a></li>
+                                </ul>
+                          
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+            <!--HH-->
+        </div>
+    </div>
+</section>
+
