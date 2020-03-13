@@ -1,0 +1,75 @@
+﻿@model HTFood.Models.LichSuGD
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LichSuGD</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoTienDaNap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoTienDaNap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoTienDaTieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoTienDaTieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayNapTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayNapTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayTieuTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayTieuTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaViTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaViTien)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaGD }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
