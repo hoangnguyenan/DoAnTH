@@ -64,16 +64,43 @@ namespace HTFood.Controllers
         // GET: KhachHang/Details/5       
         public async Task<ActionResult> Details(int? id)
         {
+            // Init variable
             KhachHang khachHangs = null;
             HttpResponseMessage response = await client.GetAsync(url + @"khachhang/" + id);
             if (response.IsSuccessStatusCode)
             {
                 khachHangs = await response.Content.ReadAsAsync<KhachHang>();
 
+                // Call api
                 HttpResponseMessage responseMessage = await client.GetAsync(url + @"vitien/");
-                //List<ViTien> viTiens = getAllViTien(responseMessage);
-                //ViTien vi = viTiens.SingleOrDefault(n => n.MaViTien == id);
+                // Get all data from the ViTien table 
+                List<ViTien> viTiens = ViTienController.getAllViTien(responseMessage);
+                // Check data with id customer
+                viTiens = viTiens.Where(n=>n.MaKH == id).ToList();
+
+                // Get all data from the LichSuGD table
+                responseMessage = await client.GetAsync(url + @"lichsugd/");
+                // Init list receive data
+                List<LichSuGD> lichSuGDs = new List<LichSuGD>();
+                foreach (ViTien vt in viTiens)
+                {
+                    // Check data with id ViTien
+                    List<LichSuGD> temp = LichSuGDController.getAllLichSuGD(responseMessage).Where(n => n.MaViTien == vt.MaViTien).ToList();
+                    // Is exist
+                    if (temp != null)
+                    {
+                        // Save data
+                        foreach (LichSuGD lichSuGD in temp)
+                        {
+                            lichSuGDs.Add(lichSuGD);
+                        }
+                    }
+                }
+                // assign values to variables ViewBag.lsgd
+                ViewBag.lsgd = lichSuGDs.ToList();
             }
+
+            // Return
             return View(khachHangs);
         }
         // GET: KhachHang/Create
