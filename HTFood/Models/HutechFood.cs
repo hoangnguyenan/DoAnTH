@@ -82,6 +82,16 @@ namespace HTFood.Models
         public short DoUuTien { get; set; }
         public short DanhGiaNVGH { get; set; }
     }
+    public class LichSuNVGH
+    {
+        [Key]
+        public int MaLS { get; set; }
+        public int MaNV { get; set; }
+        public int MaDonHang { get; set; }
+        public short TgGiao { get; set; }
+        public bool TrangThaiNhanDon { get; set; }
+        public short TinhTrangGiaoHang { get; set; }
+    }
     public class ViTriGiaoHang
     {
         [Key]
@@ -159,8 +169,10 @@ namespace HTFood.Models
 
         public DbSet<Cuahang> Cuahangs { get; set; }
 
-        public System.Data.Entity.DbSet<HTFood.Models.ViTien> ViTiens { get; set; }
+        public DbSet<ViTien> ViTiens { get; set; }
 
-        public System.Data.Entity.DbSet<HTFood.Models.LichSuGD> LichSuGDs { get; set; }
+        public DbSet<LichSuGD> LichSuGDs { get; set; }
+
+        public System.Data.Entity.DbSet<HTFood.Models.LichSuNVGH> LichSuNVGHs { get; set; }
     }
 }

@@ -150,6 +150,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\LichSuGDController.cs" />
+    <Compile Include="Controllers\LichSuNVGHController.cs" />
     <Compile Include="Controllers\NhanVienGiaoHangController.cs" />
     <Compile Include="Controllers\ViTienController.cs" />
     <Compile Include="Controllers\ViTriGiaoHangController.cs" />
@@ -292,6 +293,11 @@
     <Content Include="Views\LichSuGD\Details.cshtml" />
     <Content Include="Views\LichSuGD\Edit.cshtml" />
     <Content Include="Views\LichSuGD\Index.cshtml" />
+    <Content Include="Views\LichSuNVGH\Create.cshtml" />
+    <Content Include="Views\LichSuNVGH\Delete.cshtml" />
+    <Content Include="Views\LichSuNVGH\Details.cshtml" />
+    <Content Include="Views\LichSuNVGH\Edit.cshtml" />
+    <Content Include="Views\LichSuNVGH\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
