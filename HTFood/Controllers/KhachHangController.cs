@@ -77,7 +77,8 @@ namespace HTFood.Controllers
                 List<ViTien> viTiens = ViTienController.getAllViTien(responseMessage);
                 // Check data with id customer
                 viTiens = viTiens.Where(n=>n.MaKH == id).ToList();
-
+                // assign values to variables ViewBag.lsgd
+                ViewBag.vitien = viTiens;
                 // Get all data from the LichSuGD table
                 responseMessage = await client.GetAsync(url + @"lichsugd/");
                 // Init list receive data
