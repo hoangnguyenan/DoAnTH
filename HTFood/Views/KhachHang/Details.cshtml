@@ -1,5 +1,5 @@
 ﻿@model HTFood.Models.KhachHang
-
+@using HTFood.Models
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -67,7 +67,12 @@
                                                                 @*<strong class="col-4">Mô tả</strong>
                                                                     <p class="col-7">: 0201491241</p>*@
                                                                 <strong class="col-4">Ví điểm</strong>
-                                                                <p class="col-8">: 32,000 đ <a href="javascript:void(0);"> <i class="zmdi zmdi-help-outline" title="Điểm được sử dụng để mua sản phẩm"></i> </a> </p>
+                                                                <p class="col-8">: 
+                                                                    @foreach (ViTien vt in ViewBag.vitien)
+                                                                    {
+                                                                        <a href="/ViTien/Details/@vt.MaViTien">@vt.MaViTien</a><a href="javascript:void(0);"> <i class="zmdi zmdi-help-outline" title="Điểm được sử dụng để mua sản phẩm"></i> </a> 
+                                                                    }
+                                                                </p>
 
                                                                 <p class="col-12">
                                                                     <a class="btn btn-raised g-bg-blush2 pull-right" href="@Url.Action("Edit","KhachHang",new { id = Model.MaKH })" )>Chỉnh sửa</a>
@@ -92,58 +97,31 @@
                                                             <th>Số tiền đã tiêu</th>
                                                             <th>Ngày nạp</th>
                                                             <th>Ngày tiêu</th>
-                                                            <th>xóa</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">@ViewBag.Mgd</a></th>
-                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">2</a></th>
-                                                            <td><span class="badge bg-orange">Nạp tiền mấy chục ngàn</span></td>
-                                                            <td><span class="badge bg-grey">Thành công</span></td>
-                                                            <td><span class="badge bg-pink">320,000đ</span></td>
-                                                            <td>0</td>
-                                                            <td>12:30 12/12/2019</td>
-                                                            <td>12:30 12/12/2019</td>
-                                                            <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">SA121</a></th>
-                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">2</a></th>
-                                                            <td><span class="badge bg-orange">Nạp tiền mấy chục ngàn</span></td>
-                                                            <td><span class="badge bg-grey">Thành công</span></td>
-                                                            <td><span class="badge bg-pink">320,000đ</span></td>
-                                                            <td>0</td>
-                                                            <td>12:30 12/12/2019</td>
-                                                            <td>12:30 12/12/2019</td>
-                                                            <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">SA121</a></th>
-                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">2</a></th>
-                                                            <td><span class="badge bg-orange">Nạp tiền mấy chục ngàn</span></td>
-                                                            <td><span class="badge bg-grey">Thành công</span></td>
-                                                            <td><span class="badge bg-pink">320,000đ</span></td>
-                                                            <td>0</td>
-                                                            <td>12:30 12/12/2019</td>
-                                                            <td>12:30 12/12/2019</td>
-                                                            <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">SA121</a></th>
-                                                            <th> <a href="@Url.Action("Chitietdonhang","Admin")">2</a></th>
-                                                            <td><span class="badge bg-orange">Nạp tiền mấy chục ngàn</span></td>
-                                                            <td><span class="badge bg-grey">Thành công</span></td>
-                                                            <td><span class="badge bg-pink">320,000đ</span></td>
-                                                            <td>0</td>
-                                                            <td>12:30 12/12/2019</td>
-                                                            <td>12:30 12/12/2019</td>
-                                                            <td><a href=""><i class="material-icons">delete_forever</i></a> </td>
-                                                        </tr>
-
+                                                        @foreach (LichSuGD lichSuGD in ViewBag.lsgd)
+                                                        {
+                                                            <tr>
+                                                                <th> <a href="#">@lichSuGD.MaGD</a></th>
+                                                                <th> <a href="#">@lichSuGD.MaViTien</a></th>
+                                                                <td><span class="badge bg-orange">@lichSuGD.MoTa</span></td>
+                                                                <td><span class="badge bg-grey">@lichSuGD.TinhTrang</span></td>
+                                                                <td><span class="badge bg-pink">@lichSuGD.SoTienDaNap</span></td>
+                                                                <td>@lichSuGD.SoTienDaTieu</td>
+                                                                <td>@lichSuGD.NgayNapTien</td>
+                                                                <td>@lichSuGD.NgayTieuTien</td>
+                                                                 @*<th> <a href="@Url.Action("Chitietdonhang","Admin")">@ViewBag.Mgd</a></th>
+                                                                <th> <a href="@Url.Action("Chitietdonhang","Admin")">2</a></th>
+                                                                <td><span class="badge bg-orange">Nạp tiền mấy chục ngàn</span></td>
+                                                                <td><span class="badge bg-grey">Thành công</span></td>
+                                                                <td><span class="badge bg-pink">320,000đ</span></td>
+                                                                <td>0</td>
+                                                                <td>12:30 12/12/2019</td>
+                                                                <td>12:30 12/12/2019</td>
+                                                                <td><a href=""><i class="material-icons">delete_forever</i></a> </td>*@
+                                                            </tr>
+                                                        }
                                                     </tbody>
                                                 </table>
 
