@@ -84,10 +84,11 @@ namespace HTFood.Controllers
                 DonDatHang ddh = donDatHangs.SingleOrDefault(n => n.MaDonHang == id);
                 ViewBag.ngaydat = ddh.NgayDat;
                 ViewBag.tinhtrang = ddh.TinhTrangDonHang;
+                ViewBag.tg = ddh.TgGiao;
 
                 //get DoAn
                 responseMessage = await client.GetAsync(url + @"doan/");
-                List<DoAn> listda = HTFood.Controllers.DoAnController.getAllDoAn(responseMessage);
+                List<DoAn> listda =DoAnController.getAllDoAn(responseMessage);
                 List<string> dsTen = new List<string>();
                 foreach (ChiTietDonHang ctdh in ds)
                 {
@@ -99,7 +100,7 @@ namespace HTFood.Controllers
 
                 // Get name user
                 responseMessage = await client.GetAsync(url + @"khachhang/");
-                List<KhachHang> list = HTFood.Controllers.KhachHangController.getAllCustomerAsync(responseMessage);
+                List<KhachHang> list = KhachHangController.getAllCustomerAsync(responseMessage);
                 KhachHang khachHang = list.Where(n=>n.MaKH == MaKH).SingleOrDefault();
                 ViewBag.name = khachHang.HoTenKH;
                 ViewBag.id = khachHang.MaKH;
@@ -107,13 +108,13 @@ namespace HTFood.Controllers
 
                 // Get position
                 responseMessage = await client.GetAsync(url + @"vitrigiaohang/");
-                List<ViTriGiaoHang> listVt = HTFood.Controllers.ViTriGiaoHangController.getAllPosition(responseMessage);
+                List<ViTriGiaoHang> listVt = ViTriGiaoHangController.getAllPosition(responseMessage);
                 ViTriGiaoHang viTri = listVt.Where(n => n.MaVT == ddh.MaVT).SingleOrDefault();
                 ViewBag.vitri = viTri.TenVT;
 
                 //get NVGH
                 responseMessage = await client.GetAsync(url + @"nhanviengiaohang/");
-                List<NhanVienGiaoHang> listnv = HTFood.Controllers.NhanVienGiaoHangController.getAllNhanVienGH(responseMessage);
+                List<NhanVienGiaoHang> listnv = NhanVienGiaoHangController.getAllNhanVienGH(responseMessage);
                 NhanVienGiaoHang nhanvien = listnv.Where(n => n.MaNV == ddh.MaNV).SingleOrDefault();
                 ViewBag.namenv = nhanvien.HoTenNV;
                 ViewBag.idnv = nhanvien.MaNV;
@@ -127,14 +128,7 @@ namespace HTFood.Controllers
 
                 return View(chiTietDonHangs.ToList());
             }
-            return View();
-            //ChiTietDonHang chiTietDonHang = null;
-            //HttpResponseMessage response = await client.GetAsync(url + @"chitietdonhang/" + id);
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    chiTietDonHang = await response.Content.ReadAsAsync<ChiTietDonHang>();
-            //}
-            //return View(chiTietDonHang);
+            return View();            
         }
 
         private int getTotal(List<ChiTietDonHang> ds)

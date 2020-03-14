@@ -77,7 +77,8 @@
                                                 (+84) @Html.DisplayFor(modelItem => item.DienThoaiKH)
                                             </td>
                                             <td>
-                                                @DateTime.Parse(Html.DisplayFor(modelItem => item.NgaySinhKH).ToString()).ToShortDateString()
+                                                @*@DateTime.Parse(Html.DisplayFor(modelItem => item.NgaySinhKH).ToString()).ToShortDateString()*@
+                                                @(((DateTime)item.NgaySinhKH).ToString("dd-MMM-yyyy"))
                                             </td>
                                         </tr>
                                         i++;

@@ -17,6 +17,7 @@ namespace HTFood.Models
         public string EmailKH { get; set; }
         public string DiaChiKH { get; set; }
         public int DienThoaiKH { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime NgaySinhKH { get; set; }
     }
     public class DonDatHang
@@ -74,6 +75,7 @@ namespace HTFood.Models
         public string EmailNV { get; set; }
         public string DiaChiNV { get; set; }
         public string DienThoaiNV { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime NgaySinhNV { get; set; }
         public string GioiTinh { get; set; }
         public string TrangThaiNV { get; set; }
@@ -137,9 +139,13 @@ namespace HTFood.Models
         public int MaGD { get; set; }
         public string MoTa { get; set; }
         public short TinhTrang { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal SoTienDaNap { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal SoTienDaTieu { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime NgayNapTien { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime NgayTieuTien { get; set; }
         public int MaViTien { get; set; }
     }
@@ -148,6 +154,7 @@ namespace HTFood.Models
         [Key]
         public int MaViTien { get; set; }
         public int MaKH { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public int SoDu { get; set; }
     }
 
@@ -173,6 +180,6 @@ namespace HTFood.Models
 
         public DbSet<LichSuGD> LichSuGDs { get; set; }
 
-        public System.Data.Entity.DbSet<HTFood.Models.LichSuNVGH> LichSuNVGHs { get; set; }
+        public DbSet<LichSuNVGH> LichSuNVGHs { get; set; }
     }
 }

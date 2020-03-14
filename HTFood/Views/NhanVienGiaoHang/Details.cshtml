@@ -87,6 +87,7 @@
                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
+                                                            <th>No.</th>
                                                             <th>Mã lịch sử giao hàng</th>
                                                             <th>Mã nhân viên</th>
                                                             <th>Mã đơn hàng</th>
@@ -96,34 +97,40 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @{int i = 1;}
                                                         @foreach (LichSuNVGH item in ViewBag.lsnvgh)
                                                         {
                                                             <tr>
-                                                                <th> <a href="#">@item.MaLS</a></th>
+                                                                <td>@i</td>
+                                                                <th> <a>@item.MaLS</a></th>
                                                                 <td><span class="badge bg-orange">@item.MaNV</span></td>
                                                                 <td><span class="badge bg-grey">@item.MaDonHang</span></td>
                                                                 @{ int time = item.TgGiao * Constants.timeShiper; }
                                                                 <td>@time phút</td>
                                                                 @{ string status = item.TrangThaiNhanDon ? MessageContants.STATUS_BILL_SUCCESSFUL : MessageContants.STATUS_BILL_FAIL;}
                                                                 <td><span class="badge bg-pink">@status</span></td>
-                                                                @{ 
+                                                                @{
                                                                     string message = "";
-                                                                    if(item.TinhTrangGiaoHang == Constants.STATUS_SHIP_SUCCESSFUL)
+                                                                    if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_SUCCESSFUL)
                                                                     {
                                                                         message = MessageContants.STATUS_SHIP_SUCCESSFUL;
-                                                                    }else if(item.TinhTrangGiaoHang == Constants.STATUS_SHIP_IN_PROCCESING)
+                                                                    }
+                                                                    else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_IN_PROCCESING)
                                                                     {
                                                                         message = MessageContants.STATUS_SHIP_IN_PROCCESING;
-                                                                    }else if(item.TinhTrangGiaoHang == Constants.STATUS_SHIP_FAIL)
+                                                                    }
+                                                                    else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_FAIL)
                                                                     {
                                                                         message = MessageContants.STATUS_SHIP_FAIL;
-                                                                    }else if(item.TinhTrangGiaoHang == Constants.STATUS_SHIP_BOOM)
+                                                                    }
+                                                                    else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_BOOM)
                                                                     {
                                                                         message = MessageContants.STATUS_SHIP_BOOM;
                                                                     }
                                                                 }
                                                                 <td>@message</td>
                                                             </tr>
+                                                            i++;
                                                         }
                                                     </tbody>
                                                 </table>

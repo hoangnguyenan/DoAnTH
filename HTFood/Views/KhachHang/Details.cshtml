@@ -67,10 +67,11 @@
                                                                 @*<strong class="col-4">Mô tả</strong>
                                                                     <p class="col-7">: 0201491241</p>*@
                                                                 <strong class="col-4">Ví điểm</strong>
-                                                                <p class="col-8">: 
+                                                                <p class="col-8">
+                                                                    :
                                                                     @foreach (ViTien vt in ViewBag.vitien)
                                                                     {
-                                                                        <a href="/ViTien/Details/@vt.MaViTien">@vt.MaViTien</a><a href="javascript:void(0);"> <i class="zmdi zmdi-help-outline" title="Điểm được sử dụng để mua sản phẩm"></i> </a> 
+                                                                        <a href="/ViTien/Details/@vt.MaViTien">@vt.MaViTien</a><a href="javascript:void(0);"> <i class="zmdi zmdi-help-outline" title="Điểm được sử dụng để mua sản phẩm"></i> </a>
                                                                     }
                                                                 </p>
 
@@ -89,6 +90,7 @@
                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
+                                                            <th>No.</th>
                                                             <th>Mã GD</th>
                                                             <th>Mã ví tiền</th>
                                                             <th>Mô tả</th>
@@ -100,27 +102,30 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @{int i = 1;}
                                                         @foreach (LichSuGD lichSuGD in ViewBag.lsgd)
                                                         {
                                                             <tr>
+                                                                <td>@i</td>
                                                                 <th> <a href="#">@lichSuGD.MaGD</a></th>
                                                                 <th> <a href="#">@lichSuGD.MaViTien</a></th>
                                                                 <td><span class="badge bg-orange">@lichSuGD.MoTa</span></td>
                                                                 <td><span class="badge bg-grey">@lichSuGD.TinhTrang</span></td>
-                                                                <td><span class="badge bg-pink">@lichSuGD.SoTienDaNap</span></td>
-                                                                <td>@lichSuGD.SoTienDaTieu</td>
-                                                                <td>@lichSuGD.NgayNapTien</td>
-                                                                <td>@lichSuGD.NgayTieuTien</td>
-                                                                 @*<th> <a href="@Url.Action("Chitietdonhang","Admin")">@ViewBag.Mgd</a></th>
-                                                                <th> <a href="@Url.Action("Chitietdonhang","Admin")">2</a></th>
-                                                                <td><span class="badge bg-orange">Nạp tiền mấy chục ngàn</span></td>
-                                                                <td><span class="badge bg-grey">Thành công</span></td>
-                                                                <td><span class="badge bg-pink">320,000đ</span></td>
-                                                                <td>0</td>
-                                                                <td>12:30 12/12/2019</td>
-                                                                <td>12:30 12/12/2019</td>
-                                                                <td><a href=""><i class="material-icons">delete_forever</i></a> </td>*@
+                                                                <td><span class="badge bg-pink">@String.Format("{0:0,0}", lichSuGD.SoTienDaNap)</span></td>
+                                                                <td>@String.Format("{0:0,0}", lichSuGD.SoTienDaTieu)</td>
+                                                                <td>@(((DateTime)lichSuGD.NgayNapTien).ToString("dd-MMM-yyyy"))</td>
+                                                                <td>@(((DateTime)lichSuGD.NgayTieuTien).ToString("dd-MMM-yyyy"))</td>
+                                                                @*<th> <a href="@Url.Action("Chitietdonhang","Admin")">@ViewBag.Mgd</a></th>
+                                                                    <th> <a href="@Url.Action("Chitietdonhang","Admin")">2</a></th>
+                                                                    <td><span class="badge bg-orange">Nạp tiền mấy chục ngàn</span></td>
+                                                                    <td><span class="badge bg-grey">Thành công</span></td>
+                                                                    <td><span class="badge bg-pink">320,000đ</span></td>
+                                                                    <td>0</td>
+                                                                    <td>12:30 12/12/2019</td>
+                                                                    <td>12:30 12/12/2019</td>
+                                                                    <td><a href=""><i class="material-icons">delete_forever</i></a> </td>*@
                                                             </tr>
+                                                            i++;
                                                         }
                                                     </tbody>
                                                 </table>
