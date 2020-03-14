@@ -257,8 +257,11 @@
     <script src="~/assets/plugins/editable-table/mindmup-editabletable.js"></script>
     <script src="~/assets/plugins/bootstrap-notify/bootstrap-notify.js"></script>
     <script src="~/assets/plugins/waitme/waitMe.js"></script>*@
-
-    <script src="~/assets/bundles/libscripts.bundle.js"></script>
+    
+    @if (ViewBag.accept == null)
+    {
+        <script src="~/assets/bundles/libscripts.bundle.js"></script>
+    }
     <!-- Lib Scripts Plugin Js -->
     <script src="~/assets/bundles/vendorscripts.bundle.js"></script>
     <!-- Lib Scripts Plugin Js -->
