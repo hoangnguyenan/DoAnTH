@@ -1,0 +1,51 @@
+﻿@model HTFood.Models.ViTienCuaHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ViTienCuaHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoDu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayGiaoDich)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayGiaoDich)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoTienGiaoDich)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoTienGiaoDich)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaCH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaViCH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

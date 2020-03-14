@@ -1,0 +1,52 @@
+﻿@model IEnumerable<HTFood.Models.ViTienCuaHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayGiaoDich)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoTienGiaoDich)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaCH)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayGiaoDich)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoTienGiaoDich)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaCH)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaViCH }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaViCH }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaViCH })
+        </td>
+    </tr>
+}
+
+</table>

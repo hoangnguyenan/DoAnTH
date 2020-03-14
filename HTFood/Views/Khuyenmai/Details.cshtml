@@ -1,0 +1,59 @@
+﻿@model HTFood.Models.Khuyenmai
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Khuyenmai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotaKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotaKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TgBatDau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TgBatDau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TgKetThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TgKetThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaCH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaKM }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

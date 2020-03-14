@@ -1,0 +1,65 @@
+﻿@model HTFood.Models.Khuyenmai
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Khuyenmai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotaKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotaKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TgBatDau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TgBatDau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TgKetThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TgKetThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaCH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCH)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

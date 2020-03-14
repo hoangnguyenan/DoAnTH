@@ -124,12 +124,25 @@ namespace HTFood.Models
         public DateTime TgKetThuc { get; set; }
         public int MaCH { get; set; }
     }
+    public partial class ChiTietKhuyenMai
+    {
+        [Key]
+        public int MaKM { get; set; }
+        public int MaCH { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal GiaKM { get; set; }
+        public int SoLuongKM { get; set; }
+        public int MaDA { get; set; }
+    }
     public class ViTienCuaHang
     {
         [Key]
         public int MaViCH { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal SoDu { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime NgayGiaoDich { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal SoTienGiaoDich { get; set; }
         public int MaCH { get; set; }
     }
@@ -157,6 +170,14 @@ namespace HTFood.Models
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public int SoDu { get; set; }
     }
+    public class DSYeuThich
+    {
+        [Key]
+        public int MaYT { get; set; }
+        public string TenYT { get; set; }
+        public int MaKH { get; set; }
+        public int MaCH { get; set; }
+    }
 
     public class dbHutechfoodContext : DbContext
     {   
@@ -181,5 +202,9 @@ namespace HTFood.Models
         public DbSet<LichSuGD> LichSuGDs { get; set; }
 
         public DbSet<LichSuNVGH> LichSuNVGHs { get; set; }
+
+        public DbSet<ViTienCuaHang> ViTienCuaHangs { get; set; }
+
+        public System.Data.Entity.DbSet<HTFood.Models.Khuyenmai> Khuyenmais { get; set; }
     }
 }

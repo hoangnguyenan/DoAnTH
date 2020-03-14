@@ -149,10 +149,12 @@
     <Compile Include="Controllers\DonDatHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\KhuyenmaiController.cs" />
     <Compile Include="Controllers\LichSuGDController.cs" />
     <Compile Include="Controllers\LichSuNVGHController.cs" />
     <Compile Include="Controllers\NhanVienGiaoHangController.cs" />
     <Compile Include="Controllers\ViTienController.cs" />
+    <Compile Include="Controllers\ViTienCuaHangController.cs" />
     <Compile Include="Controllers\ViTriGiaoHangController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -311,6 +313,16 @@
     <Content Include="Views\LichSuNVGH\Details.cshtml" />
     <Content Include="Views\LichSuNVGH\Edit.cshtml" />
     <Content Include="Views\LichSuNVGH\Index.cshtml" />
+    <Content Include="Views\ViTienCuaHang\Create.cshtml" />
+    <Content Include="Views\ViTienCuaHang\Delete.cshtml" />
+    <Content Include="Views\ViTienCuaHang\Details.cshtml" />
+    <Content Include="Views\ViTienCuaHang\Edit.cshtml" />
+    <Content Include="Views\ViTienCuaHang\Index.cshtml" />
+    <Content Include="Views\Khuyenmai\Create.cshtml" />
+    <Content Include="Views\Khuyenmai\Delete.cshtml" />
+    <Content Include="Views\Khuyenmai\Details.cshtml" />
+    <Content Include="Views\Khuyenmai\Edit.cshtml" />
+    <Content Include="Views\Khuyenmai\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
