@@ -34,11 +34,11 @@ namespace HTFood.Controllers
         {
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"vitrigiaohang/");
             List<ViTriGiaoHang> list = getAllPosition(responseMessage);
-            if(list != null)
+            if (list != null)
             {
-                int pageSize = 8;//so san pham moi trang
-                int pageNum = (page ?? 1);//tao so trang            
-                return View(list.ToPagedList(pageNum, pageSize));
+                ViewBag.accept = false;
+                var vitri = list.ToList();
+                return View(vitri);
             }
             return View("Error");
         }

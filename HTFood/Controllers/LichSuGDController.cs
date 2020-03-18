@@ -36,10 +36,9 @@ namespace HTFood.Controllers
             List<LichSuGD> ls = getAllLichSuGD(responseMessage);
             if (ls != null)
             {
-                int pageSize = 8;//so san pham moi trang
-                int pageNum = (page ?? 1);//tao so trang      
+                ViewBag.accept = false;
                 var list = ls.ToList();
-                return View(list.ToPagedList(pageNum, pageSize));
+                return View(list);
             }
             return View("Error");
         }

@@ -36,10 +36,9 @@ namespace HTFood.Controllers
             List<DanhMucDoAn> dm = getAllDanhMuc(responseMessage);
             if (dm != null)
             {
-                int pageSize = 8;//so san pham moi trang
-                int pageNum = (page ?? 1);//tao so trang      
+                ViewBag.accept = false;
                 var list = dm.ToList();
-                return View(list.ToPagedList(pageNum, pageSize));
+                return View(list);
             }
             return View("Error");            
         }

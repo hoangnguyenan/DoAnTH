@@ -1,11 +1,13 @@
-﻿@using PagedList.Mvc;
-@model PagedList.PagedList<HTFood.Models.DoAn>
+﻿
+@model IEnumerable<HTFood.Models.DoAn>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<link href="~/Content/PagedList.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
 <title>Danh sách sản phẩm</title>
 <section class="content">
     <div class="container-fluid">
@@ -38,73 +40,79 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="body table-responsive">
-                            <div>
-                                <h7>
-                                    @Html.ActionLink("Thêm mới đồ ăn", "Create")
-                                </h7>
-                            </div>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Sản phẩm</th>
-                                        <th>Danh mục</th>
-                                        <th>Tồn kho</th>
-                                        <th>Đơn giá</th>
-                                        <th>Trạng thái</th>
-                                        <th>Ngày cập nhật (m/d/y)</th>
-                                        @*<th>Mô tả</th>*@
-                                        <th>Đánh giá</th>
-                                        <th>Thao tác</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{int i = 1;}
-                                    @foreach (var item in Model)
-                                    {
-
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <div>
+                                        <h7>
+                                            @Html.ActionLink("Thêm mới đồ ăn", "Create")
+                                        </h7>
+                                    </div>
+                                    <thead>
                                         <tr>
-                                            <td>@i</td>
-                                            <td>
-                                                @Html.ActionLink(item.TenDA, "Details", new { id = item.MaDA })
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.MaDM)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.SoLuongTon)
-                                            </td>
-                                            <td>
-                                                @String.Format("{0:N}", item.DonGia)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrangThaiDA)
-                                            </td>
-                                            <td>
-                                                @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayCapNhat).ToString()).ToShortDateString()
-                                            </td>                                            
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.DanhGiaDoAn)
-                                            </td>
-                                            <td>
-                                                a
-                                            </td>
+                                            <th>No.</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Danh mục</th>
+                                            <th>Tồn kho</th>
+                                            <th>Đơn giá</th>
+                                            <th>Trạng thái</th>
+                                            <th>Ngày cập nhật (m/d/y)</th>
+                                            @*<th>Mô tả</th>*@
+                                            <th>Đánh giá</th>
+                                            <th>Thao tác</th>
                                         </tr>
-                                        i++;
-                                    }
-                                </tbody>
-                            </table>
-                            @* Tao menu trang  *@
-                            <div class="MenuTrang" style="text-align:center">
-                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
-                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Danh mục</th>
+                                            <th>Tồn kho</th>
+                                            <th>Đơn giá</th>
+                                            <th>Trạng thái</th>
+                                            <th>Ngày cập nhật (m/d/y)</th>
+                                            @*<th>Mô tả</th>*@
+                                            <th>Đánh giá</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @{int i = 1;}
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <tr>
+                                                <td>@i</td>
+                                                <td>
+                                                    @Html.ActionLink(item.TenDA, "Details", new { id = item.MaDA })
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.MaDM)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SoLuongTon)
+                                                </td>
+                                                <td>
+                                                    @String.Format("{0:N}", item.DonGia)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrangThaiDA)
+                                                </td>
+                                                <td>
+                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayCapNhat).ToString()).ToShortDateString()
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DanhGiaDoAn)
+                                                </td>
+                                                <td>
+                                                    a
+                                                </td>
+                                            </tr>
+                                            i++;
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
-                            <style>
-                                .MenuTrang li {
-                                    display: inline;
-                                }
-                            </style>
                         </div>
                     </div>
                 </div>
@@ -114,3 +122,18 @@
         </div>
     </div>
 </section>
+<!-- Jquery DataTable Plugin Js -->
+<script src="~/assets/js/buttons/vendorscripts.bundle.js"></script>
+<script src="~/assets/js/buttons/datatablescripts.bundle.js"></script>
+<script src="~/assets/js/buttons/jquery-datatable.js"></script>
+
+<script type="text/javascript" charset="utf8">
+    $(document).ready(function () {
+        setTimeout(function () {
+            var listButton = $('#DataTables_Table_0_length').find('button');
+            listButton.each(function () {
+                $(this).remove();
+            });
+        }, 500);
+    });
+</script>

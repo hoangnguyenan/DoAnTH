@@ -205,6 +205,6 @@ namespace HTFood.Models
 
         public DbSet<ViTienCuaHang> ViTienCuaHangs { get; set; }
 
-        public System.Data.Entity.DbSet<HTFood.Models.Khuyenmai> Khuyenmais { get; set; }
+        public DbSet<Khuyenmai> Khuyenmais { get; set; }
     }
 }

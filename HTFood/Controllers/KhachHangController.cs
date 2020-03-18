@@ -36,10 +36,9 @@ namespace HTFood.Controllers
             List<KhachHang> khachHangs = getAllCustomerAsync(responseMessage);
             if (khachHangs != null)
             {
-                int pageSize = 8;//so san pham moi trang
-                int pageNum = (page ?? 1);//tao so trang            
+                ViewBag.accept = false;
                 var list = khachHangs.ToList();
-                return View(list.ToPagedList(pageNum, pageSize));
+                return View(list);
             }
             return View("Error");
         }
@@ -69,6 +68,8 @@ namespace HTFood.Controllers
             HttpResponseMessage response = await client.GetAsync(url + @"khachhang/" + id);
             if (response.IsSuccessStatusCode)
             {
+                //dong hoac mo data table 
+                ViewBag.accept = false;
                 khachHangs = await response.Content.ReadAsAsync<KhachHang>();
 
                 // Call api
@@ -76,7 +77,7 @@ namespace HTFood.Controllers
                 // Get all data from the ViTien table 
                 List<ViTien> viTiens = ViTienController.getAllViTien(responseMessage);
                 // Check data with id customer
-                viTiens = viTiens.Where(n=>n.MaKH == id).ToList();
+                viTiens = viTiens.Where(n => n.MaKH == id).ToList();
                 ViewBag.vitien = viTiens;
                 // Get all data from the LichSuGD table
                 responseMessage = await client.GetAsync(url + @"lichsugd/");

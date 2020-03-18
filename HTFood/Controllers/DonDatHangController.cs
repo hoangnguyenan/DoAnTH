@@ -29,15 +29,15 @@ namespace HTFood.Controllers
         private dbHutechfoodContext db = new dbHutechfoodContext();
 
         // GET: DonDatHang
-        public async Task<ActionResult> Index(int? page)
+        public async Task<ActionResult> Index()
         {
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"dondathang/");
             List<DonDatHang> list = getAllOrder(responseMessage);
             if (list != null)
             {
-                int pageSize = 8;//so san pham moi trang
-                int pageNum = (page ?? 1);//tao so trang            
-                return View(list.ToPagedList(pageNum, pageSize));
+                ViewBag.accept = false;
+                var ddh = list.ToList();
+                return View(ddh);
             }
             return View("Error");
         }

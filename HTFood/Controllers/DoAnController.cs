@@ -36,10 +36,9 @@ namespace HTFood.Controllers
             List<DoAn> da = getAllDoAn(responseMessage);
             if (da != null)
             {
-                int pageSize = 8;//so san pham moi trang
-                int pageNum = (page ?? 1);//tao so trang      
+                ViewBag.accept = false;
                 var list = da.ToList();
-                return View(list.ToPagedList(pageNum, pageSize));
+                return View(list);
             }
             return View("Error");
         }

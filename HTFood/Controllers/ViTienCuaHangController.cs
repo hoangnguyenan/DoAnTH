@@ -36,9 +36,9 @@ namespace HTFood.Controllers
             List<ViTienCuaHang> list = getAllViCH(responseMessage);
             if (list != null)
             {
-                int pageSize = 8;//so san pham moi trang
-                int pageNum = (page ?? 1);//tao so trang            
-                return View(list.ToPagedList(pageNum, pageSize));
+                ViewBag.accept = false;
+                var vtien = list.ToList();
+                return View(vtien);
             }
             return View("Error");
         }

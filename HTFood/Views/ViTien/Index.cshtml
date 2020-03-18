@@ -1,40 +1,101 @@
-﻿@model IEnumerable<HTFood.Models.ViTien>
+﻿
+@model IEnumerable<HTFood.Models.ViTien>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+@*@*<link href="~/Content/PagedList.css" rel="stylesheet" />*@
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MaKH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoDu)
-        </th>
-        <th></th>
-    </tr>
+<title>Danh sách ví tiền</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Nhân viên giao hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Nhân viên</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--HHH-->
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2> Danh sách ví tiền của khách hàng </h2>  <br>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Mã ví tiền</th>
+                                            <th>Mã khách hàng</th>
+                                            <th>Số dư (VNĐ)</th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaKH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoDu)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaViTien }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaViTien }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaViTien })
-        </td>
-    </tr>
-}
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Mã ví tiền</th>
+                                            <th>Mã khách hàng</th>
+                                            <th>Số dư (VNĐ)</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @{int i = 1;}
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@i</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.MaViTien)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.MaKH)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SoDu)
+                                                </td>
+                                            </tr>
+                                            i++;
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-</table>
+            <!--HH-->
+        </div>
+    </div>
+</section>
+
+<!-- Jquery DataTable Plugin Js -->
+<script src="~/assets/js/buttons/libscripts.bundle.js"></script>
+<script src="~/assets/js/buttons/vendorscripts.bundle.js"></script>
+<script src="~/assets/js/buttons/datatablescripts.bundle.js"></script>
+<script src="~/assets/js/buttons/jquery-datatable.js"></script>
+
+<script type="text/javascript" charset="utf8">
+    $(document).ready(function () {
+        setTimeout(function () {
+            var listButton = $('#DataTables_Table_0_length').find('button');
+            listButton.each(function () {
+                $(this).remove();
+            });
+        }, 500);
+    });
+</script>

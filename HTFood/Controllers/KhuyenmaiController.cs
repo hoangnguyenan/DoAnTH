@@ -30,15 +30,15 @@ namespace HTFood.Controllers
         private dbHutechfoodContext db = new dbHutechfoodContext();
 
         // GET: Khuyenmai
-        public async Task<ActionResult> Index(int? page)
+        public async Task<ActionResult> Index()
         {
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"khuyenmai/");
             List<Khuyenmai> list = getAllKM(responseMessage);
             if (list != null)
             {
-                int pageSize = 8;//so san pham moi trang
-                int pageNum = (page ?? 1);//tao so trang            
-                return View(list.ToPagedList(pageNum, pageSize));
+                ViewBag.accept = false;
+                var km = list.ToList();
+                return View(km);
             }
             return View("Error");
         }

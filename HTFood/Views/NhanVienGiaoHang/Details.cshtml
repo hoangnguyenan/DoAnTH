@@ -6,6 +6,8 @@
 }
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
 <title>Thông tin chi tiết nhân viên giao hàng</title>
 <section class="content">
     <div class="container-fluid">
@@ -24,147 +26,173 @@
             <!--/Header-->
             <!--content-->
             <div class="row clearfix">
-                <div class="col-12">
+                <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <div class="body">
-                                <div class="row clearfix">
-                                    <div class="col-sm-12 col-md-12 col-lg-12">
-                                        <!-- Nav tabs -->
-                                        <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a class="nav-link active show " data-toggle="tab" href="#home_animation">Thông tin</a></li>
-                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#home_animation_1">Lịch sử giao dịch</a></li>
-                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_1">Ghi chú</a></li>
-                                        </ul>
-
-                                        <!-- Tab panes -->
-                                        <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane animated flipInX active show" id="home_animation">
-                                                <address class="col-11">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active show " data-toggle="tab" href="#home_animation">Thông tin</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#home_animation_1">Lịch sử giao dịch</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_1">Ghi chú</a></li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane animated flipInX active show" id="home_animation">
+                                    <div class="body">
+                                        <address class="col-11">
+                                            <div class="row">
+                                                <div class="col-5">
                                                     <div class="row">
-                                                        <div class="col-5">
-                                                            <div class="row">
-                                                                <strong class="col-4">Họ Tên</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.HoTenNV)</p>
-                                                                <strong class="col-4">Tài khoản</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.TaiKhoanNV)</p>
-                                                                <strong class="col-4">Mật khẩu</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.MatKhauNV)</p>
-                                                                <strong class="col-4">Email</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.EmailNV)</p>
-                                                                <strong class="col-4">Địa chỉ</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.DiaChiNV)</p>
-                                                                <strong class="col-4">Điện thoại</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.DienThoaiNV)</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-5">
-                                                            <div class="row">
-                                                                <strong class="col-4">Ngày sinh</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.NgaySinhNV)</p>
-                                                                <strong class="col-4">Giới tính:</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.GioiTinh)</p>
-                                                                <strong class="col-4">Trạng thái NV</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.TrangThaiNV)</p>
-                                                                <strong class="col-4">Vị trí hiện tại</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.ViTriHienTai)</p>
-                                                                <strong class="col-4">Điểm thưởng</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.DiemThuong)</p>
-                                                                <strong class="col-4">Độ ưu tiên</strong>
-                                                                <p class="col-8">: @Html.DisplayFor(model => model.DoUuTien)</p>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <a class="btn btn-raised g-bg-blush2 pull-right" href="@Url.Action("Edit","NhanVienGiaoHang",new { id = Model.MaNV })" )>Chỉnh sửa</a><br>
-                                                            <button class="btn btn-raised btn-success btn-sm" data-confirm="@Model.MaNV" id="btnDelete" value="Delete">Xóa</button>
-
-                                                        </div>
+                                                        <strong class="col-4">Họ Tên</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.HoTenNV)</p>
+                                                        <strong class="col-4">Tài khoản</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.TaiKhoanNV)</p>
+                                                        <strong class="col-4">Mật khẩu</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.MatKhauNV)</p>
+                                                        <strong class="col-4">Email</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.EmailNV)</p>
+                                                        <strong class="col-4">Địa chỉ</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.DiaChiNV)</p>
+                                                        <strong class="col-4">Điện thoại</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.DienThoaiNV)</p>
                                                     </div>
-                                                </address>
+                                                </div>
+                                                <div class="col-5">
+                                                    <div class="row">
+                                                        <strong class="col-4">Ngày sinh</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.NgaySinhNV)</p>
+                                                        <strong class="col-4">Giới tính:</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.GioiTinh)</p>
+                                                        <strong class="col-4">Trạng thái NV</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.TrangThaiNV)</p>
+                                                        <strong class="col-4">Vị trí hiện tại</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.ViTriHienTai)</p>
+                                                        <strong class="col-4">Điểm thưởng</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.DiemThuong)</p>
+                                                        <strong class="col-4">Độ ưu tiên</strong>
+                                                        <p class="col-8">: @Html.DisplayFor(model => model.DoUuTien)</p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a class="btn btn-raised g-bg-blush2 pull-right" href="@Url.Action("Edit","NhanVienGiaoHang",new { id = Model.MaNV })" )>Chỉnh sửa</a><br>
+                                                    <button class="btn btn-raised btn-success btn-sm" data-confirm="@Model.MaNV" id="btnDelete" value="Delete">Xóa</button>
 
+                                                </div>
                                             </div>
-                                            <div role="tabpanel" class="tab-pane animated flipInX" id="home_animation_1">
-                                                <table class="table table-striped">
-                                                    <thead>
+                                        </address>
+
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane animated flipInX" id="home_animation_1">
+                                    <div class="body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã lịch sử giao hàng</th>
+                                                        <th>Mã nhân viên</th>
+                                                        <th>Mã đơn hàng</th>
+                                                        <th>Thời gian giao hàng</th>
+                                                        <th>Trạng thái nhận đơn</th>
+                                                        <th>Tình trạng giao hàng</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã lịch sử giao hàng</th>
+                                                        <th>Mã nhân viên</th>
+                                                        <th>Mã đơn hàng</th>
+                                                        <th>Thời gian giao hàng</th>
+                                                        <th>Trạng thái nhận đơn</th>
+                                                        <th>Tình trạng giao hàng</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @{int i = 1;}
+                                                    @foreach (LichSuNVGH item in ViewBag.lsnvgh)
+                                                    {
                                                         <tr>
-                                                            <th>No.</th>
-                                                            <th>Mã lịch sử giao hàng</th>
-                                                            <th>Mã nhân viên</th>
-                                                            <th>Mã đơn hàng</th>
-                                                            <th>Thời gian giao hàng</th>
-                                                            <th>Trạng thái nhận đơn</th>
-                                                            <th>Tình trạng giao hàng</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @{int i = 1;}
-                                                        @foreach (LichSuNVGH item in ViewBag.lsnvgh)
-                                                        {
-                                                            <tr>
-                                                                <td>@i</td>
-                                                                <th> <a>@item.MaLS</a></th>
-                                                                <td><span class="badge bg-orange">@item.MaNV</span></td>
-                                                                <td><span class="badge bg-grey">@item.MaDonHang</span></td>
-                                                                @{ int time = item.TgGiao * Constants.timeShiper; }
-                                                                <td>@time phút</td>
-                                                                @{ string status = item.TrangThaiNhanDon ? MessageContants.STATUS_BILL_SUCCESSFUL : MessageContants.STATUS_BILL_FAIL;}
-                                                                <td><span class="badge bg-pink">@status</span></td>
-                                                                @{
-                                                                    string message = "";
-                                                                    if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_SUCCESSFUL)
-                                                                    {
-                                                                        message = MessageContants.STATUS_SHIP_SUCCESSFUL;
-                                                                    }
-                                                                    else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_IN_PROCCESING)
-                                                                    {
-                                                                        message = MessageContants.STATUS_SHIP_IN_PROCCESING;
-                                                                    }
-                                                                    else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_FAIL)
-                                                                    {
-                                                                        message = MessageContants.STATUS_SHIP_FAIL;
-                                                                    }
-                                                                    else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_BOOM)
-                                                                    {
-                                                                        message = MessageContants.STATUS_SHIP_BOOM;
-                                                                    }
+                                                            <td>@i</td>
+                                                            <th> <a>@item.MaLS</a></th>
+                                                            <td><span class="badge bg-orange">@item.MaNV</span></td>
+                                                            <td><span class="badge bg-grey">@item.MaDonHang</span></td>
+                                                            @{ int time = item.TgGiao * Constants.timeShiper; }
+                                                            <td>@time phút</td>
+                                                            @{ string status = item.TrangThaiNhanDon ? MessageContants.STATUS_BILL_SUCCESSFUL : MessageContants.STATUS_BILL_FAIL;}
+                                                            <td><span class="badge bg-pink">@status</span></td>
+                                                            @{
+                                                                string message = "";
+                                                                if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_SUCCESSFUL)
+                                                                {
+                                                                    message = MessageContants.STATUS_SHIP_SUCCESSFUL;
                                                                 }
-                                                                <td>@message</td>
-                                                            </tr>
-                                                            i++;
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_1">
-                                                <b>Message Content</b>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                                    Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent
-                                                    aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere
-                                                    gubergren sadipscing mel.
-                                                </p>
-                                            </div>
+                                                                else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_IN_PROCCESING)
+                                                                {
+                                                                    message = MessageContants.STATUS_SHIP_IN_PROCCESING;
+                                                                }
+                                                                else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_FAIL)
+                                                                {
+                                                                    message = MessageContants.STATUS_SHIP_FAIL;
+                                                                }
+                                                                else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_BOOM)
+                                                                {
+                                                                    message = MessageContants.STATUS_SHIP_BOOM;
+                                                                }
+                                                            }
+                                                            <td>@message</td> 
+                                                        </tr>
+                                                        i++;
+                                                    }
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
+                                <div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_1">
+                                    <b>Message Content</b>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
+                                        Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent
+                                        aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere
+                                        gubergren sadipscing mel.
+                                    </p>
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-            <!--/content-->
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#btnDelete').click(function () {
-                var choise = confirm("Bạn có muốn xóa ?");
-                if (choise) {
-                    var idDelete = $(this).attr('data-confirm');
-                    window.location.href = '/NhanVienGiaoHang/Delete/' + idDelete;
-                }
-            });
-        });
-    </script>
+    <!--/content-->
 </section>
+
+<script src="~/assets/js/buttons/libscripts.bundle.js"></script>
+<script src="~/assets/js/buttons/vendorscripts.bundle.js"></script>
+<script src="~/assets/js/buttons/datatablescripts.bundle.js"></script>
+<script src="~/assets/js/buttons/jquery-datatable.js"></script>
+<script type="text/javascript" charset="utf8">
+    $(document).ready(function () {
+        setTimeout(function () {
+            var listButton = $('#DataTables_Table_0_length').find('button');
+            listButton.each(function () {
+                $(this).remove();
+            });
+        }, 500);
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#btnDelete').click(function () {
+            var choise = confirm("Xóa ?");
+            if (choise) {
+                var idDelete = $(this).attr('data-confirm');
+                window.location.href = '/KhachHang/Delete/' + idDelete;
+            }
+        });
+    });
+</script>

@@ -31,18 +31,16 @@ namespace HTFood.Controllers
         private dbHutechfoodContext db = new dbHutechfoodContext();
 
         // GET: NhanVienGiaoHang
-        public async Task<ActionResult> Index(int? page)
+        public async Task<ActionResult> Index()
         {
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"nhanviengiaohang/");
             List<NhanVienGiaoHang> nvgh = getAllNhanVienGH(responseMessage);
             if (nvgh != null)
             {
-                int pageSize = 8;//so san pham moi trang
-                int pageNum = (page ?? 1);//tao so trang      
-                var list = nvgh.ToList();
                 ViewBag.accept = false;
-                return View(list.ToPagedList(pageNum, pageSize));
-            }
+                var list = nvgh.ToList();
+                return View(list);
+            }                       
             return View("Error");
         }
         public static List<NhanVienGiaoHang> getAllNhanVienGH(HttpResponseMessage responseMessage)
@@ -68,6 +66,7 @@ namespace HTFood.Controllers
             HttpResponseMessage response = await client.GetAsync(url + @"nhanviengiaohang/" + id);
             if (response.IsSuccessStatusCode)
             {
+                ViewBag.accept = false;
                 nhanVienGiaoHang = await response.Content.ReadAsAsync<NhanVienGiaoHang>();
 
                 response = await client.GetAsync(url + @"lichsunvgh/");

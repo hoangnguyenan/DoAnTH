@@ -1,6 +1,5 @@
 ﻿
-@using PagedList.Mvc;
-@model PagedList.PagedList<HTFood.Models.NhanVienGiaoHang>
+@model IEnumerable<HTFood.Models.NhanVienGiaoHang>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +8,7 @@
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-<link href="~/Content/PagedList.css" rel="stylesheet" />
+@*@*<link href="~/Content/PagedList.css" rel="stylesheet" />*@
 
 <title>Danh sách nhân viên giao hàng</title>
 <section class="content">
@@ -46,133 +45,66 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="body table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Họ tên</th>
-                                        <th>Tài khoản</th>
-                                        <th>Email</th>
-                                        <th>Điện thoại</th>
-                                        <th>Giới tính</th>
-                                        <th>Trạng thái</th>
-                                        <th><i class="material-icons">pin_drop</i></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{int i = 1;}
-                                    @foreach (var item in Model)
-                                    {
-
-                                        <tr>
-                                            <td>@i</td>
-                                            <td>
-                                                @Html.ActionLink(item.HoTenNV, "Details", new { id = item.MaNV })
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TaiKhoanNV)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EmailNV)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.DienThoaiNV)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.GioiTinh)
-                                            </td>
-                                            <td>
-                                                <span class="badge bg-green">
-                                                    @Html.DisplayFor(modelItem => item.TrangThaiNV)
-                                                </span>
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ViTriHienTai)
-                                            </td>
-                                        </tr>
-                                        i++;
-                                    }
-                                </tbody>
-                            </table>
-                            @* Tao menu trang  *@
-                            <div class="MenuTrang" style="text-align:center">
-                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
-                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
-                            </div>
-                            <style>
-                                .MenuTrang li {
-                                    display: inline;
-                                }
-                            </style>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2> BASIC EXAMPLE </h2>
-                            <ul class="header-dropdown">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>No.</th>
+                                            <th>Họ tên</th>
+                                            <th>Tài khoản</th>
+                                            <th>Email</th>
+                                            <th>Điện thoại</th>
+                                            <th>Giới tính</th>
+                                            <th>Trạng thái</th>
+                                            <th><i class="material-icons">pin_drop</i></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>No.</th>
+                                            <th>Họ tên</th>
+                                            <th>Tài khoản</th>
+                                            <th>Email</th>
+                                            <th>Điện thoại</th>
+                                            <th>Giới tính</th>
+                                            <th>Trạng thái</th>
+                                            <th><i class="material-icons">pin_drop</i></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>huy</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
-                                        </tr>
+                                        @{int i = 1;}
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <tr>
+                                                <td>@i</td>
+                                                <td>
+                                                    @Html.ActionLink(item.HoTenNV, "Details", new { id = item.MaNV })
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TaiKhoanNV)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.EmailNV)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DienThoaiNV)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-green">
+                                                        @Html.DisplayFor(modelItem => item.TrangThaiNV)
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ViTriHienTai)
+                                                </td>
+                                            </tr>
+                                            i++;
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -180,6 +112,7 @@
                     </div>
                 </div>
             </div>
+
             <!--HH-->
         </div>
     </div>
@@ -188,17 +121,16 @@
 <!-- Jquery DataTable Plugin Js -->
 <script src="~/assets/js/buttons/libscripts.bundle.js"></script>
 <script src="~/assets/js/buttons/vendorscripts.bundle.js"></script>
-
 <script src="~/assets/js/buttons/datatablescripts.bundle.js"></script>
-
-<script src="~/assets/js/buttons/dataTables.buttons.min.js"></script>
-<script src="~/assets/js/buttons/buttons.bootstrap4.min.js"></script>
-<script src="~/assets/js/buttons/buttons.colVis.min.js"></script>
-<script src="~/assets/js/buttons/buttons.flash.min.js"></script>
-<script src="~/assets/js/buttons/buttons.html5.min.js"></script>
-<script src="~/assets/js/buttons/buttons.print.min.js"></script>
-
-<script src="~/assets/js/buttons/mainscripts.bundle.js"></script>
 <script src="~/assets/js/buttons/jquery-datatable.js"></script>
 
-
+<script type="text/javascript" charset="utf8">
+    $(document).ready(function () {
+        setTimeout(function () {
+            var listButton = $('#DataTables_Table_0_length').find('button');
+            listButton.each(function () {
+                $(this).remove();
+            });
+        }, 500);
+    });
+</script>
