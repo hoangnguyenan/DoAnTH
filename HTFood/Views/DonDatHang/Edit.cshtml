@@ -1,88 +1,152 @@
 ﻿@model HTFood.Models.DonDatHang
-
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<link href="~/assets/css/create.css" rel="stylesheet" />
 
+<title>Chỉnh sửa đơn đặt hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Chỉnh sửa đơn hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","DonDatHang")">Đơn đặt hàng</a></li>
+                        <li class="breadcrumb-item active">Chỉnh sửa đơn hàng</li>
+                    </ul>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>DonDatHang</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MaDonHang)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TinhTrangDonHang, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TinhTrangDonHang, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TinhTrangDonHang, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+            <!--/Header-->
+            <!--content-->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NgayDat, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NgayDat, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NgayGiao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TgGiao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TgGiao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TgGiao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaKH, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaKH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaNV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaNV, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaVT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaVT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaVT, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="row clearfix">
+                    <div class="col-md-6  ">
+                        <div class="card">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.MaDonHang)
+                            <div class="userbox">
+                                <div class="header">
+                                    <h2>Chỉnh sửa </h2>
+                                    <ul class="header-dropdown m-r--5">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="javascript:void(0);">Action</a></li>
+                                                <li><a href="javascript:void(0);">Another action</a></li>
+                                                <li><a href="javascript:void(0);">Something else</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="body">
+                                    <h2 class="card-inside-title">Nhập thông tin đơn hàng cần chỉnh sửa</h2>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Tình trạng đơn hàng</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.TinhTrangDonHang, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TinhTrangDonHang, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Ngày đặt</label><br>
+                                        <input type="datetime-local" value="" name="NgayDat" placeholder="Ngày đặt" class="datetime" />
+                                        @Html.DisplayFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.NgayDat, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Ngày giao</label><br>
+                                        <input type="datetime-local" value="" name="NgayGiao" placeholder="Ngày đặt" class="datetime" />
+                                        @Html.DisplayFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Thời gian giao</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.TgGiao, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TgGiao, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Mã khách hàng</label><br>
+                                        <div id="input-text">
+                                            @*@Html.TextBoxFor(model => model.MaKH, new { placeholder = @Html.DisplayNameFor(n => n.MaKH), @disabled = "true" })*@
+                                            @Html.EditorFor(model => model.MaKH, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Mã nhân viên</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.MaNV, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Mã vị trí   </label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.MaVT, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.MaVT, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>                                    
+                                    <div class="clearfix large_form">
+                                        <div class="col-sm-12 ">
+                                            <div class="demo-google-material-icon">
+                                                <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Lưu" />
+                                                <a style="padding-left:15px" href="@Url.Action("Index","DonDatHang")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/content-->
+                    </div>
+                </div>
+            }
         </div>
     </div>
-}
+</section>
+<style>
+    .userbox {
+        border-radius: 13px;
+        margin-left: 10px;
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    input.btn.btn-raised.bg-light-blue.waves-effect {
+        border-radius: 5px;
+    }
 
+    input.datetime {
+        margin: 15px 0px
+    }
+
+    div#input-text {
+        margin: 15px 0;
+    }
+
+    .col-sm-12 {
+        padding-left: 0px;
+    }
+
+    span.icon-name {
+        position: relative;
+        top: 8px;
+    }
+
+    label.label.icon-field {
+        color: black;
+        font-weight: bold
+    }
+    a.btn.btn-raised.bg-light-blue.waves-effect {
+        border-radius: 5px;
+    }
+</style>

@@ -142,8 +142,10 @@ namespace HTFood.Controllers
         }
 
         // GET: DonDatHang/Create
+        [HttpGet]
         public ActionResult Create()
         {
+            //ViewBag.MaKH = new SelectList(db.KhachHangs.ToList().OrderBy(n => n.HoTenKH), "MaKH", "MaKH");
             return View();
         }
 
@@ -178,7 +180,7 @@ namespace HTFood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TinhTrangDonHang,NgayDat,NgayGiao,TgGiao,MaKH,MaNV,MaVT")] DonDatHang donDatHang)
+        public ActionResult Edit([Bind(Include = "MaDonHang,TinhTrangDonHang,NgayDat,NgayGiao,TgGiao,MaKH,MaNV,MaVT")] DonDatHang donDatHang)
         {
             HttpResponseMessage response = client.PutAsJsonAsync(url + @"dondathang/" + donDatHang.MaDonHang, donDatHang).Result;
             response.EnsureSuccessStatusCode();

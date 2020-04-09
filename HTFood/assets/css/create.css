@@ -1,0 +1,99 @@
+﻿
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.wrapbox-heading-account {
+    position: sticky;
+    top: 0;
+    border-right: 1px solid #ededed;
+    height: 100vh;
+    padding: 0;
+}
+
+.col-md-6 {
+    width: 100%;
+}
+
+.wrapbox-heading-account .header-page {
+    width: 60%;
+    padding-bottom: 70px;
+    position: relative;
+}
+
+    .wrapbox-heading-account .header-page h1 {
+        font-size: 54px;
+        font-weight: 700;
+        margin: 0px 0;
+        line-height: initial;
+    }
+
+    .wrapbox-heading-account .header-page:after {
+        content: "";
+        background: #000000;
+        display: block;
+        width: 60px;
+        height: 4px;
+        margin-top: 70px;
+    }
+
+.wrapbox-content-account {
+    padding: 100px;
+}
+
+.large_form {
+    margin-bottom: 10px;
+}
+
+.userbox input[type=email], .userbox input[type=password], .userbox input[type=text], .userbox input[type=date] {
+    width: 100%;
+    height: 55px;
+    border: 1px solid transparent;
+    background: #ededed;
+    color: #000000;
+    padding: 0 20px;
+    font-weight: 500;
+    -webkit-appearance: none;
+    border-radius:13px;
+}
+
+.userbox .action_bottom {
+    padding: 0;
+}
+
+.action_account_custommer .action_bottom, .action_account_custommer .req_pass {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.button.dark {
+    color: #fff;
+    border-color: #d9534f;
+}
+
+.userbox .action_bottom .btn {
+    display: inline-block;
+    border-radius: 0;
+    padding: 0 30px;
+    height: 55px;
+    line-height: 55px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: #00BCD4;
+}
+
+.action_account_custommer .req_pass {
+    margin-left: 20px;
+    color: #959898;
+    font-weight: 500;
+}
+
+.req_pass .come-back {
+    margin-top: 35px;
+    font-weight: 500;
+    vertical-align: middle;
+}
+

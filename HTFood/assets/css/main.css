@@ -744,7 +744,7 @@ output {
 }
 
 .form-control {
-    height: 36px;
+    /*height: 36px;*/
     padding: 7px 0;
     font-size: 14px;
     line-height: 1.428571429
@@ -16211,7 +16211,7 @@ input[type=checkbox]:not(:disabled) ~ .lever:active:after, input[type=checkbox]:
     }
 
 .bg-light-blue {
-    background-color: #03A9F4 !important;
+    background-color: #006dcc !important;
     color: #fff
 }
 
@@ -16842,7 +16842,7 @@ section.content {
     -ms-border-radius: 2px;
     border-radius: 2px;
     border: none;
-    font-size: 13px;
+    /*font-size: 13px;*/
     outline: none
 }
 
@@ -16851,9 +16851,9 @@ section.content {
     }
 
     .btn:not(.btn-link):not(.btn-circle) i {
-        font-size: 20px;
+        font-size: 14px;
         position: relative;
-        top: 3px
+        /*top: 3px*/
     }
 
 .btn-warning, .btn-warning:hover, .btn-warning:active, .btn-warning:focus {
@@ -17346,7 +17346,7 @@ section.content {
     .card .body {
         font-weight: 400;
         color: #424242;
-        padding: 15px
+        padding: 0 15px 15px 15px
     }
 
 .info-box {
@@ -18824,7 +18824,7 @@ section.content {
 
 .bootstrap-select {
     box-shadow: none !important;
-    border-bottom: 1px solid #ddd !important;
+    /*border-bottom: 1px solid #ddd !important;*/
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;

@@ -247,7 +247,7 @@ th {
 }
 
 label {
-    display: inline-block;
+    /*display: inline-block;*/
     margin-bottom: .5rem
 }
 
@@ -1906,7 +1906,7 @@ pre code {
 
 .form-control {
     display: block;
-    width: 100%;
+    /*width: 100%;*/
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;

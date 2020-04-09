@@ -149,12 +149,30 @@ namespace HTFood.Controllers
             return RedirectToAction("Index");
         }
         // GET: Food/Delete
+        //public async Task<ActionResult> Delete(int? id)
+        //{
+        //    KhachHang kh = null;
+        //    HttpResponseMessage response = await client.GetAsync(url + @"khachhang/" + id);
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        kh = await response.Content.ReadAsAsync<KhachHang>();
+        //    }
+        //    return View(kh);
+        //    //return RedirectToAction("Index", "KhachHang");
+        //}
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<HttpStatusCode> DeleteConfirm(int id)
+        //{
+        //    HttpResponseMessage response = await client.DeleteAsync(url + @"khachhang/" + id);
+        //    return response.StatusCode;
+        //}
+
         public async Task<ActionResult> Delete(int? id)
         {
             HttpResponseMessage response = await client.DeleteAsync(url + @"khachhang/" + id);
             return RedirectToAction("Index", "KhachHang");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

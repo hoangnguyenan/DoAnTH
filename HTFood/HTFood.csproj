@@ -183,6 +183,7 @@
     <Content Include="assets\css\all-themes.css" />
     <Content Include="assets\css\authentication.css" />
     <Content Include="assets\css\blog.css" />
+    <Content Include="assets\css\create.css" />
     <Content Include="assets\css\dataTables.bootstrap4.min.css" />
     <Content Include="assets\css\details.css" />
     <Content Include="assets\css\hm-style.css" />
@@ -212,6 +213,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\edit.png" />
+    <Content Include="images\trash.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\Material-Design-Iconic-Font.woff2" />
@@ -323,6 +326,8 @@
     <Content Include="Views\Khuyenmai\Details.cshtml" />
     <Content Include="Views\Khuyenmai\Edit.cshtml" />
     <Content Include="Views\Khuyenmai\Index.cshtml" />
+    <Content Include="Views\KhachHang\Delete.cshtml" />
+    <Content Include="Views\DonDatHang\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
