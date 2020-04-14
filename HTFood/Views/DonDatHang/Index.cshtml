@@ -1,6 +1,6 @@
 ﻿
 @model IEnumerable<HTFood.Models.DonDatHang>
-@using HTFood.Models;
+@using HTFood.Models
 @{
     ViewBag.Title = "Dondathang";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -103,9 +103,9 @@
                                                             </td>
                                                             <td>
                                                                 @Html.DisplayFor(modelItem => item.MaVT)
-                                                            </td> 
-                                                            <td>                                                                
-                                                                <a href="@Url.Action("Edit","DonDatHang",new { id = item.MaDonHang })" ><img src="~/images/edit.png" /></a> ||
+                                                            </td>
+                                                            <td>
+                                                                <a href="@Url.Action("Edit","DonDatHang",new { id = item.MaDonHang })"><img src="~/images/edit.png" /></a> ||
                                                                 <a href="@Url.Action("Delete","DonDatHang",new { id = item.MaDonHang })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
                                                             </td>
                                                         </tr>
@@ -162,37 +162,37 @@
                                                         if (item.TinhTrangDonHang == "1")
                                                         {
 
-                                                    <tr>
-                                                        <td>@i</td>
-                                                        <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
-                                                        <td>
-                                                            <span class="badge bg-orange">
-                                                                @Html.ActionLink(item.TinhTrangDonHang, "Details", new { id = item.MaDonHang, maKH = item.MaKH })
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayDat).ToString())
-                                                        </td>
-                                                        <td>
-                                                            @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayGiao).ToString())
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.TgGiao)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.MaKH)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.MaNV)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.MaVT)
-                                                        </td>
-                                                        <td>
-                                                            <a href="@Url.Action("Edit","DonDatHang",new { id = item.MaDonHang })"><img src="~/images/edit.png" /></a> ||
-                                                            <a href="@Url.Action("Delete","DonDatHang",new { id = item.MaDonHang })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
-                                                        </td>
-                                                    </tr>
+                                                            <tr>
+                                                                <td>@i</td>
+                                                                <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
+                                                                <td>
+                                                                    <span class="badge bg-orange">
+                                                                        @Html.ActionLink(item.TinhTrangDonHang, "Details", new { id = item.MaDonHang, maKH = item.MaKH })
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayDat).ToString())
+                                                                </td>
+                                                                <td>
+                                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayGiao).ToString())
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.TgGiao)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MaKH)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MaNV)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MaVT)
+                                                                </td>
+                                                                <td>
+                                                                    <a href="@Url.Action("Edit","DonDatHang",new { id = item.MaDonHang })"><img src="~/images/edit.png" /></a> ||
+                                                                    <a href="@Url.Action("Delete","DonDatHang",new { id = item.MaDonHang })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
+                                                                </td>
+                                                            </tr>
                                                             i++;
                                                         }
                                                     }
@@ -245,37 +245,37 @@
                                                         if (item.TinhTrangDonHang == "2")
                                                         {
 
-                                                    <tr>
-                                                        <td>@i</td>
-                                                        <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
-                                                        <td>
-                                                            <span class="badge bg-orange">
-                                                                @Html.ActionLink(item.TinhTrangDonHang, "Details", new { id = item.MaDonHang, maKH = item.MaKH })
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayDat).ToString())
-                                                        </td>
-                                                        <td>
-                                                            @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayGiao).ToString())
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.TgGiao)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.MaKH)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.MaNV)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.MaVT)
-                                                        </td>
-                                                        <td>
-                                                            <a href="@Url.Action("Edit","DonDatHang",new { id = item.MaDonHang })"><img src="~/images/edit.png" /></a> ||
-                                                            <a href="@Url.Action("Delete","DonDatHang",new { id = item.MaDonHang })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
-                                                        </td>
-                                                    </tr>
+                                                            <tr>
+                                                                <td>@i</td>
+                                                                <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
+                                                                <td>
+                                                                    <span class="badge bg-orange">
+                                                                        @Html.ActionLink(item.TinhTrangDonHang, "Details", new { id = item.MaDonHang, maKH = item.MaKH })
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayDat).ToString())
+                                                                </td>
+                                                                <td>
+                                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayGiao).ToString())
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.TgGiao)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MaKH)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MaNV)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MaVT)
+                                                                </td>
+                                                                <td>
+                                                                    <a href="@Url.Action("Edit","DonDatHang",new { id = item.MaDonHang })"><img src="~/images/edit.png" /></a> ||
+                                                                    <a href="@Url.Action("Delete","DonDatHang",new { id = item.MaDonHang })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
+                                                                </td>
+                                                            </tr>
                                                             i++;
                                                         }
                                                     }
@@ -401,14 +401,3 @@
         }, 500);
     });
 </script>
-@*<script>
-        $(document).ready(function () {
-            $('#btnDelete').click(function () {
-                var choise = confirm("Xóa ?");
-                if (choise) {
-                    var idDelete = $(this).attr('data-confirm');
-                    window.location.href = '/DonDatHang/Delete/' + idDelete;
-                }
-            });
-        });
-    </script>*@

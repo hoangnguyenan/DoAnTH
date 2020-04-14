@@ -186,6 +186,7 @@
     <Content Include="assets\css\create.css" />
     <Content Include="assets\css\dataTables.bootstrap4.min.css" />
     <Content Include="assets\css\details.css" />
+    <Content Include="assets\css\edit.css" />
     <Content Include="assets\css\hm-style.css" />
     <Content Include="assets\css\main.css" />
     <Content Include="assets\css\timeline.css" />
@@ -328,6 +329,8 @@
     <Content Include="Views\Khuyenmai\Index.cshtml" />
     <Content Include="Views\KhachHang\Delete.cshtml" />
     <Content Include="Views\DonDatHang\Delete.cshtml" />
+    <Content Include="Views\DanhMucDoAn\Delete.cshtml" />
+    <Content Include="Views\NhanVienGiaoHang\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

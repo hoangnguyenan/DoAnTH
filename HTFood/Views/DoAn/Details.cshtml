@@ -53,16 +53,19 @@
                                             <span class="review-no">@Html.DisplayFor(model => model.DanhGiaDoAn) reviews </span>
                                         </div>
                                         <p class="product-description">@Html.DisplayFor(model => model.MoTa).</p>
-                                        <h4>Giá hiện tại: <span style="color:#ff9f1a">@Html.DisplayFor(model => model.DonGia)</span></h4>
+                                        <h4>Giá hiện tại: <span style="color:#ff9f1a">@Html.DisplayFor(model => model.DonGia) đ</span></h4>
                                         <p class="vote"><strong>91%</strong> người mua rất thích sản phẩm này! <strong>(87 votes)</strong></p>
                                         <h4>Ngày cập nhật: <span style="color:#85ad00">@DateTime.Parse(Html.DisplayFor(model => model.NgayCapNhat).ToString()).ToShortDateString()</span></h4>
                                         <h4>Trạng thái hàng: <span style="color:#0076ad">@Html.DisplayFor(model => model.TrangThaiDA)</span></h4>
-                                        <h4>Số lượng còn lại: <span style="color:red">@Html.DisplayFor(model => model.SoLuongTon)</span></h4>    
-                                        <div>
-                                            <a class="btn btn-raised g-bg-blush2 pull-right" href="@Url.Action("Edit","DoAn",new { id = Model.MaDA })" )>Chỉnh sửa</a><br>
-                                            <button class="btn btn-raised btn-success btn-sm" data-confirm="@Model.MaDA" id="btnDelete" value="Delete">Xóa</button>
+                                        <h4>Số lượng còn lại: <span style="color:red">@Html.DisplayFor(model => model.SoLuongTon)</span></h4>
+                                        <div class="">
+                                            <div class="icon-button-demo">
+                                                <a class="btn btn-raised bg-light-blue waves-effect" href="@Url.Action("Edit","DoAn",new { id = Model.MaDA })"> <i class="material-icons">border_color</i> Chỉnh sửa</a>
+                                            </div>
+                                        </div>
 
-                                        </div></div>
+                                    </div>
+                                    
                                 </div>
                             </div>
 
@@ -73,15 +76,19 @@
             <!--/content-->
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#btnDelete').click(function () {
-                var choise = confirm("Xóa ?");
-                if (choise) {
-                    var idDelete = $(this).attr('data-confirm');
-                    window.location.href = '/DoAn/Delete/' + idDelete;
-                }
-            });
-        });
-    </script>
 </section>
+<style>
+    .well.well-sm {
+        padding: 9px;
+        border-radius: 3px;
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+        width: auto;
+    }    
+
+    a.btn.btn-raised.bg-light-blue.waves-effect {
+        border-radius: 5px;
+        padding: 10px 13px 8px 10px;
+    }
+
+</style>

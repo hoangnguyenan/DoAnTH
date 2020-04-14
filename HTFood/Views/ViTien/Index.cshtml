@@ -1,101 +1,116 @@
-﻿
-@model IEnumerable<HTFood.Models.ViTien>
+﻿@model IEnumerable<HTFood.Models.ViTien>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-}
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-@*@*<link href="~/Content/PagedList.css" rel="stylesheet" />*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<title>Danh sách ví tiền</title>
-<section class="content">
-    <div class="container-fluid">
-        <div class="block-header">
-            <!--Header-->
-            <div class="row">
-                <div class="col-lg-12 col-md-6 col-sm-7">
-                    <h2>Nhân viên giao hàng</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Nhân viên</li>
-                    </ul>
+    <title>Danh sách ví tiền</title>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <!--Header-->
+                <div class="row">
+                    <div class="col-lg-12 col-md-6 col-sm-7">
+                        <h2>Ví tiền</h2>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Ví tiền khách hàng</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <!--/Header-->
-            <!--HHH-->
-            <div class="row clearfix">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2> Danh sách ví tiền của khách hàng </h2>  <br>
-                        </div>
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Mã ví tiền</th>
-                                            <th>Mã khách hàng</th>
-                                            <th>Số dư (VNĐ)</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Mã ví tiền</th>
-                                            <th>Mã khách hàng</th>
-                                            <th>Số dư (VNĐ)</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        @{int i = 1;}
-                                        @foreach (var item in Model)
-                                        {
+                <!--/Header-->
+                <!--HHH-->
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="header">
+                                <h2> Danh sách ví tiền của khách hàng </h2>
+                                <ul class="header-dropdown m-r--5">
+                                    <li class="dropdown">
+                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                        <ul class="dropdown-menu pull-right" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            <li><a href="javascript:void(0);">Action</a></li>
+                                            <li><a href="javascript:void(0);">Another action</a></li>
+                                            <li><a href="javascript:void(0);">Something else</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                <div class="table-responsive">
+                                    <div>
+                                        <h7>
+                                            @Html.ActionLink("Thêm mới ví tiền", "Create")
+                                        </h7>
+                                    </div>
+                                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                        <thead>
                                             <tr>
-                                                <td>@i</td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.MaViTien)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.MaKH)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.SoDu)
-                                                </td>
+                                                <th>No.</th>
+                                                <th>Mã ví tiền</th>
+                                                <th>Mã khách hàng</th>
+                                                <th>Số dư (VNĐ)</th>
+                                                @*<th>Thao tác</th>*@
                                             </tr>
-                                            i++;
-                                        }
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Mã ví tiền</th>
+                                                <th>Mã khách hàng</th>
+                                                <th>Số dư (VNĐ)</th>
+                                                @*<th>Thao tác</th>*@
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            @{int i = 1;}
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>@i</td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.MaViTien)
+                                                        @*@Html.ActionLink(item.MaViTien.ToString(),"Details",new { id= item.MaViTien})*@
+                                                    </td>
+                                                    <td>
+                                                        <a href="@Url.Action("Details","KhachHang",new { id= item.MaKH})">@item.MaKH</a>
+                                                    <td>
+                                                        <span class="badge bg-pink">@String.Format("{0:0,0}", item.SoDu)</span>
+                                                    </td>
+                                                </tr>
+                                                i++;
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--HH-->
             </div>
-
-            <!--HH-->
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Jquery DataTable Plugin Js -->
-<script src="~/assets/js/buttons/libscripts.bundle.js"></script>
-<script src="~/assets/js/buttons/vendorscripts.bundle.js"></script>
-<script src="~/assets/js/buttons/datatablescripts.bundle.js"></script>
-<script src="~/assets/js/buttons/jquery-datatable.js"></script>
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="~/assets/js/buttons/vendorscripts.bundle.js"></script>
+    <script src="~/assets/js/buttons/datatablescripts.bundle.js"></script>
+    <script src="~/assets/js/buttons/jquery-datatable.js"></script>
 
-<script type="text/javascript" charset="utf8">
-    $(document).ready(function () {
-        setTimeout(function () {
-            var listButton = $('#DataTables_Table_0_length').find('button');
-            listButton.each(function () {
-                $(this).remove();
-            });
-        }, 500);
-    });
-</script>
+    <script type="text/javascript" charset="utf8">
+        $(document).ready(function () {
+            setTimeout(function () {
+                var listButton = $('#DataTables_Table_0_length').find('button');
+                listButton.each(function () {
+                    $(this).remove();
+                });
+            }, 500);
+        });
+    </script>
+
+
+

@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<link href="~/assets/css/create.css" rel="stylesheet" />
+<link href="~/assets/css/edit.css" rel="stylesheet" />
 
 <title>Sửa thông tin vị trí giao hàng</title>
 <section class="content">
@@ -27,83 +29,65 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-
                 <div class="row clearfix">
-                    <div class="col-lg-12">
+                    <div class="col-md-6  ">
                         <div class="card">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.MaVT)
-                            <div class="header">
-                                <ul class="header-dropdown m-r--5">
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li><a href="javascript:void(0);">Action</a></li>
-                                            <li><a href="javascript:void(0);">Another action</a></li>
-                                            <li><a href="javascript:void(0);">Something else</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="body">
-                                <h2 class="card-inside-title">Nhập thông tin cần thay đổi</h2>
-                                <div class="row clearfix">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.TenVT, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên vị trí" } })
-                                                @Html.ValidationMessageFor(model => model.TenVT, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="help-info">Tên vị trí</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.Khu, new { htmlAttributes = new { @class = "form-control", placeholder = "Khu" } })
-                                                @Html.ValidationMessageFor(model => model.Khu, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="help-info">Khu</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @*@DateTime.Parse(Html.DisplayFor(model => model.NgaySinhKH,new { htmlAttributes = new { @class = "form-control", placeholder = "Ngày sinh" } }).ToString()).ToShortDateString()*@
-                                                @Html.EditorFor(model => model.Tang, new { htmlAttributes = new { @class = "form-control", placeholder = "Tầng" } })
-                                                @Html.ValidationMessageFor(model => model.Tang, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="help-info">Tầng</div>
-                                        </div>
-                                    </div>
+                            <div class="userbox">
+                                <div class="header">
+                                    <h2>Chỉnh sửa </h2>
+                                    <ul class="header-dropdown m-r--5">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="javascript:void(0);">Action</a></li>
+                                                <li><a href="javascript:void(0);">Another action</a></li>
+                                                <li><a href="javascript:void(0);">Something else</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <input class="btn btn-raised btn-primary waves-effect" type="submit" value="Save" />
-                                            <wbr>
-                                            <button class="btn btn-raised btn-success " data-confirm="@Model.MaVT" id="btnDelete" value="Delete">Xóa</button>
+                                <div class="body">
+                                    <h2 class="card-inside-title">Nhập thông tin vị trí cần chỉnh sửa</h2>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Tên vị trí</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.TenVT, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TenVT, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Tên khu</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.Khu, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Khu, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Tên tầng</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.Tang, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Tang, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <div class="col-sm-12 ">
+                                            <div class="demo-google-material-icon">
+                                                <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Lưu" />
+                                                <a style="padding-left:15px" href="@Url.Action("Index","ViTriGiaoHang")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--/content-->
                     </div>
                 </div>
             }
             <!--/content-->
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#btnDelete').click(function () {
-                var choise = confirm("Bạn có muốn xóa ?");
-                if (choise) {
-                    var idDelete = $(this).attr('data-confirm');
-                    window.location.href = '/ViTriGiaoHang/Delete/' + idDelete;
-                }
-            });
-        });
-    </script>
 </section>
 

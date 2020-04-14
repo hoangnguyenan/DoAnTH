@@ -27,7 +27,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <h2> Tất cả danh mục <small>Lọc danh mục...tìm kiếm</small> </h2>
+                            <h2> Tất cả danh mục</h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
@@ -71,14 +71,15 @@
                                             <tr>
                                                 <td>@i</td>
                                                 <td>
-                                                    @Html.ActionLink(item.TenDM, "Details", new { id = item.MaDM })
+                                                    @*@Html.ActionLink(item.TenDM, "Details", new { id = item.MaDM })*@
+                                                    @Html.DisplayFor(modelItem => item.TenDM)
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.MaCH)
                                                 </td>
-
                                                 <td>
-                                                    a
+                                                    <a href="@Url.Action("Edit","DanhMucDoAn",new { id = item.MaDM })"><img src="~/images/edit.png" /></a> ||
+                                                    <a href="@Url.Action("Delete","DanhMucDoAn",new { id = item.MaDM })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
                                                 </td>
                                             </tr>
                                             i++;

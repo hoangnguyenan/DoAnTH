@@ -1,0 +1,34 @@
+﻿.userbox {
+    border-radius: 13px;
+    margin-left: 10px;
+}
+
+input.btn.btn-raised.bg-light-blue.waves-effect {
+    border-radius: 5px;
+}
+
+input.datetime {
+    margin: 15px 0px
+}
+
+div#input-text {
+    margin: 15px 0;
+}
+
+.col-sm-12 {
+    padding-left: 0px;
+}
+
+span.icon-name {
+    position: relative;
+    top: 8px;
+}
+
+label.label.icon-field {
+    color: black;
+    font-weight: bold
+}
+
+a.btn.btn-raised.bg-light-blue.waves-effect {
+    border-radius: 5px;
+}

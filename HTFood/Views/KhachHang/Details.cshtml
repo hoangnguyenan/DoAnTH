@@ -18,7 +18,7 @@
                     <h2>Khách hàng</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a href="@Url.Action("Khachhang","Admin")">Khách hàng</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","KhachHang")">Khách hàng</a></li>
                         <li class="breadcrumb-item active">@Html.DisplayFor(model => model.HoTenKH)</li>
                     </ul>
                 </div>
@@ -129,12 +129,12 @@
                                                     {
                                                         <tr>
                                                             <td>@i</td>
-                                                            <th> <a href="#">@lichSuGD.MaGD</a></th>
-                                                            <th> <a href="#">@lichSuGD.MaViTien</a></th>
+                                                            <td> @lichSuGD.MaGD</td>
+                                                            <td> <a href="@Url.Action("Details","ViTien",new { id= @lichSuGD.MaViTien})">@lichSuGD.MaViTien</a></td>
                                                             <td><span class="badge bg-orange">@lichSuGD.MoTa</span></td>
                                                             <td><span class="badge bg-grey">@lichSuGD.TinhTrang</span></td>
                                                             <td><span class="badge bg-pink">@String.Format("{0:0,0}", lichSuGD.SoTienDaNap)</span></td>
-                                                            <td>@String.Format("{0:0,0}", lichSuGD.SoTienDaTieu)</td>
+                                                            <td><span class="badge bg-green">@String.Format("{0:0,0}", lichSuGD.SoTienDaTieu)</span></td>
                                                             <td>@(((DateTime)lichSuGD.NgayNapTien).ToString("dd-MMM-yyyy"))</td>
                                                             <td>@(((DateTime)lichSuGD.NgayTieuTien).ToString("dd-MMM-yyyy"))</td>
 
@@ -190,6 +190,7 @@
         background-color: #f5f5f5;
         border: 1px solid #e3e3e3;
         width: auto;
+        margin-left:15px;
     }
 
     h4 {

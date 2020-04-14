@@ -43,12 +43,12 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive">
+                                <div>
+                                    <h7>
+                                        @Html.ActionLink("Thêm mới khách hàng", "Create")
+                                    </h7>
+                                </div>
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                    <div>
-                                        <h7>
-                                            @Html.ActionLink("Thêm mới khách hàng", "Create")
-                                        </h7>
-                                    </div>
                                     <thead>
                                         <tr>
                                             <th>No.</th>
@@ -57,6 +57,7 @@
                                             <th>Địa chỉ</th>
                                             <th>Điện thoại</th>
                                             <th>Ngày sinh</th>
+                                            <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -67,6 +68,7 @@
                                             <th>Địa chỉ</th>
                                             <th>Điện thoại</th>
                                             <th>Ngày sinh</th>
+                                            <th>Thao tác</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -90,6 +92,10 @@
                                                 <td>
                                                     @*@DateTime.Parse(Html.DisplayFor(modelItem => item.NgaySinhKH).ToString()).ToShortDateString()*@
                                                     @(((DateTime)item.NgaySinhKH).ToString("dd-MMM-yyyy"))
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("Edit","KhachHang",new { id = item.MaKH })"><img src="~/images/edit.png" /></a> ||
+                                                    <a href="@Url.Action("Delete","KhachHang",new { id = item.MaKH })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
                                                 </td>
                                             </tr>
                                             i++;

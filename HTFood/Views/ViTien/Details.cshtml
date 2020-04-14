@@ -5,31 +5,103 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<link href="~/assets/css/edit.css" rel="stylesheet" />
+<title>Chi tiết ví tiền</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Ví tiền</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","ViTien")">Ví tiền</a></li>
+                        <li class="breadcrumb-item active">@Html.DisplayFor(model => model.MaViTien)</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--content-->
+            <div class="row clearfix">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#home_animation">Thông tin ví tiền</a></li>
+                                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#home_animation_1">Lịch sử giao dịch</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_1">Ghi chú</a></li>*@
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane animated flipInX active show" id="home_animation">
+                                    <div class="body">
+                                        <div class="row clearfix demo-icon-container">
+                                            <div class="well well-sm">
+                                                <h4>
+                                                    Thông tin ví tiền
+                                                </h4>
+                                                <div style="margin: 10px 0 0 0">
+                                                    <div class="col-sm-12">
+                                                        <div class="demo-google-material-icon"> <i class="material-icons">account_balance_wallet</i><span class="icon-name"><b>Mã ví: </b>(+84) @Html.DisplayFor(model => model.MaViTien)</span></div>
+                                                    </div>
+                                                    <div class="col-sm-12 ">
+                                                        <div class="demo-google-material-icon"> <i class="material-icons">accessibility</i><span class="icon-name"><b>Mã khách hàng: </b> <a href="@Url.Action("Details","KhachHang",new { id= Model.MaKH})">@Html.DisplayFor(model => model.MaKH)</a></span></div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="demo-google-material-icon"> <i class="material-icons">attach_money</i><span class="icon-name"><b>Số dư: </b>@Html.DisplayFor(model => model.SoDu) đ</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 ">
+                                            <div class="demo-google-material-icon">
+                                                <a href="@Url.Action("Index","ViTien")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-<div>
-    <h4>ViTien</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MaKH)
-        </dt>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaKH)
-        </dd>
+        </div>
+    </div>
+    </div>
+    <!--/content-->
+</section>
+<style>
+    .well.well-sm {
+        padding: 9px;
+        border-radius: 3px;
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+        width: auto;
+        margin-left: 15px;
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SoDu)
-        </dt>
+    h4 {
+        font-weight: normal;
+        text-decoration: underline;
+        padding: 0 6px;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.SoDu)
-        </dd>
+    h5 {
+        margin: auto
+    }
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaViTien }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    a.btn.btn-raised.bg-light-blue.waves-effect {
+        border-radius: 5px;
+        padding: 10px 13px 8px 10px;
+    }
+
+    .icon-button-demo {
+        margin-left: 180px;
+    }
+</style>

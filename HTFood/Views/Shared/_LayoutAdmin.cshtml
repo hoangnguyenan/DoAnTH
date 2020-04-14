@@ -198,7 +198,7 @@
                 </li>
                 <li class="header">Kênh sản phẩm</li>
                 <li>
-                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-email"></i><span>Quản lý sản phẩm</span> </a>
+                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-local-dining"></i><span>Quản lý sản phẩm</span> </a>
                     <ul class="ml-menu">
                         <li><a href="@Url.Action("Index","DanhMucDoAn")">Danh mục</a></li>
                         <li><a href="@Url.Action("Index","DoAn")">Sản phẩm</a></li>
@@ -207,37 +207,42 @@
                 </li>
                 <li class="header">Đơn hàng</li>
                 <li>
-                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-email"></i><span>Quản lý đơn hàng</span> </a>
+                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-receipt"></i><span>Quản lý đơn hàng</span> </a>
                     <ul class="ml-menu">
-                        <li><a href="@Url.Action("Create","DonDatHang")">Tạo đơn hàng</a></li>
                         <li><a href="@Url.Action("Index","DonDatHang")">Đơn đặt hàng</a></li>
                     </ul>
                 </li>
                 <li class="header">Cửa hàng</li>
                 <li>
-                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-email"></i><span>Quản lý cửa hàng</span> </a>
+                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-store"></i><span>Quản lý cửa hàng</span> </a>
                     <ul class="ml-menu">
-                        <li><a href="@Url.Action("Create","CuaHang")">Thêm cửa hàng</a></li>
                         <li><a href="@Url.Action("Index","CuaHang")">Cửa hàng</a></li>
-                        <li><a href="@Url.Action("Index","ViTienCH")">Ngân sách</a></li>
+                        <li><a href="@Url.Action("Index","ViTienCuaHang")">Ngân sách</a></li>
                         <li><a href="@Url.Action("Index","KhuyenMai")">Khuyến Mãi</a></li>
                     </ul>
                 </li>
                 <li class="header">Khách hàng</li>
                 <li>
-                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-email"></i><span>Quản lý khách hàng</span> </a>
+                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-face"></i><span>Quản lý khách hàng</span> </a>
                     <ul class="ml-menu">
-                        <li><a href="@Url.Action("Create","KhachHang")">Thêm khách hàng</a></li>
                         <li><a href="@Url.Action("Index","KhachHang")">Danh sách</a></li>
                         <li><a href="@Url.Action("Index","ViTien")">Ngân sách</a></li>
+                        <li><a href="@Url.Action("Index","LichSuGD")">Lịch sử giao dịch</a></li>
+                    </ul>
+                </li>
+                <li class="header">Nhân viên</li>
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-local-shipping"></i><span>Quản lý giao hàng </span> </a>
+                    <ul class="ml-menu">
+                        <li><a href="@Url.Action("Index","NhanVienGiaoHang")">Danh sách nhân viên</a> </li>
+                        <li><a href="@Url.Action("Index","LichSuNVGH")">Lịch sử giao hàng</a></li>
                     </ul>
                 </li>
                 <li class="header">Thông tin</li>
-                <li> <a href="@Url.Action("Index","NhanVienGiaoHang")"><i class="zmdi zmdi-time-restore"></i><span>Nhân viên giao hàng</span> </a> </li>
-                <li> <a href="@Url.Action("Adminstrator","Admin")"><i class="zmdi zmdi-time-restore"></i><span>Thành viên quản trị</span> </a> </li>
-                <li> <a href="@Url.Action("Index","ViTriGiaoHang")"><i class="zmdi zmdi-time-restore"></i><span>Địa điểm giao,nhận hàng</span> </a> </li>
+                <li> <a href="@Url.Action("Adminstrator","Admin")"><i class="zmdi zmdi-folder-person"></i><span>Thành viên quản trị</span> </a> </li>
+                <li> <a href="@Url.Action("Index","ViTriGiaoHang")"><i class="zmdi zmdi-nature-people"></i><span>Địa điểm giao, nhận hàng</span> </a> </li>
                 <li class="header">News</li>
-                <li> <a href="@Url.Action("Tintuc","Admin")"><i class="zmdi zmdi-time-restore"></i><span>Tin tức</span> </a> </li>
+                <li> <a href="@Url.Action("Tintuc","Admin")"><i class="zmdi zmdi-open-in-new"></i><span>Tin tức</span> </a> </li>
             </ul>
         </div>
         <!-- #Menu -->

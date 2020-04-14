@@ -5,79 +5,108 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<link href="~/assets/css/create.css" rel="stylesheet" />
+<link href="~/assets/css/edit.css" rel="stylesheet" />
+<title>Chỉnh sửa cửa hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Chỉnh sửa cửa hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","CuaHang")">Cửa hàng</a></li>
+                        <li class="breadcrumb-item active">Chỉnh sửa cửa hàng</li>
+                    </ul>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Cuahang</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MaCH)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenCH, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenCH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenCH, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+            <!--/Header-->
+            <!--content-->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DiachiCH, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DiachiCH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiachiCH, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DienthoaiCH, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DienthoaiCH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DienthoaiCH, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MotaCH, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MotaCH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MotaCH, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DanhgiaCH, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DanhgiaCH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DanhgiaCH, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaDonHang, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaDonHang, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaDonHang, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="row clearfix">
+                    <div class="col-md-6  ">
+                        <div class="card">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.MaCH)
+                            <div class="userbox">
+                                <div class="header">
+                                    <h2>Chỉnh sửa </h2>
+                                    <ul class="header-dropdown m-r--5">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="javascript:void(0);">Action</a></li>
+                                                <li><a href="javascript:void(0);">Another action</a></li>
+                                                <li><a href="javascript:void(0);">Something else</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="body">
+                                    <h2 class="card-inside-title">Nhập thông tin cửa hàng cần chỉnh sửa</h2>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Tên cửa hàng</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.TenCH, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TenCH, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Địa chỉ</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.DiachiCH, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DiachiCH, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Điện thoại</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.DienthoaiCH, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.DienthoaiCH, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Mô tả</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.MotaCH, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.MotaCH, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Đánh giá</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.DanhgiaCH, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.DanhgiaCH, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Mã khuyến mãi</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.MaKM, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.MaKM, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>                                     
+                                    <div class="clearfix large_form">
+                                        <div class="col-sm-12 ">
+                                            <div class="demo-google-material-icon">
+                                                <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Lưu" />
+                                                <a style="padding-left:15px" href="@Url.Action("Index","CuaHang")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/content-->
+                    </div>
+                </div>
+            }
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+</section>

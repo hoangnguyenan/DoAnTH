@@ -5,63 +5,114 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<title>Chi tiết cửa hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Cửa hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","CuaHang")">Cửa hàng</a></li>
+                        <li class="breadcrumb-item active">@Html.DisplayFor(model => model.TenCH)</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--content-->
+            <div class="row clearfix">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#home_animation">Thông tin khách hàng</a></li>
+                                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#home_animation_1">Lịch sử giao dịch</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_1">Ghi chú</a></li>*@
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane animated flipInX active show" id="home_animation">
+                                    <div class="body">
+                                        <div class="row clearfix demo-icon-container">
+                                            <div class="well well-sm">
+                                                <h4>
+                                                    Thông tin cửa hàng
+                                                </h4>
+                                                <div class="col-sm-12">
+                                                    <h5>
+                                                        @Html.DisplayFor(model => model.TenCH)
+                                                    </h5>
+                                                    <small style="color: #999;display: block;font-size: 13px;">
+                                                        <cite>
+                                                            @Html.DisplayFor(model => model.DiachiCH)
+                                                            <i class="demo-google-material-icon"> <i class="material-icons" style="        font-size: initial">place</i> <span class="icon-name"></span></i>
+                                                        </cite>
+                                                    </small>
+                                                </div>
+                                                <div style="margin: 10px 0 0 0">
+                                                    <div class="col-sm-12">
+                                                        <div class="demo-google-material-icon"> <i class="material-icons">phone</i><span class="icon-name"><b>Điện thoại: </b>(+84) @Html.DisplayFor(model => model.DienthoaiCH)</span></div>
+                                                    </div>
+                                                    <div class="col-sm-12 ">
+                                                        <div class="demo-google-material-icon"> <i class="material-icons">description</i><span class="icon-name"><b>Miêu tả: </b> @Html.DisplayFor(model => model.MotaCH)</span></div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="demo-google-material-icon"> <i class="material-icons">star_border</i><span class="icon-name"><b>Đánh giá: </b>@Html.DisplayFor(model => model.DanhgiaCH)</span></div>
+                                                    </div>
+                                                    @*<div class="col-sm-12 ">
+                                                        <div class="demo-google-material-icon"> <i class="material-icons">phone</i><span class="icon-name"><b>Điện thoại: </b>  @Html.DisplayFor(model => model.MaKM)</span> </div>                                                    
+                                                    <div class="col-sm-12 ">*@
+                                                        <div class="icon-button-demo">
+                                                            <a class="btn btn-raised bg-light-blue waves-effect" href="@Url.Action("Edit","CuaHang",new { id = Model.MaCH })"> <i class="material-icons">border_color</i> Chỉnh sửa</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<div>
-    <h4>Cuahang</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenCH)
-        </dt>
+                    </div>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenCH)
-        </dd>
+            </div>
+        </div>
+    </div>
+    <!--/content-->
+</section>
+<style>
+    .well.well-sm {
+        padding: 9px;
+        border-radius: 3px;
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+        width: auto;
+        margin-left: 15px;
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiachiCH)
-        </dt>
+    h4 {
+        font-weight: normal;
+        text-decoration: underline;
+        padding: 0 6px;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.DiachiCH)
-        </dd>
+    h5 {
+        margin: auto
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DienthoaiCH)
-        </dt>
+    a.btn.btn-raised.bg-light-blue.waves-effect {
+        border-radius: 5px;
+        padding: 10px 13px 8px 10px;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.DienthoaiCH)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MotaCH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MotaCH)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DanhgiaCH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DanhgiaCH)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaDonHang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaDonHang)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaCH }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    .icon-button-demo {
+        margin-left: 180px;
+    }
+</style>

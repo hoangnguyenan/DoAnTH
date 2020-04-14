@@ -5,66 +5,114 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TinhTrang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoTienDaNap)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoTienDaTieu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayNapTien)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayTieuTien)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaViTien)
-        </th>
-        <th></th>
-    </tr>
+<title>Danh sách lịch sử giao dịch khách hàng</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Khách hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","KhachHang")">Khách hàng</a></li>
+                        <li class="breadcrumb-item">Lịch sử giao dịch khách hàng</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--content-->
+            <div class="row clearfix">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#home_animation">Lịch sử giao dịch</a></li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane animated flipInX active show" id="home_animation">
+                                    <div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã GD</th>
+                                                        <th>Mã ví tiền</th>
+                                                        <th>Mô tả</th>
+                                                        <th>Tình trạng</th>
+                                                        <th>Số tiền đã nạp</th>
+                                                        <th>Số tiền đã tiêu</th>
+                                                        <th>Ngày nạp</th>
+                                                        <th>Ngày tiêu</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã GD</th>
+                                                        <th>Mã ví tiền</th>
+                                                        <th>Mô tả</th>
+                                                        <th>Tình trạng</th>
+                                                        <th>Số tiền đã nạp</th>
+                                                        <th>Số tiền đã tiêu</th>
+                                                        <th>Ngày nạp</th>
+                                                        <th>Ngày tiêu</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @{int i = 1;}
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>@i</td>
+                                                            <td> @Html.DisplayFor(modelItem => item.MaGD)</td>
+                                                            <td> <a href="@Url.Action("Details","ViTien",new { id= item.MaViTien})">@item.MaViTien</a></td>
+                                                            <td>@Html.DisplayFor(modelItem => item.MoTa)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.TinhTrang)</td>
+                                                            <td><span class="badge bg-pink">@String.Format("{0:0,0}", item.SoTienDaNap)</span></td>
+                                                            <td><span class="badge bg-green">@String.Format("{0:0,0}", item.SoTienDaTieu)</span></td>
+                                                            <td>@(((DateTime)item.NgayNapTien).ToString("dd-MMM-yyyy"))</td>
+                                                            <td>@(((DateTime)item.NgayTieuTien).ToString("dd-MMM-yyyy"))</td>
+                                                        </tr>
+                                                        i++;
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoTa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TinhTrang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoTienDaNap)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoTienDaTieu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayNapTien)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayTieuTien)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaViTien)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaGD }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaGD }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaGD })
-        </td>
-    </tr>
-}
+                    </div>
+                </div>
 
-</table>
+            </div>
+        </div>
+    </div>
+    <!--/content-->
+</section>
+<!-- Jquery DataTable Plugin Js -->
+<script src="~/assets/js/buttons/libscripts.bundle.js"></script>
+<script src="~/assets/js/buttons/vendorscripts.bundle.js"></script>
+<script src="~/assets/js/buttons/datatablescripts.bundle.js"></script>
+<script src="~/assets/js/buttons/jquery-datatable.js"></script>
+
+<script type="text/javascript" charset="utf8">
+    $(document).ready(function () {
+        setTimeout(function () {
+            var listButton = $('#DataTables_Table_0_length').find('button');
+            listButton.each(function () {
+                $(this).remove();
+            });
+        }, 500);
+    });
+</script>

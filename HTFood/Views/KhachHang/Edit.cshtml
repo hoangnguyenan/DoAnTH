@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<link href="~/assets/css/create.css" rel="stylesheet" />
+<link href="~/assets/css/edit.css" rel="stylesheet" />
 
 <title>Sửa thông tin khách hàng</title>
 <section class="content">
@@ -28,107 +30,90 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-
                 <div class="row clearfix">
-                    <div class="col-lg-12">
+                    <div class="col-md-6  ">
                         <div class="card">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.MaKH)
-                            <div class="header">
-                                <ul class="header-dropdown m-r--5">
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li><a href="javascript:void(0);">Action</a></li>
-                                            <li><a href="javascript:void(0);">Another action</a></li>
-                                            <li><a href="javascript:void(0);">Something else</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="body">
-                                <h2 class="card-inside-title">Thay đổi thông tin khách hàng</h2>
-                                <div class="row clearfix">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.HoTenKH, new { htmlAttributes = new { @class = "form-control", placeholder = "Họ và tên" } })
-                                                @Html.ValidationMessageFor(model => model.HoTenKH, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="help-info">Họ và tên</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.TaiKhoanKH, new { htmlAttributes = new { @class = "form-control", placeholder = "Tài khoản" } })
-                                                @Html.ValidationMessageFor(model => model.TaiKhoanKH, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="help-info">Tài khoản</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @*@DateTime.Parse(Html.DisplayFor(model => model.NgaySinhKH,new { htmlAttributes = new { @class = "form-control", placeholder = "Ngày sinh" } }).ToString()).ToShortDateString()*@
-                                                @Html.EditorFor(model => model.NgaySinhKH, new { htmlAttributes = new { @class = "form-control", @Value = Model.NgaySinhKH.ToString("dd/MM/yyyy"), placeholder = "Ngày sinh" } })
-                                                @Html.ValidationMessageFor(model => model.NgaySinhKH, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="help-info">Ngày sinh (mm/dd/yyyy)</div>
-                                        </div>
-                                    </div>
+                            <div class="userbox">
+                                <div class="header">
+                                    <h2>Chỉnh sửa </h2>
+                                    <ul class="header-dropdown m-r--5">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="javascript:void(0);">Action</a></li>
+                                                <li><a href="javascript:void(0);">Another action</a></li>
+                                                <li><a href="javascript:void(0);">Something else</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.MatKhauKH, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.MatKhauKH, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="help-info">Mật khẩu</div>
+                                <div class="body">
+                                    <h2 class="card-inside-title">Nhập thông tin đơn hàng cần chỉnh sửa</h2>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Họ tên</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.HoTenKH, new { htmlAttributes = new { @class = "form-control", } })
+                                            @Html.ValidationMessageFor(model => model.HoTenKH, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.EmailKH, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.EmailKH, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="help-info">Email</div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Tài khoản</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.TaiKhoanKH, new { htmlAttributes = new { @class = "form-control", } })
+                                            @Html.ValidationMessageFor(model => model.TaiKhoanKH, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <input class="btn btn-raised btn-primary waves-effect" type="submit" value="Save"  />
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Mật khẩu</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.MatKhauKH, new { htmlAttributes = new { @class = "form-control", } })
+                                            @Html.ValidationMessageFor(model => model.MatKhauKH, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.DiaChiKH, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.DiaChiKH, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="help-info">Địa chỉ</div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Ngày sinh</label> @Html.DisplayFor(model => model.NgaySinhKH, new { htmlAttributes = new { @class = "form-control" } })<br>
+                                        <input type="date" value="" name="NgaySinhKH" placeholder="Ngày sinh" class="datetime" />
+                                        @Html.ValidationMessageFor(model => model.NgaySinhKH, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Email</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.EmailKH, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.EmailKH, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.DienThoaiKH, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.DienThoaiKH, "", new { @class = "text-danger" })
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Địa chỉ</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.DiaChiKH, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.DiaChiKH, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field">Điện thoại  </label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.DienThoaiKH, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.DienThoaiKH, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <div class="col-sm-12 ">
+                                            <div class="demo-google-material-icon">
+                                                <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Lưu" />
+                                                <a style="padding-left:15px" href="@Url.Action("Index","KhachHang")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
                                             </div>
-                                            <div class="help-info">Điện thoại</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--/content-->
                     </div>
                 </div>
             }
-            <!--/content-->
         </div>
+        <!--/content-->
     </div>
 </section>

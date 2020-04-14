@@ -20,7 +20,7 @@
                     <h2>Nhân viên giao hàng</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Nhân viên</li>
+                        <li class="breadcrumb-item active">Danh sách nhân viên</li>
                     </ul>
                 </div>
             </div>
@@ -30,10 +30,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <h2> Danh sách nhân viên giao hàng </h2>  <br>
-                            <h7>
-                                @Html.ActionLink("Thêm mới nhân viên", "Create")
-                            </h7>
+                            <h2> Danh sách nhân viên giao hàng </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
@@ -48,16 +45,21 @@
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <div>
+                                        <h7>
+                                            @Html.ActionLink("Thêm mới nhân viên", "Create")
+                                        </h7>
+                                    </div>
                                     <thead>
                                         <tr>
                                             <th>No.</th>
                                             <th>Họ tên</th>
                                             <th>Tài khoản</th>
-                                            <th>Email</th>
                                             <th>Điện thoại</th>
                                             <th>Giới tính</th>
                                             <th>Trạng thái</th>
                                             <th><i class="material-icons">pin_drop</i></th>
+                                            <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -65,11 +67,11 @@
                                             <th>No.</th>
                                             <th>Họ tên</th>
                                             <th>Tài khoản</th>
-                                            <th>Email</th>
                                             <th>Điện thoại</th>
                                             <th>Giới tính</th>
                                             <th>Trạng thái</th>
                                             <th><i class="material-icons">pin_drop</i></th>
+                                            <th>Thao tác</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -77,32 +79,33 @@
                                         @foreach (var item in Model)
                                         {
 
-                                            <tr>
-                                                <td>@i</td>
-                                                <td>
-                                                    @Html.ActionLink(item.HoTenNV, "Details", new { id = item.MaNV })
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.TaiKhoanNV)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.EmailNV)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.DienThoaiNV)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.GioiTinh)
-                                                </td>
-                                                <td>
-                                                    <span class="badge bg-green">
-                                                        @Html.DisplayFor(modelItem => item.TrangThaiNV)
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.ViTriHienTai)
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>
+                                                @Html.ActionLink(item.HoTenNV, "Details", new { id = item.MaNV })
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TaiKhoanNV)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DienThoaiNV)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.GioiTinh)
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-green">
+                                                    @Html.DisplayFor(modelItem => item.TrangThaiNV)
+                                                </span>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ViTriHienTai)
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Edit","NhanVienGiaoHang",new { id = item.MaNV })"><img src="~/images/edit.png" /></a> ||
+                                                <a href="@Url.Action("Delete","NhanVienGiaoHang",new { id = item.MaNV })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
+                                            </td>
+                                        </tr>
                                             i++;
                                         }
                                     </tbody>

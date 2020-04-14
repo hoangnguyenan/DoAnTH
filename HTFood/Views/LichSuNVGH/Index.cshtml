@@ -1,58 +1,133 @@
 ﻿@model IEnumerable<HTFood.Models.LichSuNVGH>
-
+@using HTFood.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MaNV)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaDonHang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TgGiao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TrangThaiNhanDon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TinhTrangGiaoHang)
-        </th>
-        <th></th>
-    </tr>
+<title>Danh sách lịch sử giao hàng </title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Nhân viên giao hàng</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","NhanVienGiaoHang")">Nhân viên giao hàng</a></li>
+                        <li class="breadcrumb-item">Lịch sử giao hàng</li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Header-->
+            <!--content-->
+            <div class="row clearfix">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#home_animation">Lịch sử giao hàng </a></li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane animated flipInX active show" id="home_animation">
+                                    <div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã lịch sử giao hàng</th>
+                                                        <th>Mã nhân viên</th>
+                                                        <th>Mã đơn hàng</th>
+                                                        <th>Thời gian giao hàng</th>
+                                                        <th>Trạng thái nhận đơn</th>
+                                                        <th>Tình trạng giao hàng</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã lịch sử giao hàng</th>
+                                                        <th>Mã nhân viên</th>
+                                                        <th>Mã đơn hàng</th>
+                                                        <th>Thời gian giao hàng</th>
+                                                        <th>Trạng thái nhận đơn</th>
+                                                        <th>Tình trạng giao hàng</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @{int i = 1;}
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>@i</td>
+                                                            <td> @Html.DisplayFor(modelItem => item.MaLS)</td>
+                                                            <td> <a href="@Url.Action("Details","NhanVienGiaoHang",new { id= item.MaNV})">@item.MaNV</a></td>
+                                                            <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.TgGiao) phút</td>
+                                                            @{ string status = item.TrangThaiNhanDon ? MessageContants.STATUS_BILL_SUCCESSFUL : MessageContants.STATUS_BILL_FAIL;}
+                                                            <td><span class="badge bg-pink">@status</span></td>
+                                                            
+                                                            @{
+                                                                string message = "";
+                                                                if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_SUCCESSFUL)
+                                                                {
+                                                                    message = MessageContants.STATUS_SHIP_SUCCESSFUL;
+                                                                }
+                                                                else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_IN_PROCCESING)
+                                                                {
+                                                                    message = MessageContants.STATUS_SHIP_IN_PROCCESING;
+                                                                }
+                                                                else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_FAIL)
+                                                                {
+                                                                    message = MessageContants.STATUS_SHIP_FAIL;
+                                                                }
+                                                                else if (item.TinhTrangGiaoHang == Constants.STATUS_SHIP_BOOM)
+                                                                {
+                                                                    message = MessageContants.STATUS_SHIP_BOOM;
+                                                                }
+                                                            }
+                                                            <td><span class="badge bg-green">@message</span></td>
+                                                        </tr>
+                                                        i++;
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaNV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaDonHang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TgGiao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrangThaiNhanDon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaLS }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaLS }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaLS })
-        </td>
-    </tr>
-}
+                    </div>
+                </div>
 
-</table>
+            </div>
+        </div>
+    </div>
+    <!--/content-->
+</section>
+<!-- Jquery DataTable Plugin Js -->
+<script src="~/assets/js/buttons/libscripts.bundle.js"></script>
+<script src="~/assets/js/buttons/vendorscripts.bundle.js"></script>
+<script src="~/assets/js/buttons/datatablescripts.bundle.js"></script>
+<script src="~/assets/js/buttons/jquery-datatable.js"></script>
+
+<script type="text/javascript" charset="utf8">
+    $(document).ready(function () {
+        setTimeout(function () {
+            var listButton = $('#DataTables_Table_0_length').find('button');
+            listButton.each(function () {
+                $(this).remove();
+            });
+        }, 500);
+    });
+</script>

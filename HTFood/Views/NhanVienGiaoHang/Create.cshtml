@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-@ViewBag.Detail;
+<link href="~/assets/css/create.css" rel="stylesheet" />
 <title>Thêm thông tin nhân viên giao hàng</title>
 <section class="content">
     <div class="container-fluid">
@@ -15,137 +15,110 @@
                     <h2>Thêm mới nhân viên giao hàng</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index","NhanVienGiaoHang")">TNhân viên giao hàng</a></li>
-
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","NhanVienGiaoHang")">Nhân viên giao hàng</a></li>
+                        <li class="breadcrumb-item active">Thêm mới nhân viên</li>
                     </ul>
 
                 </div>
             </div>
             <!--/Header-->
             <!--content-->
-            @using (Html.BeginForm())
+            @using (Html.BeginForm(new { @enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="row clearfix">
-                    <div class="col-lg-12">
+                    <div class="col-md-6">
                         <div class="card">
-                            <div class="header">
-                                <ul class="header-dropdown m-r--5">
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li><a href="javascript:void(0);">Action</a></li>
-                                            <li><a href="javascript:void(0);">Another action</a></li>
-                                            <li><a href="javascript:void(0);">Something else</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="body">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <h2 class="card-inside-title">Nhập thông tin nhân viên giao hàng mới</h2>
-                                <div class="row clearfix">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.HoTenNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Họ và tên" } })
-                                                @Html.ValidationMessageFor(model => model.HoTenNV, "", new { @class = "text-danger" })
-                                                <div class="help-info">Họ tên</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.TaiKhoanNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Tài khoản" } })
-                                                @Html.ValidationMessageFor(model => model.TaiKhoanNV, "", new { @class = "text-danger" })
-                                                <div class="help-info">Tài khoản</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.NgaySinhNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Ngày sinh" } })
-                                                @Html.ValidationMessageFor(model => model.NgaySinhNV, "", new { @class = "text-danger" })
-                                                <div class="help-info">Ngày sinh (mm/dd/yyyy)</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="userbox">
+                                <div class="header">
+                                    <h2>Thêm mới </h2>
+                                    <ul class="header-dropdown m-r--5">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="javascript:void(0);">Action</a></li>
+                                                <li><a href="javascript:void(0);">Another action</a></li>
+                                                <li><a href="javascript:void(0);">Something else</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
+                                <div class="body">
+                                    <h2 class="card-inside-title">Nhập thông tin nhân viên mới</h2>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="HoTenNV" placeholder="Họ tên nhân viên" class="text" size="30" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field" style="color: black;font-weight: bold">Ngày sinh</label><br>
+                                        <input type="date" value="" name="NgaySinhNV" class="datetime" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" placeholder="Tài khoản" name="TaiKhoanNV" class="text" size="30" />
+                                    </div>
+                                    <div id="email" class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" placeholder="Mật khẩu" name="MatKhauNV" class="text" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="EmailNV" placeholder="Email" class="text" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="DiaChiNV" placeholder="Địa chỉ" class="text" size="30" />
 
-                                <div class="row clearfix">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.MatKhauNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Mật khẩu" } })
-                                                @Html.ValidationMessageFor(model => model.MatKhauNV, "", new { @class = "text-danger" })
-                                                <div class="help-info">Mật khẩu</div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.EmailNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
-                                                @Html.ValidationMessageFor(model => model.EmailNV, "", new { @class = "text-danger" })
-                                                <div class="help-info">Email</div>
-                                            </div>
-                                        </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="DienThoaiNV" placeholder="Điện thoại" class="text" size="30" />
+
                                     </div>
-                                    @*<div class="col-sm-4">
-                                            <b class="card-inside-title">Avatar</b>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupFileAddon01">Tải lên</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                                           aria-describedby="inputGroupFileAddon01">
-                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                                </div>
-                                            </div>
-                                        </div>*@
-                                    <div class="col-sm-4">
-                                        <h2 class="card-inside-title">Giới tính</h2>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field" style="color: black;font-weight: bold">Giới tính</label><br>
                                         <div class="form-group">
                                             <div class="demo-radio-button">
-                                                <input name="group1" type="radio" id="radio_1" checked="">
-                                                <label for="radio_1"><span class="badge bg-light-blue">Nam</span></label>
-                                                <input name="group1" type="radio" id="radio_2">
-                                                <label for="radio_2"><span class="badge bg-pink">Nữ</span></label>
-
+                                                <input name="GioiTinh" type="radio" id="male" value="Nam" checked="">
+                                                <label for="male"><span class="badge bg-light-blue">Nam</span></label>
+                                                <input name="GioiTinh" type="radio" id="female" value="Nữ">
+                                                <label for="female"><span class="badge bg-pink">Nữ</span></label>
                                             </div>
                                         </div>
+                                    </div>                                    
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="TrangThaiNV" placeholder="Trạng thái" class="text" size="30" />
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.DiaChiNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Địa chỉ" } })
-                                                @Html.ValidationMessageFor(model => model.DiaChiNV, "", new { @class = "text-danger" })
-                                                <div class="help-info">Địa chỉ</div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="ViTriHienTai" placeholder="Vị trí hiện tại" class="text" size="30" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field" style="color: black;font-weight: bold">Điểm thưởng</label><br>
+                                        <input type="text" value="0" name="DiemThuong" placeholder="Điểm thưởng" class="text" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field" style="color: black;font-weight: bold">Độ ưu tiên</label><br>
+                                        <input type="text" value="0" name="DoUuTien" placeholder="Độ ưu tiên" class="text" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field" style="color: black;font-weight: bold">Đánh giá</label><br>
+                                        <input type="text" value="1" name="DanhGiaNVGH" placeholder="Đánh giá" class="text" size="30" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <div class="col-sm-12 ">
+                                            <div class="demo-google-material-icon">
+                                                <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Thêm mới" />
+                                                <a style="padding-left:15px" href="@Url.Action("Index","NhanVienGiaoHang")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                @Html.EditorFor(model => model.DienThoaiNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Số điện thoại" } })
-                                                @Html.ValidationMessageFor(model => model.DienThoaiNV, "", new { @class = "text-danger" })
-                                                <div class="help-info">Điện thoại</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <input class="btn btn-raised btn-primary waves-effect" type="submit" value="Create" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--/content-->
                     </div>
                 </div>
             }

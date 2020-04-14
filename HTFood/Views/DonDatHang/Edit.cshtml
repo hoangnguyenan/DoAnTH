@@ -5,7 +5,7 @@
 }
 
 <link href="~/assets/css/create.css" rel="stylesheet" />
-
+<link href="~/assets/css/edit.css" rel="stylesheet" />
 <title>Chỉnh sửa đơn đặt hàng</title>
 <section class="content">
     <div class="container-fluid">
@@ -96,7 +96,7 @@
                                             @Html.EditorFor(model => model.MaVT, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
                                             @Html.ValidationMessageFor(model => model.MaVT, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>                                    
+                                    </div>
                                     <div class="clearfix large_form">
                                         <div class="col-sm-12 ">
                                             <div class="demo-google-material-icon">
@@ -115,38 +115,3 @@
         </div>
     </div>
 </section>
-<style>
-    .userbox {
-        border-radius: 13px;
-        margin-left: 10px;
-    }
-
-    input.btn.btn-raised.bg-light-blue.waves-effect {
-        border-radius: 5px;
-    }
-
-    input.datetime {
-        margin: 15px 0px
-    }
-
-    div#input-text {
-        margin: 15px 0;
-    }
-
-    .col-sm-12 {
-        padding-left: 0px;
-    }
-
-    span.icon-name {
-        position: relative;
-        top: 8px;
-    }
-
-    label.label.icon-field {
-        color: black;
-        font-weight: bold
-    }
-    a.btn.btn-raised.bg-light-blue.waves-effect {
-        border-radius: 5px;
-    }
-</style>

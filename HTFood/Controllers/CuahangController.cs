@@ -109,7 +109,7 @@ namespace HTFood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaCH,TenCH,DiachiCH,DienthoaiCH,MotaCH,DanhgiaCH,MaDonHang")] Cuahang cuahangs)
+        public ActionResult Edit(Cuahang cuahangs)
         {
             HttpResponseMessage response = client.PutAsJsonAsync(url + @"cuahang/" + cuahangs.MaCH, cuahangs).Result;
             response.EnsureSuccessStatusCode();
