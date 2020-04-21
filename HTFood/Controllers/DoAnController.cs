@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -80,16 +81,43 @@ namespace HTFood.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(DoAn doAn)
+        public ActionResult Create(DoAn doAn, HttpPostedFileBase fileupload)
         {
-            HttpResponseMessage response = client.PostAsJsonAsync(url + @"doan/", doAn).Result;
-            response.EnsureSuccessStatusCode();
-            if (response.IsSuccessStatusCode)
+            if (fileupload == null)
             {
-                ViewBag.Detail = "Sucess";
+                ViewBag.Thongbao = "Vui lòng chọn ảnh";
+                return View();
             }
-            return RedirectToAction("Index");
+            //Them vao CSDL
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    var fileName = Path.GetFileName(fileupload.FileName);
+                    //Luu duong dan cua file
+                    var path = Path.Combine(Server.MapPath("~/images"), fileName);
+                    //Kiem tra hình anh ton tai chua?
+                    if (System.IO.File.Exists(path))
+                    {
+                        ViewBag.Thongbao = "Hình ảnh đã tồn tại";
+                        return View(doAn);
+                    }
+                    else
+                    {
+                        //Luu hinh anh vao duong dan
+                        fileupload.SaveAs(path);
+                    }
+                    doAn.AnhDA = fileName;
+                    //Luu vao CSDL
+                    db.DoAns.Add(doAn);
+                    db.SaveChanges();
+                    HttpResponseMessage response = client.PostAsJsonAsync(url + @"doan/", doAn).Result;
+                    response.EnsureSuccessStatusCode();
+                }
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: DoAn/Edit/5
@@ -108,18 +136,37 @@ namespace HTFood.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaDA,TenDA,DonGia,AnhDA,MoTa,NgayCapNhat,SoLuongTon,TrangThaiDA,DanhGiaDoAn,MaDM")] DoAn doAn)
+        public ActionResult Edit([Bind(Include = "MaDA,TenDA,DonGia,AnhDA,MoTa,NgayCapNhat,SoLuongTon,TrangThaiDA,DanhGiaDoAn,MaDM")] DoAn doAn, HttpPostedFileBase fileupload)
         {
+
+            if (fileupload != null)
+            {
+                var fileName = Path.GetFileName(fileupload.FileName);
+                //Luu duong dan cua file
+                var path = Path.Combine(Server.MapPath("~/images"), fileName);
+                if (System.IO.File.Exists(path))
+                {
+                    //Xoa hinh cu trong duong dan
+                    System.IO.File.Delete(path);
+                    //Luu hinh anh moi vao duong dan
+                    fileupload.SaveAs(path);
+                }
+                doAn.AnhDA = fileName;
+            }
+
+            db.SaveChanges();
+
             HttpResponseMessage response = client.PutAsJsonAsync(url + @"doan/" + doAn.MaDA, doAn).Result;
             response.EnsureSuccessStatusCode();
 
             return RedirectToAction("Index");
         }
-
         // GET: DoAn/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            //LOI: XOA DC NHUNG CHUA XOA IMAGES TRONG PROJECT
             HttpResponseMessage response = await client.DeleteAsync(url + @"doan/" + id);
             return RedirectToAction("Index", "DoAn");
         }

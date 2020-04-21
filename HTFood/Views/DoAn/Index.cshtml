@@ -99,7 +99,7 @@
                                                     @Html.DisplayFor(modelItem => item.TrangThaiDA)
                                                 </td>
                                                 <td>
-                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayCapNhat).ToString()).ToShortDateString()
+                                                    @(((DateTime)item.NgayCapNhat).ToString("dd-MMM-yyyy"))
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.DanhGiaDoAn)

@@ -1,9 +1,10 @@
 ﻿@model HTFood.Models.DoAn
-
+@using HTFood.Models
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 <link href="~/assets/css/details.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <title>Chi tiết món ăn</title>
@@ -32,7 +33,7 @@
                                     <div class="preview col-md-6">
 
                                         <div class="preview-pic tab-content">
-                                            <div class="tab-pane active" id="pic-1"><img src="@Html.DisplayFor(model => model.AnhDA)" /></div>
+                                            <div class="tab-pane active" id="pic-1"><img src="@Url.Content("~/images/"+  Model.AnhDA)" width="120" /></div>
                                             <div class="tab-pane" id="pic-2"></div>
                                             <div class="tab-pane" id="pic-3"></div>
                                             <div class="tab-pane" id="pic-4"></div>
@@ -55,7 +56,7 @@
                                         <p class="product-description">@Html.DisplayFor(model => model.MoTa).</p>
                                         <h4>Giá hiện tại: <span style="color:#ff9f1a">@Html.DisplayFor(model => model.DonGia) đ</span></h4>
                                         <p class="vote"><strong>91%</strong> người mua rất thích sản phẩm này! <strong>(87 votes)</strong></p>
-                                        <h4>Ngày cập nhật: <span style="color:#85ad00">@DateTime.Parse(Html.DisplayFor(model => model.NgayCapNhat).ToString()).ToShortDateString()</span></h4>
+                                        <h4>Ngày cập nhật: <span style="color:#85ad00">@(((DateTime)Model.NgayCapNhat).ToString("dd-MMM-yyyy"))</span></h4>
                                         <h4>Trạng thái hàng: <span style="color:#0076ad">@Html.DisplayFor(model => model.TrangThaiDA)</span></h4>
                                         <h4>Số lượng còn lại: <span style="color:red">@Html.DisplayFor(model => model.SoLuongTon)</span></h4>
                                         <div class="">
@@ -65,7 +66,7 @@
                                         </div>
 
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
@@ -84,11 +85,10 @@
         background-color: #f5f5f5;
         border: 1px solid #e3e3e3;
         width: auto;
-    }    
+    }
 
     a.btn.btn-raised.bg-light-blue.waves-effect {
         border-radius: 5px;
         padding: 10px 13px 8px 10px;
     }
-
 </style>

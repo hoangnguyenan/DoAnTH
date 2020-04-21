@@ -38,6 +38,9 @@ input.datetime {
 input.text {
     margin: 15px 0
 }
+div#input-text {
+    margin: 15px 0;
+}
 
 .col-sm-12 {
     padding-left: 0px;

@@ -17,7 +17,7 @@
                     <h2>Chỉnh sửa đồ ăn</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index","DoAn")">Đơn đặt hàng</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","DoAn")">Đồ ăn</a></li>
                         <li class="breadcrumb-item active">Chỉnh sửa đồ ăn</li>
                     </ul>
 
@@ -26,7 +26,7 @@
             <!--/Header-->
             <!--content-->
 
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Edit", "DoAn", FormMethod.Post, new { @enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="row clearfix">
@@ -65,8 +65,8 @@
                                         </div>
                                     </div>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field">Ngày cập nhật</label> @Html.DisplayFor(model => model.NgayCapNhat, new { htmlAttributes = new { @class = "form-control" } })<br>
-                                        <input type="date" value="" name="NgayCapNhat" class="datetime" />
+                                        <label class="label icon-field">Ngày cập nhật</label><br>
+                                        <input type="text" value="@Model.NgayCapNhat" name="NgayCapNhat" class="datetime" placeholder="mm/dd/yyyy" />
                                         @Html.ValidationMessageFor(model => model.NgayCapNhat, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="clearfix large_form">
@@ -77,17 +77,25 @@
                                         </div>
                                     </div>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field">Ảnh</label><br>
-                                        <div id="input-text">
-                                            @Html.EditorFor(model => model.AnhDA, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.AnhDA, "", new { @class = "text-danger" })
+                                        <label class="label icon-field">Ảnh</label> <c style="color:red; text-decoration:underline">@ViewBag.Thongbao</c><br>
+                                        <div class="input-group" style="margin: 15px 0px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01">Tải lên</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="hidden" name="AnhDA" value="@Model.AnhDA" />
+                                                <input type="file" value="" class="custom-file-input" id="inputGroupFile01" name="fileupload">
+                                                <label class="custom-file-label" for="inputGroupFile01">Chọn file</label>
+                                            </div>
+                                        </div>
+                                        <div class="img-post">
+                                            <img src="@Url.Content("~/images/"+ Model.AnhDA)" width="200" />
                                         </div>
                                     </div>
                                     <div class="clearfix large_form">
                                         <label class="label icon-field">Mô tả</label><br>
                                         <div id="input-text">
-                                            @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                                            <textarea name="Mota" type="text" class="text">@Model.MoTa</textarea>
                                         </div>
                                     </div>
                                     <div class="clearfix large_form">
@@ -129,3 +137,12 @@
         </div>
     </div>
 </section>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+</script>
