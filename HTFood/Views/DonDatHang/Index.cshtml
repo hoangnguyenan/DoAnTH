@@ -32,8 +32,9 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#home_animation_1">Tất cả đơn hàng</a></li>
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_1">Đang xử lý</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_2">Đã giao hàng</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_3">Đơn hàng bị hủy</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_2">Đang giao hàng</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_3">Đã giao hàng</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_4">Đơn hàng bị hủy</a></li>
                             </ul>
                         </div>
                         <div class="body">
@@ -78,13 +79,45 @@
                                                     @{int i = 1;}
                                                     @foreach (var item in Model)
                                                     {
+
+
+
                                                         <tr>
                                                             <td>@i</td>
                                                             <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
                                                             <td>
-                                                                <span class="badge bg-orange">
-                                                                    @Html.ActionLink(item.TinhTrangDonHang, "Details", new { id = item.MaDonHang, maKH = item.MaKH })
-                                                                </span>
+                                                                @{
+                                                                    string message = "";
+                                                                    if (int.Parse(item.TinhTrangDonHang) == Constants.STATUS_ORDER_CONFIRM)
+                                                                    {
+                                                                        message = MessageContants.STATUS_ORDER_CONFIRM;
+                                                                        <span class="badge bg-orange">
+                                                                            @Html.ActionLink(message, "Details", new { id = item.MaDonHang, maKH = item.MaKH }, new { @class = "text-color" })
+                                                                        </span>
+                                                                    }
+                                                                    else if (int.Parse(item.TinhTrangDonHang) == Constants.STATUS_ORDER_DELIVERY)
+                                                                    {
+                                                                        message = MessageContants.STATUS_ORDER_DELIVERY;
+                                                                        <span class="badge bg-blue">
+                                                                            @Html.ActionLink(message, "Details", new { id = item.MaDonHang, maKH = item.MaKH }, new { @class = "text-color" })
+                                                                        </span>
+                                                                    }
+                                                                    else if (int.Parse(item.TinhTrangDonHang) == Constants.STATUS_ORDER_DELIVERED)
+                                                                    {
+                                                                        message = MessageContants.STATUS_ORDER_DELIVERED;
+                                                                        <span class="badge bg-green">
+                                                                            @Html.ActionLink(message, "Details", new { id = item.MaDonHang, maKH = item.MaKH }, new { @class = "text-color" })
+                                                                        </span>
+                                                                    }
+                                                                    else if (int.Parse(item.TinhTrangDonHang) == Constants.STATUS_ORDER_BOOM)
+                                                                    {
+                                                                        message = MessageContants.STATUS_ORDER_BOOM;
+                                                                        <span class="badge bg-red" >
+                                                                            @Html.ActionLink(message, "Details", new { id = item.MaDonHang, maKH = item.MaKH }, new { @class = "text-color" })
+                                                                        </span>
+                                                                    }
+                                                                }
+
                                                             </td>
                                                             <td>
                                                                 @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayDat).ToString())
@@ -93,7 +126,7 @@
                                                                 @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayGiao).ToString())
                                                             </td>
                                                             <td>
-                                                                @Html.DisplayFor(modelItem => item.TgGiao)
+                                                                @Html.DisplayFor(modelItem => item.TgGiao) phút
                                                             </td>
                                                             <td>
                                                                 @Html.DisplayFor(modelItem => item.MaKH)
@@ -154,20 +187,17 @@
                                                     @{i = 1;}
                                                     @foreach (var item in Model)
                                                     {
-                                                        @*@{
-                                                            string message = "";
-                                                            message = MessageContants.STATUS_ORDER_CONFIRM;*@
+                                                        string message = "";
+                                                        message = MessageContants.STATUS_ORDER_CONFIRM;
 
-
-                                                        if (item.TinhTrangDonHang == "1")
+                                                        if (int.Parse(item.TinhTrangDonHang) == Constants.STATUS_ORDER_CONFIRM)
                                                         {
-
                                                             <tr>
                                                                 <td>@i</td>
                                                                 <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
                                                                 <td>
                                                                     <span class="badge bg-orange">
-                                                                        @Html.ActionLink(item.TinhTrangDonHang, "Details", new { id = item.MaDonHang, maKH = item.MaKH })
+                                                                       <c class="message"> @Html.ActionLink(@message, "Details", new { id = item.MaDonHang, maKH = item.MaKH},new { @class ="text-color"})</c>
                                                                     </span>
                                                                 </td>
                                                                 <td>
@@ -177,7 +207,7 @@
                                                                     @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayGiao).ToString())
                                                                 </td>
                                                                 <td>
-                                                                    @Html.DisplayFor(modelItem => item.TgGiao)
+                                                                    @Html.DisplayFor(modelItem => item.TgGiao) phút
                                                                 </td>
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.MaKH)
@@ -189,8 +219,8 @@
                                                                     @Html.DisplayFor(modelItem => item.MaVT)
                                                                 </td>
                                                                 <td>
-                                                                    <a href="@Url.Action("Edit","DonDatHang",new { id = item.MaDonHang })"><img src="~/images/edit.png" /></a> ||
-                                                                    <a href="@Url.Action("Delete","DonDatHang",new { id = item.MaDonHang })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
+                                                                    <a href="@Url.Action("Edit", "DonDatHang", new { id = item.MaDonHang })"><img src="~/images/edit.png" /></a> ||
+                                                                    <a href="@Url.Action("Delete", "DonDatHang", new { id = item.MaDonHang })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
                                                                 </td>
                                                             </tr>
                                                             i++;
@@ -237,20 +267,17 @@
                                                     @{i = 1;}
                                                     @foreach (var item in Model)
                                                     {
-                                                        @*@{
-                                                            string message = "";
-                                                            message = MessageContants.STATUS_ORDER_CONFIRM;*@
+                                                        string message = "";
+                                                        message = MessageContants.STATUS_ORDER_DELIVERY;
 
-
-                                                        if (item.TinhTrangDonHang == "2")
+                                                        if (int.Parse(item.TinhTrangDonHang) == Constants.STATUS_ORDER_DELIVERY)
                                                         {
-
                                                             <tr>
                                                                 <td>@i</td>
                                                                 <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
                                                                 <td>
-                                                                    <span class="badge bg-orange">
-                                                                        @Html.ActionLink(item.TinhTrangDonHang, "Details", new { id = item.MaDonHang, maKH = item.MaKH })
+                                                                    <span class="badge bg-blue">
+                                                                        @Html.ActionLink(message, "Details", new { id = item.MaDonHang, maKH = item.MaKH }, new { @class ="text-color"} )
                                                                     </span>
                                                                 </td>
                                                                 <td>
@@ -320,20 +347,17 @@
                                                     @{i = 1;}
                                                     @foreach (var item in Model)
                                                     {
-                                                        @*@{
-                                                            string message = "";
-                                                            message = MessageContants.STATUS_ORDER_CONFIRM;*@
+                                                        string message = "";
+                                                        message = MessageContants.STATUS_ORDER_DELIVERED;
 
-
-                                                        if (item.TinhTrangDonHang == "3")
+                                                        if (int.Parse(item.TinhTrangDonHang) == Constants.STATUS_ORDER_DELIVERED)
                                                         {
-
                                                             <tr>
                                                                 <td>@i</td>
                                                                 <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
                                                                 <td>
-                                                                    <span class="badge bg-orange">
-                                                                        @Html.ActionLink(item.TinhTrangDonHang, "Details", new { id = item.MaDonHang, maKH = item.MaKH })
+                                                                    <span class="badge bg-green">
+                                                                        @Html.ActionLink(@message, "Details", new { id = item.MaDonHang, maKH = item.MaKH },new { @class ="text-color"})
                                                                     </span>
                                                                 </td>
                                                                 <td>
@@ -343,7 +367,88 @@
                                                                     @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayGiao).ToString())
                                                                 </td>
                                                                 <td>
-                                                                    @Html.DisplayFor(modelItem => item.TgGiao)
+                                                                    @Html.DisplayFor(modelItem => item.TgGiao) phút
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MaKH)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MaNV)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MaVT)
+                                                                </td>
+                                                                <td>
+                                                                    <a href="@Url.Action("Edit","DonDatHang",new { id = item.MaDonHang })"><img src="~/images/edit.png" /></a> ||
+                                                                    <a href="@Url.Action("Delete","DonDatHang",new { id = item.MaDonHang })" onclick="return confirm('Bạn có chắc bạn muốn xóa mục này ?');" )><img src="~/images/trash.png" /></a>
+                                                                </td>
+                                                            </tr>
+                                                            i++;
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_4">
+                                    <div class="body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã đơn</th>
+                                                        <th>Tình trạng đơn</th>
+                                                        <th>Ngày đặt</th>
+                                                        <th>Ngày giao</th>
+                                                        <th>Tg giao</th>
+                                                        <th>Mã khách hàng </th>
+                                                        <th>Mã nhân viên</th>
+                                                        <th>Mã vị trí</th>
+                                                        <th>Thao tác</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã đơn</th>
+                                                        <th>Tình trạng đơn</th>
+                                                        <th>Ngày đặt</th>
+                                                        <th>Ngày giao</th>
+                                                        <th>Tg giao</th>
+                                                        <th>Mã khách hàng </th>
+                                                        <th>Mã nhân viên</th>
+                                                        <th>Mã vị trí</th>
+                                                        <th>Thao tác</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @{i = 1;}
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        string message = "";
+                                                        message = MessageContants.STATUS_ORDER_BOOM;
+
+                                                        if (int.Parse(item.TinhTrangDonHang) == Constants.STATUS_ORDER_BOOM)
+                                                        {
+                                                            <tr>
+                                                                <td>@i</td>
+                                                                <td> @Html.DisplayFor(modelItem => item.MaDonHang)</td>
+                                                                <td>
+                                                                    <span class="badge bg-red">
+                                                                        <c style="        color: black">@Html.ActionLink(@message, "Details", new { StyleBundle = "", id = item.MaDonHang, maKH = item.MaKH },new { @class ="text-color"} )</c>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayDat).ToString())
+                                                                </td>
+                                                                <td>
+                                                                    @DateTime.Parse(Html.DisplayFor(modelItem => item.NgayGiao).ToString())
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.TgGiao) phút
                                                                 </td>
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.MaKH)
@@ -386,18 +491,15 @@
 <script type="text/javascript" charset="utf8">
     $(document).ready(function () {
         setTimeout(function () {
-            var listButton = $('#DataTables_Table_0_length').find('button');
-            listButton.each(function () {
-                $(this).remove();
-            });
-        }, 500);
-    });
-    $(document).ready(function () {
-        setTimeout(function () {
-            var listButton = $('#DataTables_Table_1_length').find('button');
+            var listButton = $('.dataTables_length').find('button');
             listButton.each(function () {
                 $(this).remove();
             });
         }, 500);
     });
 </script>
+<style>
+    .text-color {
+        color: whitesmoke;
+    }
+</style>

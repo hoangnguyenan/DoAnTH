@@ -30,7 +30,7 @@ namespace HTFood.Controllers
         private dbHutechfoodContext db = new dbHutechfoodContext();
 
         // GET: LichSuNVGH
-        public async Task<ActionResult> Index(int? page)
+        public async Task<ActionResult> Index()
         {
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"lichsunvgh/");
             List<LichSuNVGH> ls = getAllLichSuGD(responseMessage);

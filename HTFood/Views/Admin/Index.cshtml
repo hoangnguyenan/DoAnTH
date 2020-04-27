@@ -2,8 +2,16 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
-    <title>Trang quản trị-HutechFood</title>
+
+
+<script src="~/assets/js/chartjs/jquery.min.js"></script>
+<script src="~/assets/js/chartjs/Chart.bundle.min.js"></script>
+<script src="~/assets/js/chartjs/Chart.min.js"></script>
+<link href="~/assets/js/chartjs/Chart.min.css" rel="stylesheet" />
+
+<title>Trang quản trị-HutechFood</title>
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
@@ -20,20 +28,19 @@
             <!--/header-->
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="card widget-stat">
+                    <div class="card widget-stat" style="border:double">
                         <div class="body">
                             <div class="media">
                                 <div class="media-icon bg-cyan">
-                                    <i class="zmdi zmdi-shopping-basket zmdi-hc-2x"></i>
+                                    <a href="@Url.Action("Index","DonDatHang")" style="color:#fff"><i class="zmdi zmdi-shopping-basket zmdi-hc-2x"></i></a>
                                 </div>
                                 <div class="media-text">
-                                    <span class="title">Đơn đặt hàng</span>
-                                    <span class="value">1,305</span>
+                                    <span class="title">Tổng đơn hàng</span>
+                                    <span class="value">@ViewBag.CountOrder</span>
                                 </div>
                             </div>
                             <p class="media-footer text-success">
                                 <i class="zmdi zmdi-trending-up"></i> 13%
-                                
                             </p>
                         </div>
                     </div>
@@ -43,16 +50,16 @@
                         <div class="body">
                             <div class="media">
                                 <div class="media-icon bg-amber">
-                                    <i class="zmdi zmdi-account-o zmdi-hc-2x"></i>
+                                    <a href="@Url.Action("Index","KhachHang")" style="color:#fff"> <i class="zmdi zmdi-account-o zmdi-hc-2x"></i></a>
                                 </div>
                                 <div class="media-text">
                                     <span class="title">Khách hàng</span>
-                                    <span class="value">2,105</span>
+                                    <span class="value">@ViewBag.CountCustomer</span>
                                 </div>
                             </div>
                             <p class="media-footer text-success">
                                 <i class="zmdi zmdi-trending-up"></i> 18%
-                              
+
                             </p>
                         </div>
                     </div>
@@ -62,16 +69,95 @@
                         <div class="body">
                             <div class="media">
                                 <div class="media-icon bg-blue">
-                                    <i class="zmdi zmdi-label zmdi-hc-2x"></i>
+                                    <a href="@Url.Action("Index","NhanVienGiaoHang")" style="color:#fff"><i class="zmdi zmdi-local-shipping zmdi-hc-2x"></i></a>
                                 </div>
                                 <div class="media-text">
-                                    <span class="title">View</span>
-                                    <span class="value">4,054</span>
+                                    <span class="title">Nhân viên giao hàng</span>
+                                    <span class="value">@ViewBag.CountShipper</span>
                                 </div>
                             </div>
                             <p class="media-footer text-danger">
                                 <i class="zmdi zmdi-trending-down"></i> 12%
-                                
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="card widget-stat" style="border:double">
+                        <div class="body">
+                            <div class="media">
+                                <div class="media-icon bg-green">
+                                    <i class="zmdi zmdi-money zmdi-hc-2x"></i>
+                                </div>
+                                <div class="media-text">
+                                    <span class="title">Tổng doanh thu</span>
+                                    <span class="value">@String.Format("{0:0,0}", ViewBag.revenue)đ</span>
+                                </div>
+                            </div>
+                            <p class="media-footer text-success">
+                                <i class="zmdi zmdi-trending-up"></i> 21%
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="card widget-stat">
+                        <div class="body">
+                            <div class="media">
+                                <div class="media-icon bg-cyan">
+                                    <a href="@Url.Action("Index","CuaHang")" style="color:#fff"><i class="zmdi zmdi-store zmdi-hc-2x"></i></a>
+                                </div>
+                                <div class="media-text">
+                                    <span class="title">Cửa hàng</span>
+                                    <span class="value">@ViewBag.CountStore</span>
+                                </div>
+                            </div>
+                            <p class="media-footer text-success">
+                                <i class="zmdi zmdi-trending-up"></i> 13%
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="card widget-stat">
+                        <div class="body">
+                            <div class="media">
+                                <div class="media-icon bg-amber">
+                                    <a href="@Url.Action("Index","DoAn")" style="color:#fff"><i class="zmdi zmdi-local-dining zmdi-hc-2x"></i></a>
+                                </div>
+                                <div class="media-text">
+                                    <span class="title">Đồ ăn</span>
+                                    <span class="value">@ViewBag.CountFood</span>
+                                </div>
+                            </div>
+                            <p class="media-footer text-success">
+                                <i class="zmdi zmdi-trending-up"></i> 18%
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="card widget-stat">
+                        <div class="body">
+                            <div class="media">
+                                <div class="media-icon bg-blue">
+                                    <a href="@Url.Action("Index","DanhMuc")" style="color:#fff"><i class="zmdi zmdi-menu zmdi-hc-2x"></i></a>
+                                </div>
+                                <div class="media-text">
+                                    <span class="title">Danh mục</span>
+                                    <span class="value">@ViewBag.CountMenu</span>
+                                </div>
+                            </div>
+                            <p class="media-footer text-danger">
+                                <i class="zmdi zmdi-trending-down"></i> 12%
+
                             </p>
                         </div>
                     </div>
@@ -81,17 +167,59 @@
                         <div class="body">
                             <div class="media">
                                 <div class="media-icon bg-green">
-                                    <i class="zmdi zmdi-money zmdi-hc-2x"></i>
+                                    <a href="@Url.Action("Index","ViTriGiaoHang")" style="color:#fff"><i class="zmdi zmdi-nature-people zmdi-hc-2x"></i></a>
                                 </div>
                                 <div class="media-text">
-                                    <span class="title">MN</span>
-                                    <span class="value">$63.23M</span>
+                                    <span class="title">Vị trí giao hàng</span>
+                                    <span class="value">@ViewBag.CountPosition</span>
                                 </div>
                             </div>
                             <p class="media-footer text-success">
                                 <i class="zmdi zmdi-trending-up"></i> 21%
-                               
+
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-12 col-md-4">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Biểu đồ hình tròn</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <canvas id="doughnut-chart" width="300" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-8 ">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Biểu đồ hình cột</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <canvas id="line-chart" width="700" height="600"></canvas>
                         </div>
                     </div>
                 </div>
@@ -99,3 +227,96 @@
         </div>
     </div>
 </section>
+<script src="~/assets/js/chartjs/loader.js"></script>
+<script>
+    new Chart(document.getElementById("doughnut-chart").getContext("2d"), {
+        type: 'doughnut',
+        data: {
+            labels: ['Đã xác nhận','Đang giao hàng','Shipper đã giao hàng','Boom hàng'],
+            datasets: [{
+                data: [@ViewBag.DataChart],
+                backgroundColor: [
+                    'rgba(255, 159, 64)',
+                    "rgb(54, 162, 235)",
+                    "rgb(162, 194, 58)",
+                    'rgba(255, 0, 0,0.8)'
+                ],
+                borderWidth: 2,
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Biểu đồ hiển thị chi tiết đơn đặt hàng',
+            },
+        },
+
+    });
+    //Line-chart
+    new Chart(document.getElementById("line-chart").getContext("2d"), {
+        type: 'bar',
+        data: {
+            labels: ['Đã xác nhận','Đang giao hàng','Shipper đã giao hàng','Boom hàng'],
+            datasets: [
+                {
+                    label: "Đã xác nhận",
+                    data: [@ViewBag.DataChart],
+                    backgroundColor: [
+                        "rgba(255, 159, 64)",
+                        "rgb(54, 162, 235)",
+                        "rgb(162, 194, 58)",
+                        "rgba(255, 0, 0)"
+                    ],
+                    borderWidth: 2,
+                },
+                {
+                    label: "Đang giao hàng",
+                    backgroundColor: [
+                        "rgb(54, 162, 235)",
+                    ],
+                },
+                {
+                    label: "Shipper đã giao hàng",
+                    backgroundColor: [
+                       "rgb(162, 194, 58)",
+                    ],
+                },
+                {
+                    label: "Boom hàng",
+                    backgroundColor: [
+                       "rgba(255, 0, 0)"
+                    ],
+                },
+                ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Biểu đồ hiển thị chi tiết đơn đặt hàng',
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
+        },
+    });
+
+</script>
+
+<style>
+    .col-lg-3.col-md-3.col-sm-6 {
+        margin-top: 20px;
+        margin-bottom: -10px;
+    }
+
+    .media {
+        margin-top: 20px
+    }
+</style>
+

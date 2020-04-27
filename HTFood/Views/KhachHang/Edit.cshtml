@@ -73,8 +73,8 @@
                                         </div>
                                     </div>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field">Ngày sinh</label> @Html.DisplayFor(model => model.NgaySinhKH, new { htmlAttributes = new { @class = "form-control" } })<br>
-                                        <input type="date" value="" name="NgaySinhKH" placeholder="Ngày sinh" class="datetime" />
+                                        <label class="label icon-field">Ngày sinh (mm/dd/yyyy)</label><br>
+                                        <input type="text" value="@Model.NgaySinhKH" name="NgaySinhKH" placeholder="Ngày sinh" class="datetime" />
                                         @Html.ValidationMessageFor(model => model.NgaySinhKH, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="clearfix large_form">

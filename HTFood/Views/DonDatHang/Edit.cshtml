@@ -57,15 +57,13 @@
                                         </div>
                                     </div>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field">Ngày đặt</label><br>
-                                        <input type="datetime-local" value="" name="NgayDat" placeholder="Ngày đặt" class="datetime" />
-                                        @Html.DisplayFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control" } })
+                                        <label class="label icon-field">Ngày đặt (mm/dd/yyyy)</label><br>
+                                        <input type="text" value="@Model.NgayDat" name="NgayDat" placeholder="Ngày đặt" class="datetime" />
                                         @Html.ValidationMessageFor(model => model.NgayDat, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field">Ngày giao</label><br>
-                                        <input type="datetime-local" value="" name="NgayGiao" placeholder="Ngày đặt" class="datetime" />
-                                        @Html.DisplayFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control" } })
+                                        <label class="label icon-field">Ngày giao (mm/dd/yyyy)</label><br>
+                                        <input type="text" value="@Model.NgayGiao" name="NgayGiao" placeholder="Ngày đặt" class="datetime" />
                                         @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="clearfix large_form">

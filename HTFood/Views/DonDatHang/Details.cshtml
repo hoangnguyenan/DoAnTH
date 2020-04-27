@@ -69,7 +69,33 @@
                             </div>
                             <div class="col-md-4 col-sm-4 text-sm-right">
                                 <p><strong>Ngày đặt: </strong>@(((DateTime)ViewBag.ngaydat).ToString("dd-MMM-yyyy HH:mm"))</p>
-                                <p class="m-t-10"><strong>Trạng thái: </strong> <span class="badge bg-orange">@ViewBag.tinhtrang</span></p>
+                                @{
+                                    string message = "";
+                                    if (int.Parse(ViewBag.tinhtrang) == Constants.STATUS_ORDER_CONFIRM)
+                                    {
+                                        message = MessageContants.STATUS_ORDER_CONFIRM;
+                                        <p class="m-t-10"><strong>Trạng thái: </strong> <span class="badge bg-orange">@message</span></p>
+
+                                    }
+                                    else if (int.Parse(ViewBag.tinhtrang) == Constants.STATUS_ORDER_DELIVERY)
+                                    {
+                                        message = MessageContants.STATUS_ORDER_DELIVERY;
+                                        <p class="m-t-10"><strong>Trạng thái: </strong> <span class="badge bg-blue">@message</span></p>
+
+                                    }
+                                    else if (int.Parse(ViewBag.tinhtrang) == Constants.STATUS_ORDER_DELIVERED)
+                                    {
+                                        message = MessageContants.STATUS_ORDER_DELIVERED;
+                                        <p class="m-t-10"><strong>Trạng thái: </strong> <span class="badge bg-green">@message</span></p>
+
+                                    }
+                                    else if (int.Parse(ViewBag.tinhtrang) == Constants.STATUS_ORDER_BOOM)
+                                    {
+                                        message = MessageContants.STATUS_ORDER_BOOM;
+                                        <p class="m-t-10"><strong>Trạng thái: </strong> <span class="badge bg-red">@message</span></p>
+
+                                    }
+                                }
 
                             </div>
                         </div>

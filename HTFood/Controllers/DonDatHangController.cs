@@ -100,7 +100,7 @@ namespace HTFood.Controllers
 
                 // Get name user
                 responseMessage = await client.GetAsync(url + @"khachhang/");
-                List<KhachHang> list = KhachHangController.getAllCustomerAsync(responseMessage);
+                List<KhachHang> list = KhachHangController.getAllCustomer(responseMessage);
                 KhachHang khachHang = list.Where(n=>n.MaKH == MaKH).SingleOrDefault();
                 ViewBag.name = khachHang.HoTenKH;
                 ViewBag.id = khachHang.MaKH;
@@ -140,7 +140,6 @@ namespace HTFood.Controllers
             }
             return total;
         }
-
         // GET: DonDatHang/Create
         [HttpGet]
         public ActionResult Create()

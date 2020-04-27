@@ -172,14 +172,6 @@ namespace HTFood.Models
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public int SoDu { get; set; }
     }
-    public class DSYeuThich
-    {
-        [Key]
-        public int MaYT { get; set; }
-        public string TenYT { get; set; }
-        public int MaKH { get; set; }
-        public int MaCH { get; set; }
-    }
 
     public class dbHutechfoodContext : DbContext
     {   

@@ -33,7 +33,7 @@ namespace HTFood.Controllers
         public async Task<ActionResult> Index(int? page)
         {
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"khachhang/");
-            List<KhachHang> khachHangs = getAllCustomerAsync(responseMessage);
+            List<KhachHang> khachHangs = getAllCustomer(responseMessage);
             if (khachHangs != null)
             {
                 ViewBag.accept = false;
@@ -43,7 +43,7 @@ namespace HTFood.Controllers
             return View("Error");
         }
 
-        public static List<KhachHang> getAllCustomerAsync(HttpResponseMessage responseMessage)
+        public static List<KhachHang> getAllCustomer(HttpResponseMessage responseMessage)
         {
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -81,7 +81,6 @@ namespace HTFood.Controllers
                 ViewBag.vitien = viTiens;
                 // Get all data from the LichSuGD table
                 responseMessage = await client.GetAsync(url + @"lichsugd/");
-                // Init list receive data
                 List<LichSuGD> lichSuGDs = new List<LichSuGD>();
                 foreach (ViTien vt in viTiens)
                 {
