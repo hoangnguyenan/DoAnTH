@@ -68,10 +68,7 @@ namespace HTFood.Controllers
         }
         public ActionResult LogOut()
         {
-            if (Session["Taikhoanadmin"] == null)
-            {
-                Session.Clear();
-            }
+            Session.Clear();
             Response.Redirect(Url.Action("SignIn"));
             return View("SignIn");
         }
