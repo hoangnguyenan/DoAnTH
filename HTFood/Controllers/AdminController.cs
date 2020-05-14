@@ -24,9 +24,80 @@ namespace HTFood.Controllers
         }
         private dbHutechfoodContext db = new dbHutechfoodContext();
 
+        [HttpGet]
+        public ActionResult SignIn()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SignIn(FormCollection collection)
+        {
+
+            var user = collection["UserAdmin"];
+            var pass = collection["PassAdmin"];
+            if (String.IsNullOrEmpty(user))
+            {
+                ViewData["Loi1"] = "Phải nhập tên đăng nhập";
+            }
+            else if (String.IsNullOrEmpty(pass))
+            {
+                ViewData["Loi2"] = "Phải nhập mật khẩu";
+            }
+            else
+            {
+                HttpResponseMessage response = client.GetAsync(url + @"admin/").Result;
+                Admin ad = getAllAdmin(response).Where(n => n.UserAdmin.CompareTo( user) == 0 && n.PassAdmin.CompareTo(pass) == 0).SingleOrDefault();
+                //Admin admins = ad.FirstOrDefault();
+                //admins = db.Admins.Where(n => n.UserAdmin == user && n.PassAdmin == pass).SingleOrDefault();
+               
+                if (ad != null || ad.ToString() == "")
+                {
+                    Session["Taikhoanadmin"] = ad;
+                    return RedirectToAction("Index", "Admin");
+                }
+                else
+                    ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
+            }
+            //if (ModelState.IsValid)
+            //{
+            //    db.Admins.Add(admins);
+            //    HttpResponseMessage response = client.PostAsJsonAsync(url + @"admin/", admins).Result;   
+
+
+            return View();
+        }
+        public ActionResult LogOut()
+        {
+            if (Session["Taikhoanadmin"] == null)
+            {
+                Session.Clear();
+            }
+            Response.Redirect(Url.Action("SignIn"));
+            return View("SignIn");
+        }
+        public static List<Admin> getAllAdmin(HttpResponseMessage responseMessage)
+        {
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+                List<Admin> ad = JsonConvert.DeserializeObject<List<Admin>>(responseData, settings);
+                return ad;
+            }
+            return null;
+        }
         // GET: Admin
         public async Task<ActionResult> Index()
         {
+            ViewBag.accept = false;
+            if (Session["Taikhoanadmin"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"dondathang/");
             List<DonDatHang> list = DonDatHangController.getAllOrder(responseMessage);
             ViewBag.CountOrder = list.Count;

@@ -7,7 +7,7 @@ namespace HTFood.Models
 {
     public class Constants
     {
-        public static string url = "http://localhost/hutechfoodserver/api/";
+        public static string url = "http://localhost:50205/api/";
         public static int timeShiper = 5;
 
         // Status shipper
@@ -20,5 +20,7 @@ namespace HTFood.Models
         public static int STATUS_ORDER_DELIVERY = 2;
         public static int STATUS_ORDER_DELIVERED = 3;
         public static int STATUS_ORDER_BOOM = 4;
+
+        
     }
 }

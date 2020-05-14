@@ -172,7 +172,22 @@ namespace HTFood.Models
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public int SoDu { get; set; }
     }
-
+    public class Admin
+    {
+        [Key]
+        public int Id { get; set; }
+        public string UserAdmin { get; set; }
+        public string PassAdmin { get; set; }
+        public string HotenAdmin { get; set; }
+        public string EmailAdmin { get; set; }
+    }
+    public class ChucVu
+    {
+        [Key]
+        public int Id { get; set; }
+        public string TenCV { get; set; }
+        public int Quyen { get; set; }
+    }
     public class dbHutechfoodContext : DbContext
     {   
         public DbSet<KhachHang> KhachHangs { get; set; }
@@ -200,5 +215,7 @@ namespace HTFood.Models
         public DbSet<ViTienCuaHang> ViTienCuaHangs { get; set; }
 
         public DbSet<Khuyenmai> Khuyenmais { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<ChucVu> ChucVus { get; set; }
     }
 }

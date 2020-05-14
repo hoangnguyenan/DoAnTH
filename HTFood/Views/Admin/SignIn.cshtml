@@ -1,0 +1,106 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from thememakker.com/templates/admincc/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Sep 2018 06:43:26 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Đăng nhập</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="~/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <link rel="stylesheet" href="~/assets/css/authentication.css">
+    <link rel="stylesheet" href="~/assets/css/all-themes.css" />
+</head>
+
+<body class="theme-red">
+    <div class="authentication">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="l-detail">
+                        <h5>Welcome</h5>
+                        <h1>Admin<span>CC</span></h1>
+                        <h3>Sign in to start your session</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <ul class="list-unstyled l-social">
+                            <li><a href="#"><i class="zmdi zmdi-facebook-box"></i></a></li>
+                            <li><a href="#"><i class="zmdi zmdi-linkedin-box"></i></a></li>
+                            <li><a href="#"><i class="zmdi zmdi-pinterest-box"></i></a></li>
+                            <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
+                            <li><a href="#"><i class="zmdi zmdi-instagram"></i></a></li>
+                        </ul>
+                        <ul class="list-unstyled l-menu">
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="card">
+                        <h4 class="l-login">Login</h4>
+                        @using (Html.BeginForm("SignIn", "Admin", FormMethod.Post))
+                        {
+                            @*@Html.AntiForgeryToken()*@
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="UserAdmin">
+                                    <label class="form-label">Username</label>
+                                </div>
+                                @ViewData["Loi1"]
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="password" class="form-control" name="PassAdmin">
+                                    <label class="form-label">Password</label>
+                                </div>
+                                @ViewData["Loi2"]
+                            </div>
+                            <div>
+                                <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-cyan">
+                                <label for="rememberme">Remember Me</label>
+                            </div>
+                            <a href="index-2.html" class="btn btn-raised waves-effect bg-red">SIGN IN</a>
+                            <div class="container-login100-form-btn">
+                                <button class="login100-form-btn">
+                                    Sign in
+                                </button>
+                            </div>
+                            <a href="sign-up.html" class="btn btn-raised waves-effect">SIGN UP</a>
+                            <div class="text-left">
+                                <a href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    @if (ViewBag.accept == null)
+    {
+        <script src="~/assets/bundles/libscripts.bundle.js"></script>
+    }
+    <script src="~/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js -->
+
+    <script src="~/assets/bundles/mainscripts.bundle.js"></script><!-- Custom Js -->
+</body>
+
+<!-- Mirrored from thememakker.com/templates/admincc/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Sep 2018 06:43:26 GMT -->
+</html>
+<style>
+
+    .col-lg-8.col-md-12.col-sm-12 {
+        background-image: url('../../images/food.jpg');
+    }
+</style>
