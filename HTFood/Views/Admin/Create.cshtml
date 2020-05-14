@@ -1,0 +1,95 @@
+﻿@model HTFood.Models.Admin
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/assets/css/create.css" rel="stylesheet" />
+<title>Thêm mới quản trị viên</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <!--Header-->
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7">
+                    <h2>Thêm mới quản trị viên</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Khách hàng</a></li>
+                        <li class="breadcrumb-item active">Trần Văn Dần</li>
+
+                    </ul>
+
+                </div>
+            </div>
+            <!--/Header-->
+            <!--content-->
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="row clearfix">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="userbox">
+                                <div class="header">
+                                    <h2>Thêm mới </h2>
+                                    <ul class="header-dropdown m-r--5">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="javascript:void(0);">Action</a></li>
+                                                <li><a href="javascript:void(0);">Another action</a></li>
+                                                <li><a href="javascript:void(0);">Something else</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="body">
+                                    <h2 class="card-inside-title">Nhập thông tin quản trị viên mới</h2>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="UserAdmin" placeholder="Tên tài khoản" class="text" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="PassAdmin" placeholder="Mật khẩu" class="text" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="HotenAdmin" placeholder="Họ tên" class="text" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <input type="text" value="" name="EmailAdmin" placeholder="Email" class="text" />
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <label class="label icon-field"></label><br>
+                                        <label for="cars">Choose a car:</label>
+                                        <select id="cars" name="cars">
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="fiat">Fiat</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
+                                    </div>
+                                    <div class="clearfix large_form">
+                                        <div class="col-sm-12 ">
+                                            <div class="demo-google-material-icon">
+                                                <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Thêm mới" />
+                                                <a style="padding-left:15px" href="@Url.Action("Index","Admin")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/content-->
+                    </div>
+                </div>
+            }
+            <!--/content-->
+        </div>
+    </div>
+</section>
