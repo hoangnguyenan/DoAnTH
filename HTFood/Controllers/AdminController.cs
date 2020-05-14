@@ -58,20 +58,12 @@ namespace HTFood.Controllers
                 else
                     ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
             }
-            //if (ModelState.IsValid)
-            //{
-            //    db.Admins.Add(admins);
-            //    HttpResponseMessage response = client.PostAsJsonAsync(url + @"admin/", admins).Result;   
-
-
             return View();
         }
         public ActionResult LogOut()
         {
-            if (Session["Taikhoanadmin"] == null)
-            {
-                Session.Clear();
-            }
+            Session["Taikhoanadmin"] = null;
+            Session.Clear();
             Response.Redirect(Url.Action("SignIn"));
             return View("SignIn");
         }
@@ -87,6 +79,22 @@ namespace HTFood.Controllers
                 };
                 List<Admin> ad = JsonConvert.DeserializeObject<List<Admin>>(responseData, settings);
                 return ad;
+            }
+            return null;
+        }
+
+        public static List<ChucVu> getAllChucVu(HttpResponseMessage responseMessage)
+        {
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+                List<ChucVu> cv = JsonConvert.DeserializeObject<List<ChucVu>>(responseData, settings);
+                return cv;
             }
             return null;
         }
@@ -171,6 +179,26 @@ namespace HTFood.Controllers
                 total += (int)item.ThanhTien;
             }
             return total;
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Admin admins)
+        {
+            HttpResponseMessage response = client.PostAsJsonAsync(url + @"admin/", admins).Result;            
+
+            //response = await client.GetAsync(url + @"chucvu/");
+            //List<ChucVu> cv = getAllChucVu(response);
+            //ChucVu cv = list.Where(n => n.MaKH == MaKH).SingleOrDefault();
+
+            response.EnsureSuccessStatusCode();
+
+            return RedirectToAction("Index");
         }
         public ActionResult Sanpham()
         {

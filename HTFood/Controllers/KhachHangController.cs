@@ -30,7 +30,7 @@ namespace HTFood.Controllers
         private dbHutechfoodContext db = new dbHutechfoodContext();
 
         // GET: KhachHang
-        public async Task<ActionResult> Index(int? page)
+        public async Task<ActionResult> Index()
         {
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"khachhang/");
             List<KhachHang> khachHangs = getAllCustomer(responseMessage);
