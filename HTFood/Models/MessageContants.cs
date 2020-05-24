@@ -19,5 +19,8 @@ namespace HTFood.Models
         public static string STATUS_ORDER_DELIVERY = "ĐANG GIAO HÀNG ";
         public static string STATUS_ORDER_DELIVERED = "SHIPPER ĐÃ GIAO HÀNG";
         public static string STATUS_ORDER_BOOM = "BOOM HÀNG";
+        // alert
+        public static string MESSAGE_CREATE_SUCCESS = "THÀNH CÔNG";
+        public static string MESSAGE_CREATE_FAIL = "THẤT BẠI";
     }
 }

@@ -190,13 +190,29 @@ namespace HTFood.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Admin admins, QuyenAdmin quyenAdmin)
+        public ActionResult Create(Admin admins, FormCollection f)
         {
-            HttpResponseMessage response = client.PostAsJsonAsync(url + @"admin/", admins).Result;
-
-            HttpResponseMessage response1 = client.PostAsJsonAsync(url + @"quyenadmins/", quyenAdmin).Result;
-            
-
+            // Get QuyenAdmin
+            int quyenAdmin = int.Parse(f["AdminRole"]);
+            AdminRole adminRole = new AdminRole();
+            // Admin
+            adminRole.Id = admins.Id;
+            adminRole.HotenAdmin = admins.HotenAdmin;
+            adminRole.PassAdmin = admins.PassAdmin;
+            adminRole.UserAdmin = admins.UserAdmin;
+            adminRole.EmailAdmin = admins.EmailAdmin;
+            adminRole.MaQuyen = quyenAdmin;
+            // Call API Create
+            HttpResponseMessage response = client.PostAsJsonAsync(url + @"adminrole/", adminRole).Result;
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                ViewBag.Notice = 1;
+            }
+            else
+            {
+                ViewBag.Notice = 0;
+            }
             return RedirectToAction("Index");
         }
         public ActionResult Sanpham()

@@ -202,6 +202,15 @@ namespace HTFood.Models
         public int MaKH { get; set; }
         public int MaCH { get; set; }
     }
+    public class AdminRole
+    {
+        public int Id { get; set; }
+        public string UserAdmin { get; set; }
+        public string PassAdmin { get; set; }
+        public string HotenAdmin { get; set; }
+        public string EmailAdmin { get; set; }
+        public int MaQuyen { get; set; }
+    }
     public class dbHutechfoodContext : DbContext
     {   
         public DbSet<KhachHang> KhachHangs { get; set; }
