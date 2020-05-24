@@ -24008,7 +24008,7 @@ section.content {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     position: fixed;
-    top: -100px;
+    top: -200px;
     left: 0;
     z-index: 9999999;
     width: 100%
