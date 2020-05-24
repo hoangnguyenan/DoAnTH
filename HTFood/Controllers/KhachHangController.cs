@@ -59,6 +59,22 @@ namespace HTFood.Controllers
             }
             return null;
         }
+        public static List<DSYeuThich> getAllDSYT(HttpResponseMessage responseMessage)
+        {
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+                List<DSYeuThich> dSYeuThiches = JsonConvert.DeserializeObject<List<DSYeuThich>>(responseData, settings);
+                var list = dSYeuThiches.ToList();
+                return list;
+            }
+            return null;
+        }
 
         // GET: KhachHang/Details/5       
         public async Task<ActionResult> Details(int? id)
@@ -71,6 +87,9 @@ namespace HTFood.Controllers
                 //dong hoac mo data table 
                 ViewBag.accept = false;
                 khachHangs = await response.Content.ReadAsAsync<KhachHang>();
+                //List<KhachHang> kh = getAllCustomer(response);
+                //KhachHang khs = kh.SingleOrDefault(n => n.MaKH == id);
+                //ViewBag.tenkh = khs.HoTenKH;
 
                 // Call api
                 HttpResponseMessage responseMessage = await client.GetAsync(url + @"vitien/");
@@ -98,6 +117,22 @@ namespace HTFood.Controllers
                 }
                 // assign values to variables ViewBag.lsgd
                 ViewBag.lsgd = lichSuGDs.ToList();
+                //dsyt
+                responseMessage = await client.GetAsync(url + @"dsyeuthich/");
+                List<DSYeuThich> dSYeuThiches = getAllDSYT(responseMessage);
+                // Check data with id customer
+                dSYeuThiches = dSYeuThiches.Where(n => n.MaKH == id).ToList();
+                ViewBag.DSYT = dSYeuThiches;
+                //getCH
+                responseMessage = await client.GetAsync(url + @"cuahang/");
+                List<Cuahang> listch = CuahangController.getAllCuaHang(responseMessage);
+                List<string> dsTen = new List<string>();
+                foreach (DSYeuThich dsyt in dSYeuThiches)
+                {
+                    string namech = listch.Where(n => n.MaCH == dsyt.MaCH).SingleOrDefault().TenCH;
+                    dsTen.Add(namech);
+                }                
+                ViewBag.tench = dsTen;
             }
 
             // Return

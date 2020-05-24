@@ -33,7 +33,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#home_animation">Thông tin khách hàng</a></li>
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#home_animation_1">Lịch sử giao dịch</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_1">Ghi chú</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages_animation_1">Danh sách yêu thích</a></li>
                             </ul>
                         </div>
                         <div class="body">
@@ -148,13 +148,46 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_1">
-                                    <b>Message Content</b>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                        Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent
-                                        aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere
-                                        gubergren sadipscing mel.
-                                    </p>
+                                    <div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã YT</th>
+                                                        <th>Tên yêu thích</th>
+                                                        <th>Mã khách hàng</th>
+                                                        <th>Tên cửa hàng</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Mã YT</th>
+                                                        <th>Tên yêu thích</th>
+                                                        <th>Mã khách hàng</th>
+                                                        <th>Tên cửa hàng</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @{i = 1;}
+                                                    @foreach (DSYeuThich dSYeuThich in ViewBag.DSYT)
+                                                    {
+                                                        List<string> namech = ViewBag.tench;
+                                                        <tr>
+                                                            <td>@i</td>
+                                                            <td> @dSYeuThich.MaYT</td>
+                                                            @*<td> <a href="@Url.Action("Details","ViTien",new { id= @lichSuGD.MaViTien})">@lichSuGD.MaViTien</a></td>*@
+                                                            <td><span class="badge bg-orange">@dSYeuThich.TenYT</span></td>
+                                                            <td><span class="badge bg-orange">@dSYeuThich.MaKH</span></td>
+                                                            <td><span class="badge bg-grey">@namech[i - 1]</span></td>
+                                                        </tr>
+                                                        i++;
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -95,7 +95,6 @@ namespace HTFood.Controllers
                     string name = listda.Where(n => n.MaDA == ctdh.MaDA).SingleOrDefault().TenDA;
                     dsTen.Add(name);
                 }
-                //DoAn doAn = listda.Where(n => n.MaDA == );
                 ViewBag.nameDa = dsTen;
 
                 // Get name user

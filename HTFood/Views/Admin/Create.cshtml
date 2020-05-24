@@ -66,13 +66,16 @@
                                     </div>
                                     <div class="clearfix large_form">
                                         <label class="label icon-field"></label><br>
-                                        <label for="cars">Choose a car:</label>
-                                        <select id="cars" name="cars">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="fiat">Fiat</option>
-                                            <option value="audi">Audi</option>
-                                        </select>
+                                        
+                                            <label for="exampleFormControlSelect1">Example select</label>
+                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                @foreach (var item in ViewBag.TenCV)
+                                                {
+                                                    <option>@item.TenCV</option>
+                                                }
+                                            </select>
+                                        
+
                                     </div>
                                     <div class="clearfix large_form">
                                         <div class="col-sm-12 ">

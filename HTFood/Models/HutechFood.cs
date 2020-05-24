@@ -188,6 +188,20 @@ namespace HTFood.Models
         public string TenCV { get; set; }
         public int Quyen { get; set; }
     }
+    public  class QuyenAdmin
+    {
+        [Key]
+        public int MaAdmin { get; set; }
+        public int MaQuyen { get; set; }
+    }
+    public class DSYeuThich
+    {
+        [Key]
+        public int MaYT { get; set; }
+        public string TenYT { get; set; }
+        public int MaKH { get; set; }
+        public int MaCH { get; set; }
+    }
     public class dbHutechfoodContext : DbContext
     {   
         public DbSet<KhachHang> KhachHangs { get; set; }
@@ -217,5 +231,7 @@ namespace HTFood.Models
         public DbSet<Khuyenmai> Khuyenmais { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<ChucVu> ChucVus { get; set; }
+        public DbSet<QuyenAdmin> QuyenAdmins { get; set; }
+        public DbSet<DSYeuThich> DSYeuThichs { get; set; }
     }
 }

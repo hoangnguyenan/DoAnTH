@@ -46,11 +46,10 @@ namespace HTFood.Controllers
             else
             {
                 HttpResponseMessage response = client.GetAsync(url + @"admin/").Result;
-                Admin ad = getAllAdmin(response).Where(n => n.UserAdmin.CompareTo( user) == 0 && n.PassAdmin.CompareTo(pass) == 0).SingleOrDefault();
-                //Admin admins = ad.FirstOrDefault();
-                //admins = db.Admins.Where(n => n.UserAdmin == user && n.PassAdmin == pass).SingleOrDefault();
-               
-                if (ad != null || ad.ToString() == "")
+                Admin ad = getAllAdmin(response).Where(n => n.UserAdmin.CompareTo( user) == 0 && n.PassAdmin.CompareTo(pass) == 0).SingleOrDefault();                
+                //ad = db.Admins.Where(n => n.UserAdmin == user && n.PassAdmin == pass).SingleOrDefault();
+
+                if (ad != null )
                 {
                     Session["Taikhoanadmin"] = ad;
                     return RedirectToAction("Index", "Admin");
@@ -181,22 +180,22 @@ namespace HTFood.Controllers
             return total;
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            HttpResponseMessage response = await client.GetAsync(url + @"chucvu/");
+            List<ChucVu> list = getAllChucVu(response);
+            ViewBag.TenCV = list;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Admin admins)
+        public ActionResult Create(Admin admins, QuyenAdmin quyenAdmin)
         {
-            HttpResponseMessage response = client.PostAsJsonAsync(url + @"admin/", admins).Result;            
+            HttpResponseMessage response = client.PostAsJsonAsync(url + @"admin/", admins).Result;
 
-            //response = await client.GetAsync(url + @"chucvu/");
-            //List<ChucVu> cv = getAllChucVu(response);
-            //ChucVu cv = list.Where(n => n.MaKH == MaKH).SingleOrDefault();
-
-            response.EnsureSuccessStatusCode();
+            HttpResponseMessage response1 = client.PostAsJsonAsync(url + @"quyenadmins/", quyenAdmin).Result;
+            
 
             return RedirectToAction("Index");
         }
