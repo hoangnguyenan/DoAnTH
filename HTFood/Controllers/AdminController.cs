@@ -46,10 +46,10 @@ namespace HTFood.Controllers
             else
             {
                 HttpResponseMessage response = client.GetAsync(url + @"admin/").Result;
-                Admin ad = getAllAdmin(response).Where(n => n.UserAdmin.CompareTo( user) == 0 && n.PassAdmin.CompareTo(pass) == 0).SingleOrDefault();                
+                Admin ad = getAllAdmin(response).Where(n => n.UserAdmin.CompareTo(user) == 0 && n.PassAdmin.CompareTo(pass) == 0).SingleOrDefault();
                 //ad = db.Admins.Where(n => n.UserAdmin == user && n.PassAdmin == pass).SingleOrDefault();
 
-                if (ad != null )
+                if (ad != null)
                 {
                     Session["Taikhoanadmin"] = ad;
                     return RedirectToAction("Index", "Admin");
@@ -266,6 +266,16 @@ namespace HTFood.Controllers
         public ActionResult Danhmuc()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> getProductAsync(String input)
+        {
+            List<DoAn> results = new List<DoAn>();
+            HttpResponseMessage responseMessage = await client.GetAsync(url + @"doan/");
+            List<DoAn> listDoAn = DoAnController.getAllDoAn(responseMessage);
+            results = listDoAn.Where(n => n.TenDA.ToLower().Contains(input.ToLower())).ToList();
+            return Json(results, JsonRequestBehavior.AllowGet);
         }
     }
 }
