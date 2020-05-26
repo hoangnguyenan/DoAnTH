@@ -204,6 +204,7 @@ namespace HTFood.Models
     }
     public class AdminRole
     {
+        [Key]
         public int Id { get; set; }
         public string UserAdmin { get; set; }
         public string PassAdmin { get; set; }
@@ -242,5 +243,6 @@ namespace HTFood.Models
         public DbSet<ChucVu> ChucVus { get; set; }
         public DbSet<QuyenAdmin> QuyenAdmins { get; set; }
         public DbSet<DSYeuThich> DSYeuThichs { get; set; }
+        public DbSet<AdminRole> AdminRoles { get; set; }
     }
 }
