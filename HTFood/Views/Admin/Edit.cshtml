@@ -1,24 +1,25 @@
-﻿@model HTFood.Models.Admin
+﻿
+@model HTFood.Models.AdminRole
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <link href="~/assets/css/create.css" rel="stylesheet" />
-<title>Thêm mới quản trị viên</title>
+<link href="~/assets/css/edit.css" rel="stylesheet" />
+
+<title>Sửa thông tin quản trị viên</title>
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
             <!--Header-->
             <div class="row">
                 <div class="col-lg-12 col-md-6 col-sm-7">
-
-                    <h2>Thêm mới quản trị viên</h2>
+                    <h2>Chỉnh sửa quản trị viên</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Khách hàng</a></li>
-                        <li class="breadcrumb-item active">Trần Văn Dần</li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("MemberAdmin","Admin")">Quản trị viên</a></li>
 
                     </ul>
 
@@ -30,11 +31,13 @@
             {
                 @Html.AntiForgeryToken()
                 <div class="row clearfix">
-                    <div class="col-md-6">
+                    <div class="col-md-6  ">
                         <div class="card">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
                             <div class="userbox">
                                 <div class="header">
-                                    <h2>Thêm mới </h2>
+                                    <h2>Chỉnh sửa </h2>
                                     <ul class="header-dropdown m-r--5">
                                         <li class="dropdown">
                                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
@@ -47,28 +50,38 @@
                                     </ul>
                                 </div>
                                 <div class="body">
-                                    <h2 class="card-inside-title">Nhập thông tin quản trị viên mới</h2>
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <h2 class="card-inside-title">Nhập thông tin tài khoản cần chỉnh sửa</h2>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <input type="text" value="" name="UserAdmin" placeholder="Tên tài khoản" class="text" />
+                                        <label class="label icon-field">Tài khoản</label><br>
+                                        <div id="input-text">
+                                           @Html.EditorFor(model => model.UserAdmin, new { htmlAttributes = new { @class = "form-control" } })
+                                           @Html.ValidationMessageFor(model => model.UserAdmin, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <input type="password" value="" name="PassAdmin" placeholder="Mật khẩu" class="text" />
+                                        <label class="label icon-field">Mật khẩu</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.PassAdmin, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PassAdmin, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <input type="text" value="" name="HotenAdmin" placeholder="Họ tên" class="text" />
+                                        <label class="label icon-field">Họ tên</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.HotenAdmin, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.HotenAdmin, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <input type="email" value="" name="EmailAdmin" placeholder="Email" class="text" />
+                                        <label class="label icon-field">Email</label><br>
+                                        <div id="input-text">
+                                            @Html.EditorFor(model => model.EmailAdmin, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.EmailAdmin, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                     <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <label>Chức vụ</label>
-                                        <select  name="AdminRole">
+                                        <label class="label icon-field">Chức vụ</label><br>
+                                        <select class="form-control" name="AdminRole">
                                             @foreach (var item in ViewBag.TenCV)
                                             {
                                                 <option value="@item.Id">@item.TenCV</option>
@@ -78,7 +91,7 @@
                                     <div class="clearfix large_form">
                                         <div class="col-sm-12 ">
                                             <div class="demo-google-material-icon">
-                                                <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Thêm mới" />
+                                                <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Lưu" />
                                                 <a style="padding-left:15px" href="@Url.Action("Index","Admin")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
                                             </div>
                                         </div>
@@ -90,7 +103,7 @@
                     </div>
                 </div>
             }
-            <!--/content-->
         </div>
+        <!--/content-->
     </div>
 </section>

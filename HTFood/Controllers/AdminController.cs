@@ -179,6 +179,18 @@ namespace HTFood.Controllers
             }
             return total;
         }
+        public async Task<ActionResult> MemberAdmin()
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync(url + @"admin/");
+            List<Admin> admins = getAllAdmin(responseMessage);
+            if (admins != null)
+            {
+                ViewBag.accept = false;
+                var list = admins.ToList();
+                return View(list);
+            }
+            return View("Error");
+        }
 
         public async Task<ActionResult> Create()
         {
@@ -205,15 +217,77 @@ namespace HTFood.Controllers
             // Call API Create
             HttpResponseMessage response = client.PostAsJsonAsync(url + @"adminrole/", adminRole).Result;
             response.EnsureSuccessStatusCode();
+            return RedirectToAction("MemberAdmin", "Admin");
+        }
+        public async Task<ActionResult> Edit(int? id)
+        {
+            AdminRole adminRole = null;
+            HttpResponseMessage response = await client.GetAsync(url + @"adminrole/" + id);
             if (response.IsSuccessStatusCode)
             {
-                ViewBag.Notice = 1;
+                adminRole = await response.Content.ReadAsAsync<AdminRole>();
             }
-            else
+            response = await client.GetAsync(url + @"chucvu/");
+            List<ChucVu> list = getAllChucVu(response);
+            ViewBag.TenCV = list;
+            return View(adminRole);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Admin admins, FormCollection f)
+        {
+            // Get QuyenAdmin
+            int quyenAdmin = int.Parse(f["AdminRole"]);
+            AdminRole adminRole = new AdminRole();
+            // Admin
+            adminRole.Id = admins.Id;
+            adminRole.HotenAdmin = admins.HotenAdmin;
+            adminRole.PassAdmin = admins.PassAdmin;
+            adminRole.UserAdmin = admins.UserAdmin;
+            adminRole.EmailAdmin = admins.EmailAdmin;
+            adminRole.MaQuyen = quyenAdmin;
+            HttpResponseMessage response = client.PutAsJsonAsync(url + @"adminrole/" + adminRole.Id, adminRole).Result;
+            response.EnsureSuccessStatusCode();
+
+            return RedirectToAction("MemberAdmin", "Admin");
+        }
+        public async Task<ActionResult> Delete(int? id)
+        {
+            HttpResponseMessage response = await client.DeleteAsync(url + @"adminrole/" + id);
+            return RedirectToAction("MemberAdmin", "Admin");
+        }
+        public async Task<ActionResult> InfoAdmin(int? id)
+        {
+            Admin admin = null;
+            HttpResponseMessage response = await client.GetAsync(url + @"admin/" + id);
+            if (response.IsSuccessStatusCode)
             {
-                ViewBag.Notice = 0;
+                admin = await response.Content.ReadAsAsync<Admin>();
+                //var responseData = response.Content.ReadAsStringAsync().Result;
+                //var settings = new JsonSerializerSettings
+                //{
+                //    NullValueHandling = NullValueHandling.Ignore,
+                //    MissingMemberHandling = MissingMemberHandling.Ignore
+                //};
+                //var admin = JsonConvert.DeserializeObject<List<Admin>>(responseData, settings);
+                //List<Admin> ds = getAllAdmin(response).ToList();
+
+                //response = await client.GetAsync(url + @"chucvu/");
+                //List<ChucVu> listcv = getAllChucVu(response);
+                //List<string> dsTen = new List<string>();
+                //foreach (Admin ad in ds)
+                //{
+                //    string name = listcv.Where(n => n.Id == ad.Id).SingleOrDefault().TenCV;
+                //    dsTen.Add(name);
+                //}
+                //ViewBag.tencv = dsTen;
+                //return View(admin.ToList());
             }
-            return RedirectToAction("Index");
+            return View(admin);
+
+            //response = await client.GetAsync(url + @"chucvu/");
+            //List<ChucVu> list = getAllChucVu(response);
+            //ViewBag.TenCV = list;
         }
         public ActionResult Sanpham()
         {
@@ -227,14 +301,8 @@ namespace HTFood.Controllers
         {
             return View();
         }
-        public ActionResult Adminstrator()
-        {
-            return View();
-        }
-        public ActionResult InfoAdmin()
-        {
-            return View();
-        }
+        
+        
         public ActionResult Diadiem()
         {
             return View();
@@ -273,8 +341,14 @@ namespace HTFood.Controllers
         {
             List<DoAn> results = new List<DoAn>();
             HttpResponseMessage responseMessage = await client.GetAsync(url + @"doan/");
-            List<DoAn> listDoAn = DoAnController.getAllDoAn(responseMessage);
+            List<DoAn> listDoAn = DoAnController.getAllDoAn(responseMessage);            
             results = listDoAn.Where(n => n.TenDA.ToLower().Contains(input.ToLower())).ToList();
+
+            //List<NhanVienGiaoHang> results1 = new List<NhanVienGiaoHang>();
+            //responseMessage = await client.GetAsync(url + @"nhanviengiaohang/");
+            //List<NhanVienGiaoHang> lstnv = NhanVienGiaoHangController.getAllNhanVienGH(responseMessage);
+            //results1 = lstnv.Where(n => n.HoTenNV.ToLower().Contains(input.ToLower())).ToList();
+
             return Json(results, JsonRequestBehavior.AllowGet);
         }
     }

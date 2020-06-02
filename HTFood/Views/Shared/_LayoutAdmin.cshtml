@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -21,11 +22,11 @@
         });
 
     </script>
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
-    </script>
+    </script>*@
 </head>
 <body class="theme-cyan">
     <!-- Page Loader -->
@@ -201,10 +202,22 @@
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info">
-            <div class="image"><a href="@Url.Action("InfoAdmin","Admin")"><img src="~/Anhtam/random-avatar1.jpg" width="48" height="48" alt="User" /></a>  </div>
+            <div class="image"><a href="@Url.Action("InfoAdmin","Admin")"><img src="~/Anhtam/admin.png" width="48" height="48" alt="User" /></a>  </div>
             <div class="info-container">
                 <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Trần Dần</div>
                 <div class="email">trandancute@gmail.com</div>
+                <div class="btn-group user-helper-dropdown">
+                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="@Url.Action("InfoAdmin","Admin")"><i class="material-icons">person</i>Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+                        <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
+                        <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("LogOut","Admin")"><i class="material-icons">input</i>Sign Out</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <!-- #User Info -->
@@ -253,7 +266,7 @@
                         <li><a href="@Url.Action("Index","LichSuGD")">Lịch sử giao dịch</a></li>
                     </ul>
                 </li>
-                <li class="header">Nhân viên</li>
+                <li class="header" >Nhân viên</li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-local-shipping"></i><span>Quản lý giao hàng </span> </a>
                     <ul class="ml-menu">
@@ -261,16 +274,15 @@
                         <li><a href="@Url.Action("Index","LichSuNVGH")">Lịch sử giao hàng</a></li>
                     </ul>
                 </li>
-                <li class="header">Quản trị viên</li>
+                <li class="header" >Quản trị viên</li>
                 <li>
-                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-local-shipping"></i><span>Quản trị </span> </a>
+                    <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-folder-person"></i><span>Quản trị viên</span> </a>
                     <ul class="ml-menu">
-                        <li> <a href="@Url.Action("Adminstrator","Admin")"><i class="zmdi zmdi-folder-person"></i><span>Thành viên quản trị</span> </a> </li>
-                        <li><a href="@Url.Action("Edit","Admin")">Chinh sua quyền</a></li>
+                        <li> <a href="@Url.Action("MemberAdmin","Admin")">Thành viên quản trị</a> </li>
+                        <li><a href="@Url.Action("Index","ChucVu")">Danh sách chức vụ</a></li>
                     </ul>
                 </li>
                 <li class="header">Thông tin</li>
-                <li> <a href="@Url.Action("Adminstrator","Admin")"><i class="zmdi zmdi-folder-person"></i><span>Thành viên quản trị</span> </a> </li>
                 <li> <a href="@Url.Action("Index","ViTriGiaoHang")"><i class="zmdi zmdi-nature-people"></i><span>Địa điểm giao, nhận hàng</span> </a> </li>
                 <li class="header">News</li>
                 <li> <a href="@Url.Action("Tintuc","Admin")"><i class="zmdi zmdi-open-in-new"></i><span>Tin tức</span> </a> </li>
@@ -308,7 +320,7 @@
                         console.log(responses);
                         $('#listData div').remove();
                         for (let i = 0; i < responses.length; i++) {
-                            var html = '<a href="#"><div class="col-lg - 12" style="padding: 5px"><img width = "60" height = "60" src = "images/' + responses[i].AnhDA + '" /><p style="display:inline-block">' + responses[i].TenDA + '</p></div></a>';
+                            var html = '<a href="@Url.Action("Index","DoAn")"><div class="col-lg - 12" style="padding: 5px"><img width = "60" height = "60" src = "images/' + responses[i].AnhDA + '" /><p style="display:inline; padding-left:10px">' + responses[i].TenDA + '</p></div></a>';
                             $('#listData').append(html);
                         }
                     }

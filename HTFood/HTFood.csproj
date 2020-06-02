@@ -153,6 +153,7 @@
     <Compile Include="Controllers\LichSuGDController.cs" />
     <Compile Include="Controllers\LichSuNVGHController.cs" />
     <Compile Include="Controllers\NhanVienGiaoHangController.cs" />
+    <Compile Include="Controllers\ChucVuController.cs" />
     <Compile Include="Controllers\ViTienController.cs" />
     <Compile Include="Controllers\ViTienCuaHangController.cs" />
     <Compile Include="Controllers\ViTriGiaoHangController.cs" />
@@ -334,8 +335,7 @@
     <Content Include="Views\Admin\Sanpham.cshtml" />
     <Content Include="Views\Admin\Khachhang.cshtml" />
     <Content Include="Views\Admin\ChitietKH.cshtml" />
-    <Content Include="Views\Admin\Adminstrator.cshtml" />
-    <Content Include="Views\Admin\InfoAdmin.cshtml" />
+    <Content Include="Views\Admin\MemberAdmin.cshtml" />
     <Content Include="Views\Admin\Diadiem.cshtml" />
     <Content Include="Views\Admin\Dondathang.cshtml" />
     <Content Include="Views\Admin\Nhanviengh.cshtml" />
@@ -408,6 +408,13 @@
     <Content Include="tinymce\js\tinymce\skins\ui\oxide\fonts\tinymce-mobile.woff" />
     <Content Include="Views\Admin\SignIn.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\InfoAdmin.cshtml" />
+    <Content Include="Views\ChucVu\Create.cshtml" />
+    <Content Include="Views\ChucVu\Delete.cshtml" />
+    <Content Include="Views\ChucVu\Details.cshtml" />
+    <Content Include="Views\ChucVu\Edit.cshtml" />
+    <Content Include="Views\ChucVu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

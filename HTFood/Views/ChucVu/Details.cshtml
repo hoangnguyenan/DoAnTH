@@ -1,0 +1,27 @@
+﻿@model HTFood.Models.QuyenAdmin
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuyenAdmin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaQuyen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaQuyen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaAdmin }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

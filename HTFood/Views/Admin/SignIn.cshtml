@@ -25,22 +25,21 @@
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-lg-8 col-md-12 col-sm-12">
-                    <div class="l-detail">
+                    <div class="l-detail"><br><br><br><br>                        
                         <h5>Welcome</h5>
-                        <h1>Admin<span>CC</span></h1>
+                        <h1>Hutech Food Admin</h1>
                         <h3>Sign in to start your session</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                         <ul class="list-unstyled l-social">
-                            <li><a href="#"><i class="zmdi zmdi-facebook-box"></i></a></li>
-                            <li><a href="#"><i class="zmdi zmdi-linkedin-box"></i></a></li>
+                            <li><a href="https://www.facebook.com/hutechuniversity/"><i class="zmdi zmdi-facebook-box"></i></a></li>
+                            <li><a href="https://hutech.edu.vn/"><i class="zmdi zmdi-linkedin-box"></i></a></li>
                             <li><a href="#"><i class="zmdi zmdi-pinterest-box"></i></a></li>
                             <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
                             <li><a href="#"><i class="zmdi zmdi-instagram"></i></a></li>
                         </ul>
                         <ul class="list-unstyled l-menu">
-                            <li><a href="#">Contact Us</a></li>
+                            @*<li><a href="#">Contact Us</a></li>
                             <li><a href="#">About Us</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">FAQ</a></li>*@
                         </ul>
                     </div>
                 </div>
@@ -57,7 +56,7 @@
                                     <label class="form-label">Username</label>
                                 </div>
                                 @ViewData["Loi1"]
-                                <c style="color:red">@ViewBag.Thongbao</c>
+                                <c style="color: red">@ViewBag.Thongbao</c>
                             </div>
                             <div class="form-group form-float">
                                 <div class="form-line">
@@ -72,7 +71,7 @@
                             </div>
                             <button class="btn btn-raised waves-effect bg-red">SIGN IN</button>
 
-                            <button class="btn btn-raised waves-effect">SIGN UP</button>
+                            @*<button class="btn btn-raised waves-effect">SIGN UP</button>*@
                             <div class="text-left">
                                 <a href="forgot-password.html">Forgot Password?</a>
                             </div>
@@ -99,5 +98,24 @@
 
     .col-lg-8.col-md-12.col-sm-12 {
         background-image: url('../../images/food.jpg');
+        font-family: "Times New Roman", Times, serif;
     }
-</style>
+
+    .l-detail {
+        margin-left: 80px;
+    }
+
+    h5 {
+        color: white;
+
+    }
+
+    h1 {
+        color: whitesmoke;
+    }
+
+    h3 {
+        color: white;
+    }
+
+  </style>
