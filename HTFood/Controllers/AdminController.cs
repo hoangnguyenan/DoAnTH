@@ -270,7 +270,7 @@ namespace HTFood.Controllers
                 //    MissingMemberHandling = MissingMemberHandling.Ignore
                 //};
                 //var admin = JsonConvert.DeserializeObject<List<Admin>>(responseData, settings);
-                //List<Admin> ds = getAllAdmin(response).ToList();
+                //List<Admin> ds = getAllAdmin(response);
 
                 //response = await client.GetAsync(url + @"chucvu/");
                 //List<ChucVu> listcv = getAllChucVu(response);
@@ -281,13 +281,8 @@ namespace HTFood.Controllers
                 //    dsTen.Add(name);
                 //}
                 //ViewBag.tencv = dsTen;
-                //return View(admin.ToList());
             }
             return View(admin);
-
-            //response = await client.GetAsync(url + @"chucvu/");
-            //List<ChucVu> list = getAllChucVu(response);
-            //ViewBag.TenCV = list;
         }
         public ActionResult Sanpham()
         {

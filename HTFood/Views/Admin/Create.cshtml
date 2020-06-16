@@ -49,40 +49,42 @@
                                 <div class="body">
                                     <h2 class="card-inside-title">Nhập thông tin quản trị viên mới</h2>
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <input type="text" value="" name="UserAdmin" placeholder="Tên tài khoản" class="text" />
-                                    </div>
-                                    <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <input type="password" value="" name="PassAdmin" placeholder="Mật khẩu" class="text" />
-                                    </div>
-                                    <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <input type="text" value="" name="HotenAdmin" placeholder="Họ tên" class="text" />
-                                    </div>
-                                    <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <input type="email" value="" name="EmailAdmin" placeholder="Email" class="text" />
-                                    </div>
-                                    <div class="clearfix large_form">
-                                        <label class="label icon-field"></label><br>
-                                        <label>Chức vụ</label>
-                                        <select  name="AdminRole">
-                                            @foreach (var item in ViewBag.TenCV)
-                                            {
-                                                <option value="@item.Id">@item.TenCV</option>
-                                            }
-                                        </select>
-                                    </div>
-                                    <div class="clearfix large_form">
-                                        <div class="col-sm-12 ">
-                                            <div class="demo-google-material-icon">
-                                                <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Thêm mới" />
-                                                <a style="padding-left:15px" href="@Url.Action("Index","Admin")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
+                                    <form id="form_advanced_validation" method="POST" novalidate="novalidate">
+                                        <div class="clearfix large_form">
+                                            <label class="label icon-field"></label><br>
+                                            <input type="text" value="" name="UserAdmin" class="text" maxlength="50" placeholder="Tên tài khoản" required="" aria-required="true">
+                                        </div>
+                                        <div class="clearfix large_form">
+                                            <label class="label icon-field"></label><br>
+                                            <input type="text" value="" name="PassAdmin" maxlength="50" minlength="6" class="text" placeholder="Mật khẩu" required="" aria-required="true">
+                                        </div>
+                                        <div class="clearfix large_form">
+                                            <label class="label icon-field"></label><br>
+                                            <input type="text" value="" name="HotenAdmin" class="text" maxlength="50" placeholder="Họ & Tên" required="" aria-required="true">
+                                        </div>
+                                        <div class="clearfix large_form">
+                                            <label class="label icon-field"></label><br>
+                                            <input type="email" value="" name="EmailAdmin" class="text" placeholder="Email" required="" aria-required="true">
+                                        </div>
+                                        <div class="clearfix large_form">
+                                            <label class="label icon-field"></label><br>
+                                            <label>Chức vụ</label>
+                                            <select name="AdminRole">
+                                                @foreach (var item in ViewBag.TenCV)
+                                                {
+                                                    <option value="@item.Id">@item.TenCV</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="clearfix large_form">
+                                            <div class="col-sm-12 ">
+                                                <div class="demo-google-material-icon">
+                                                    <input class="btn btn-raised bg-light-blue waves-effect" type="submit" value="Thêm mới" />
+                                                    <a style="padding-left:15px" href="@Url.Action("Index","Admin")">Quay lại </a><span class="icon-name"><i class="material-icons">keyboard_return</i></span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -94,3 +96,4 @@
         </div>
     </div>
 </section>
+

@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -23,10 +22,10 @@
 
     </script>
     @*<script type="text/javascript">
-        function preventBack() { window.history.forward(); }
-        setTimeout("preventBack()", 0);
-        window.onunload = function () { null };
-    </script>*@
+            function preventBack() { window.history.forward(); }
+            setTimeout("preventBack()", 0);
+            window.onunload = function () { null };
+        </script>*@
 </head>
 <body class="theme-cyan">
     <!-- Page Loader -->
@@ -198,27 +197,34 @@
             </ul>
         </div>
     </nav>
+
     <!-- Left Sidebar -->
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info">
-            <div class="image"><a href="@Url.Action("InfoAdmin","Admin")"><img src="~/Anhtam/admin.png" width="48" height="48" alt="User" /></a>  </div>
-            <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Trần Dần</div>
-                <div class="email">trandancute@gmail.com</div>
-                <div class="btn-group user-helper-dropdown">
-                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a href="@Url.Action("InfoAdmin","Admin")"><i class="material-icons">person</i>Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                        <li class="divider"></li>
-                        <li><a href="@Url.Action("LogOut","Admin")"><i class="material-icons">input</i>Sign Out</a></li>
-                    </ul>
+            @if (Session["Taikhoanadmin"] != null)
+            {
+                HTFood.Models.Admin tk = (HTFood.Models.Admin)Session["Taikhoanadmin"];
+                <div class="image"><a href="@Url.Action("InfoAdmin","Admin",new { id = @tk.Id })"><img src="~/Anhtam/admin.png" width="48" height="48" alt="User" /></a>  </div>
+                <div class="info-container">
+
+
+                    <div class="name" data-toggle="dropdown">@tk.HotenAdmin</div>
+                    <div class="email">@tk.EmailAdmin</div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="@Url.Action("InfoAdmin","Admin",new { id = @tk.Id })"><i class="material-icons">person</i>Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                            <li class="divider"></li>
+                            <li><a href="@Url.Action("LogOut","Admin")"><i class="material-icons">input</i>Sign Out</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
         <!-- #User Info -->
         <!-- Menu -->
@@ -266,7 +272,7 @@
                         <li><a href="@Url.Action("Index","LichSuGD")">Lịch sử giao dịch</a></li>
                     </ul>
                 </li>
-                <li class="header" >Nhân viên</li>
+                <li class="header">Nhân viên</li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-local-shipping"></i><span>Quản lý giao hàng </span> </a>
                     <ul class="ml-menu">
@@ -274,7 +280,7 @@
                         <li><a href="@Url.Action("Index","LichSuNVGH")">Lịch sử giao hàng</a></li>
                     </ul>
                 </li>
-                <li class="header" >Quản trị viên</li>
+                <li class="header">Quản trị viên</li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-folder-person"></i><span>Quản trị viên</span> </a>
                     <ul class="ml-menu">
@@ -291,7 +297,6 @@
         <!-- #Menu -->
     </aside>
     <!-- Right Sidebar -->
-
 
     <div>
         @RenderBody()

@@ -11,7 +11,7 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-12 col-md-6 col-sm-7">
-                    <h2>Thông tin thành viên</h2>
+                    <h2>Thông tin quản trị viên</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
                         <li class="breadcrumb-item"><a href="@Url.Action("MemberAdmin", "Admin")">Quản trị viên</a></li>
@@ -25,7 +25,7 @@
                 <div class="boxs-simple">
                     <div class="profile-header">
                         <div class="profile_info">
-                            <div class="profile-image"> <img src="~/Anhtam/random-avatar1.jpg" alt=""> </div>
+                            <div class="profile-image"> <img src="~/Anhtam/admin.png" alt=""> </div>
                             <h4>@Html.DisplayFor(model => model.HotenAdmin)</h4>
                             <span class="badge g-bg-gy">Quản trị viên</span>
                             <div class="mt-10">
@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="row clearfix">
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="header">
                         <h2>Thông tin cá nhân</h2>
@@ -94,7 +94,7 @@
                                 <div class="col-sm-12">
                                     <div class="demo-google-material-icon"> <i class="material-icons">no_encryption</i><span class="icon-name"><b>Mật khẩu: </b>@Html.DisplayFor(model => model.PassAdmin)</span></div>
                                 </div><div class="col-sm-12 ">
-                                    @*<div class="demo-google-material-icon"> <i class="material-icons">phone</i><span class="icon-name"><b>Điện thoại: </b> @ViewBag.tencv</span> </div>*@
+                                    <div class="demo-google-material-icon"> <i class="material-icons">poll</i><span class="icon-name"><b>Điện thoại: </b>OwnerStore</span> </div>
                                 </div>
                                 @*<div class="col-sm-12 ">
                                         <div class="icon-button-demo">
@@ -139,7 +139,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-1">
+            <div class="col-lg-5 col-md-1">
                 <div class="card">
                     <div class="body">
                         <!-- Nav tabs -->
